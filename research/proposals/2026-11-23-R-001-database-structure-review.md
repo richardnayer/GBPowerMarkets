@@ -126,7 +126,7 @@ Rules:
 | SOURCES | `SRC` | 4 | `SRC-0001` |
 | MECHANISM_RELATIONSHIP | `REL` | 4 | `REL-0001` |
 | CITATIONS | `CIT` | 6 | `CIT-000001` |
-| PROCUREMENT_WINDOW | `WIN` | 6 | `WIN-000001` |
+| SUB_MARKET (was PROCUREMENT_WINDOW; see Change 12) | `SUB` | 6 | `SUB-000001` |
 | PARAMETER_VALUES | `PAR` | 6 | `PAR-000001` |
 | CHANGE_LOG | `CHG` | 6 | `CHG-000001` |
 
@@ -310,23 +310,31 @@ This follows Frictionless `missingValues` (https://datapackage.org/standard/tabl
   unit, allowed values and definition. This is where human-readable labels can live if the headers
   become machine names (see Question 3).
 
-#### Change 12. Separate *product* from *procurement window* (DSO and similar)
+#### Change 12. Separate *product* from *sub-market* (DSO and similar)
+
+_Corrected 2026-11-23 (R-008 Change 7, approved). The table is now named `SUB_MARKET`, prefix `SUB-`
+(approved 2026-11-23). The earlier text described Sustain / Secure / Dynamic / Restore as the ENA
+product families. That was wrong: they are superseded legacy products._
 
 46 rows are DSO flexibility (43% of the database). Many are the same product procured over different
 horizons. For example, SPEN `Operational Utilisation - 15 Minutes` appears twice, differing only by
-contract-length band, and NPg has numbered tender lines. The ENA Open Networks programme has
-standardised DSO active-power products (Sustain / Secure / Dynamic / Restore families and their
-SU / SAOU / VAOU / OU payment structures). See
-https://www.energynetworks.org/assets/images/2023/Aug/on-flexibility-products-alignment-(feb-2024).pdf.
-The PDF returned HTTP 403 to automated fetch, so the exact product taxonomy must be confirmed by hand
-or in a later run.
+contract-length band, and NPg has numbered tender lines. The DSO standard products are now defined by
+Elexon's Flexibility Market Rule FMR-PD v4.2: five products (SU, PR, OU, SA+OU, VA+OU) in 12
+variants (https://bscdocs.elexon.co.uk/flex-market/flexibility-market-rules/fmr-pd-product-definitions).
+The mapping of all 46 rows is in research/proposals/2026-11-23-R-008-dso-product-taxonomy.md. The
+human confirmed that the DSO rows were taken from Elexon's Flexibility Market Catalogue, which lists
+*sub-markets*.
 
 Proposal:
-- The mechanism row is *DNO x standard product* (e.g. `SPEN - Scheduled Utilisation`), with a new
-  column `ena_standard_product` (FK lookup).
-- A new `PROCUREMENT_WINDOW.csv` holds `window_id, mechanism_id, contract_length_band,
+- The mechanism row is *DNO x standard variant* (e.g. `SPEN - Scheduled Utilisation`), with a column
+  `standard_variant_code` (FK -> `LK_DSO_PRODUCT_VARIANT`). R-008 found that the 46 DSO rows collapse
+  to 25 such rows.
+- A new `SUB_MARKET.csv` holds `sub_market_id, mechanism_id, contract_length_band,
   procurement_lead_time, procurement_frequency, platform (FK ORGANISATIONS e.g. Piclo/Flexible
-  Power/own portal), first_seen, last_seen, source_id`.
+  Power/own portal), first_seen, last_seen, source_id`. The term is Elexon's: in FMR-SMD, a
+  sub-market is one system operator procuring one product within one time period. The columns should
+  follow FMR-SMD Table 2, so that the table can be checked against the catalogue
+  (https://bscdocs.elexon.co.uk/flex-market/flexibility-market-rules/fmr-smd-sub-market-definitions).
 
 This removes the duplicate names and makes cross-DNO comparison possible. The same pattern applies
 to:
@@ -335,7 +343,10 @@ to:
 - Exchange futures (one product family, many tenors: Day/Weekend/Week/Month/Quarter/Season/Year).
   This would reduce the 17 EEX rows to 3 families (Base, Peak, TB2) x tenors.
 
-This is the largest change, and it needs human sign-off (Question 4).
+Whether these cases use `SUB_MARKET` or child tables of their own will be settled when Phase 3 is
+designed in detail.
+
+This is the largest change. Its direction was approved under Question 4.
 
 ### Phase 4: extend the schema for the wider scope (CfDs, CM, futures, use-of-system charges, carbon taxes)
 
@@ -423,7 +434,7 @@ Subtypes (1:1, optional):
 Children (1:N):
 - ORDER_TYPES
 - ELIGIBILITY
-- PROCUREMENT_WINDOW
+- SUB_MARKET
 - PARAMETER_VALUES
 - MECHANISM_ORG_ROLE
 - MECHANISM_RELATIONSHIP
@@ -462,7 +473,8 @@ Governance:
   market knowledge, and each definition still needs a cited source when the lookup is populated. The
   ramp-rate unit interpretation (`pu/s`) and the Direction sign convention must be confirmed against
   NESO service terms.
-- **ENA product taxonomy:** not verified from the primary PDF, because the fetch was blocked (HTTP 403).
+- **DSO product taxonomy:** verified in R-008 against Elexon FMR-PD v4.2 and the ENA Feb 2024 report
+  (read from a Wayback Machine copy). See research/proposals/2026-11-23-R-008-dso-product-taxonomy.md.
 - **Phase 3 Change 12 and Phase 4** are design choices with trade-offs. Long-format tables are more
   flexible but harder to edit by hand in Excel. Wide 1:1 subtype tables are easier to edit but sparse.
 - **CSV changes:** only Phase 1 has been applied (2026-11-23, R-007). Phases 2-4 have not been applied.

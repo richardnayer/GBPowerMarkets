@@ -1,6 +1,12 @@
 # DSO flexibility product taxonomy and mapping of the 46 DSO rows
 **Backlog item:** R-008
-**Status:** pending review
+**Status:** partly approved 2026-11-23.
+- Changes 4, 5 and 7 are approved and applied (`scripts/apply_r008.py`, logged in research/change_log.csv).
+- The `SUB_MARKET` child-table name (Finding 4) is approved and recorded in R-001 Change 12.
+- Changes 1-2 are folded into R-009.
+- Change 3 (076) is on hold until the Elexon catalogue entry is checked.
+- Change 6 is passed to R-006.
+
 **Date:** 2026-11-23
 **IDs:** written in the earlier 3-digit form. After R-017 (R-001 Change 1a), `067` = `MEC-0067`.
 **Human input (2026-11-23):** the DSO rows were taken from the Elexon Flexibility Market Catalogue,

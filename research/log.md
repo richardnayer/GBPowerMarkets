@@ -16,6 +16,19 @@ Entry template:
 
 ---
 
+## 2026-11-23 · R-008 · Apply approved changes (human decisions)
+**Outcome:** done
+**Summary:** Main session, on the human's instruction. The human confirmed that the DSO rows came from Elexon's Flexibility Market Catalogue, and that the catalogue has no export option.
+- **Applied with `scripts/apply_r008.py`** (9 rows in research/change_log.csv): Change 5 filled NPg `Contract Length Band` for MEC-0075 and MEC-0077 to MEC-0082 from NPg's 2026-27 statement; Change 4 added a flag note to MEC-0083 and MEC-0084.
+- **Applied in the R-001 proposal text:** Change 7 corrected R-001 Change 12 (FMR-PD products, not ENA families), and the Phase 3 child table became `SUB_MARKET` (prefix `SUB-`).
+- **Folded into R-009:** Changes 1-2 (standard product and variant columns).
+- **On hold:** Change 3 (rename 076). The name probably matches what the catalogue said, so it needs checking by eye.
+- **Passed to R-006:** Change 6.
+**Proposal:** research/proposals/2026-11-23-R-008-dso-product-taxonomy.md
+**Sources consulted:** https://www.northernpowergrid.com/sites/default/files/assets/Distribution%20Flexibility%20Services%20Procurement%20Statement%202026-27.pdf (as cited in the proposal)
+**Open questions for human:** none new (076 needs the catalogue entry checked by eye; see R-014)
+**Suggested new backlog items:** none
+
 ## 2026-11-23 · R-017 · Prefixed permanent IDs (MEC-0001..MEC-0112) and R-001 decisions
 **Outcome:** done
 **Summary:** Main session, on the human's instruction. The human answered all remaining R-001 questions: rename "market" to "mechanism"; `snake_case` headers with unit suffixes; one row per product family with child tables; field-level citations; include SEM-GB and interconnector mechanisms with a `jurisdiction` column. Storage stays CSV as the master copy, plus `datapackage.json`, a pre-commit validator and a generated SQLite build that is not committed. Phase 2 design is approved. The human also approved R-001 Change 1a (prefixed, permanent IDs for every table), because the dataset will be published and its IDs will appear in website URLs. `scripts/apply_mec_ids.py` renamed the ID column in all six CSVs from `001`-`112` to `MEC-0001`-`MEC-0112`, keeping the same number. Nothing else changed: the script verified every non-ID cell, the BOM and CRLF. 112 mapping rows were added to research/change_log.csv. Backup: research/backups/2026-11-23-pre-mec-ids/.
