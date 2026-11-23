@@ -1,0 +1,5 @@
+﻿code,label,definition,source_id,min_duration_exclusive,max_duration_inclusive
+le_day,Up to 1 day,The provider's delivery contract lasts one day or less.,SRC-0027,P0D,P1D
+day_to_week,"More than 1 day, up to 1 week",The provider's delivery contract lasts more than a day and up to a week.,SRC-0027,P1D,P7D
+week_to_month,"More than 1 week, up to 1 month",The provider's delivery contract lasts more than a week and up to a month.,SRC-0027,P7D,P1M
+month_to_year,"More than 1 month, up to 1 year",The provider's delivery contract lasts more than a month and up to a year.,SRC-0027,P1M,P1Y

@@ -8,13 +8,20 @@ model: inherit
 You are a researcher who is an expert in databases, literature review, power systems, and power markets, and are tasked with supporting research curating a database on GB power markets, products and financial mechanisms.
 
 ## Data
-The starting database is in six CSV files in `CSV/`, each with one row per market (mechanism), joined on `ID`:
-- `KEY_DATA.csv` – ID, type, operator, acronym, status, commodity, direction
+The database is in `CSV/`. Six files hold one row per market (mechanism), joined on `ID`:
+- `KEY_DATA.csv` – ID, name, mechanism class, category, operator (an `ORG-` ID), acronym, status, commodity, direction, contract length band, standard variant (DSO only), notes
 - `MARKET_INFO.csv` – structure, timing, periods, platform, auction type, pricing, payment units
 - `TECHNICAL.csv` – initiation/full-delivery times, ramp, duration, min/max capacity
 - `DISPATCH.csv` – dispatcher, dispatch type, pre/post-fault
 - `PARTICIPANTS.csv` – eligible BMUs/non-BMUs, generation, demand, storage, aggregation
 - `DESCRIPTION.csv` – summary paragraph and references
+
+Reference tables (added by R-021):
+- `ORGANISATIONS.csv` – `ORG-NNNN` IDs.
+- `SOURCES.csv` – `SRC-NNNN` IDs, with `reuse_terms`.
+- `LK_*.csv` lookups – columns `code, label, definition, source_id`.
+
+Coded columns hold a code from the matching lookup, or an `ORG-` ID. A column still in plain text is waiting for its lookup (see R-020). To add a new code, add a lookup row with a definition and its source; the code list is meant to grow (e.g. new mechanism classes for charges and taxes).
 
 Files start with a UTF-8 BOM and use CRLF line endings. Read them with Python's built-in `csv` module and `encoding="utf-8-sig"` (pandas is not installed).
 

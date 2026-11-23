@@ -1,0 +1,10 @@
+﻿code,label,definition,source_id
+energy,Energy,"Buying, selling or hedging electrical energy (MWh) for delivery in a given period.",SRC-0041
+frequency_response,Frequency response,"Fast, automatic changes in active power that follow changes in system frequency, to contain and correct frequency deviations.",SRC-0032
+reserve,Reserve,"Extra active power, or a reduction, that the system operator can call on over minutes to hours to restore the balance between supply and demand.",SRC-0032
+thermal_constraint,Thermal constraint management,"Actions that keep power flows within the thermal limits of network circuits or boundaries, at transmission or distribution level.",SRC-0036
+voltage,Voltage,Absorbing or injecting reactive power to keep network voltages within their allowed range.,SRC-0035
+stability,Stability,"Services that help the system ride through disturbances, such as inertia and short-circuit level.",SRC-0033
+restoration,Restoration,Capability to restore electricity supplies after a total or partial shutdown of the system.,SRC-0034
+capacity_adequacy,Capacity adequacy,Making sure enough reliable capacity is available to meet demand at times of system stress.,SRC-0022
+investment_support,Investment support,Encouraging investment in new low-carbon generation or storage by reducing long-term revenue risk.,SRC-0021

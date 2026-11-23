@@ -1,6 +1,6 @@
 # Phase 2 content: ORGANISATIONS, SOURCES, lookup tables and the value mapping
 **Backlog item:** R-009
-**Status:** pending review
+**Status:** approved 2026-11-23, with amendments (see "Human decisions" at the end). Applied as R-021 (`scripts/apply_r021.py`).
 **Date:** 2026-11-23
 **IDs:** mechanism IDs use the `MEC-NNNN` form (R-001 Change 1a). New IDs: `ORG-0001`..`ORG-0035`, `SRC-0001`..`SRC-0045`.
 
@@ -375,3 +375,37 @@ EMR Delivery Body site did not load). R-020 should source it.
    - CM commodity = `firm_capacity`; CfD commodity = `active_power`.
 
    Approve all of them, or list the ones to reject.
+
+## Human decisions (2026-11-23)
+
+- **D1-D7 and D9-D11:** approved as recommended, including every D7 re-typing and fill. Both
+  judgement calls take the recommended value: the DSO category is `thermal_constraint`, including
+  for MEC-0069 legacy Restore.
+- **D8 (amended):** add only `Standard Variant` to KEY_DATA. `Standard Product` is not added, because
+  `LK_DSO_PRODUCT_VARIANT.product_code` already records it, so a second column could drift.
+  `product_fit` stays in the lookup.
+- **Human change 1: contract length.** `LK_CONTRACT_LENGTH_BAND` holds the range in two columns instead
+  of in one cell: `min_duration_exclusive` and `max_duration_inclusive`, as ISO 8601 durations (e.g.
+  `P7D`, `P1M`). The labels are now words ("More than 1 week, up to 1 month"). The human also asked
+  for a later review: as research covers more markets, would contract length be better recorded as
+  yes/no for set durations? Logged as R-022.
+- **Human change 2: mechanism classes.** `LK_MECHANISM_CLASS` must allow other kinds of mechanism,
+  e.g. BSUoS charges and carbon taxes. The reserved classes from R-001 Change 6 cover these
+  (`system_charge`, `network_charge`, `tax`, `emissions_trading`, `policy_levy`,
+  `certificate_scheme`). They are added, with sourced definitions, when R-002 / R-003 draft the
+  rows. R-010 checks allowed values against the lookup files, not against a fixed list in the
+  schema, so a new class needs only a new lookup row. Recorded in R-001 Change 6.
+
+**How R-021 applied it (main session, 2026-11-23):**
+- **Converted now:** a column is converted only if every non-blank value in it can be converted. So
+  KEY_DATA Market Type, Market Operator, Status, Commodity, Direction and Contract Length Band are
+  converted, as are the yes/no columns in MARKET_INFO, DISPATCH and PARTICIPANTS.
+- **Left as text until their lookups exist:** MARKET_INFO Market Platform (converting now would lose
+  the EAC/SMP system names before `LK_PLATFORM` exists), Pricing Structure, Auction Type, Market
+  Structure, Market Objective; DISPATCH Dispatcher and Dispatch Type; PARTICIPANTS Aggregation. See
+  R-020.
+- **Qualifiers kept:** where a mapping drops part of a value (`Yes: Response & Reserve`,
+  `Yes (via. BM)`, `No?`), that part was copied into the row's `Notes`.
+- **SOURCES:** the "Reuse:" text was moved from `notes` into `reuse_terms` (D1).
+- **ORGANISATIONS:** `licence_id` was dropped (D2).
+- **Records:** 141 rows in research/change_log.csv. Backup: research/backups/2026-11-23-pre-r021/.

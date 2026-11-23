@@ -1,0 +1,6 @@
+﻿code,label,definition,source_id,external_code
+su,Scheduled Utilisation (SU),The provider changes its import or export at times fixed when the trade is agreed. Only delivered energy is paid (GBP/MWh); there is no availability payment.,SRC-0026,SU
+pr,Peak Reduction (PR),"The provider lowers its peak power over a period agreed at trade, rather than delivering continuously. Only delivered energy is paid.",SRC-0026,PR
+ou,Operational Utilisation (OU),"The DNO instructs the provider in real time, usually after a network event, and pays only for energy delivered. Variants differ by maximum response time (2 or 15 minutes).",SRC-0026,OU
+sa_ou,Scheduled Availability + Operational Utilisation (SA+OU),"The DNO buys availability windows at trade, which cannot be changed afterwards, and then instructs utilisation within them. Availability is paid in GBP/MW/h and utilisation in GBP/MWh. DNOs also write SAOU or OUSA.",SRC-0026,SA+OU
+va_ou,Variable Availability + Operational Utilisation (VA+OU),"Like SA+OU, but the DNO can refine which availability it needs closer to the time (week ahead, or month ahead for the week-ahead variant). DNOs also write VAOU or OUVA.",SRC-0026,VA+OU

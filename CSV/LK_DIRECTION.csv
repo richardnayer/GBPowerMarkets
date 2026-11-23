@@ -1,0 +1,5 @@
+﻿code,label,definition,source_id
+up,Up,Increases net export to the system: more generation or less demand. In the Balancing Mechanism this is the direction of an offer.,SRC-0037
+down,Down,Reduces net export to the system: less generation or more demand. In the Balancing Mechanism this is the direction of a bid.,SRC-0037
+both,Both,"The mechanism procures, or lets participants trade, in either direction; for example energy trading, where participants can buy or sell.",SRC-0042
+not_applicable,Not applicable,"The mechanism has no physical delivery direction, for example a cash-settled financial contract.",SRC-0042

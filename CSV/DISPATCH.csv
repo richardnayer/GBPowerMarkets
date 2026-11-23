@@ -1,17 +1,17 @@
 ﻿ID,Market Name,Dispatcher,Dispatch Type,Pre-Fault,Post-Fault
-MEC-0001,Dynamic Containment High,Self,Auto,No,Yes
-MEC-0002,Dynamic Containment Low,Self,Auto,No,Yes
-MEC-0003,Dynamic Moderation High,Self,Auto,Yes,No
-MEC-0004,Dynamic Moderation Low,Self,Auto,Yes,No
-MEC-0005,Dynamic Regulation High,Self,Auto,Yes,No
-MEC-0006,Dynamic Regulation Low,Self,Auto,Yes,No
-MEC-0007,Mandatory Frequency Response: Limited Frequency Sensitive Mode,Self,Auto,Yes,Yes
+MEC-0001,Dynamic Containment High,Self,Auto,no,yes
+MEC-0002,Dynamic Containment Low,Self,Auto,no,yes
+MEC-0003,Dynamic Moderation High,Self,Auto,yes,no
+MEC-0004,Dynamic Moderation Low,Self,Auto,yes,no
+MEC-0005,Dynamic Regulation High,Self,Auto,yes,no
+MEC-0006,Dynamic Regulation Low,Self,Auto,yes,no
+MEC-0007,Mandatory Frequency Response: Limited Frequency Sensitive Mode,Self,Auto,yes,yes
 MEC-0008,Mandatory Frequency Response: Frequency Sensitive Mode,,,,
-MEC-0009,Static Firm Frequency Response,Self,Auto,No,Yes
-MEC-0010,Positive Quick Reserve,NESO,BOA/OBP,Yes,Yes
-MEC-0011,Negative Quick Reserve,NESO,BOA/OBP,Yes,Yes
-MEC-0012,Positive Slow Reserve,,,No,Yes
-MEC-0013,Negative Slow Reserve,,,No,Yes
+MEC-0009,Static Firm Frequency Response,Self,Auto,no,yes
+MEC-0010,Positive Quick Reserve,NESO,BOA/OBP,yes,yes
+MEC-0011,Negative Quick Reserve,NESO,BOA/OBP,yes,yes
+MEC-0012,Positive Slow Reserve,,,no,yes
+MEC-0013,Negative Slow Reserve,,,no,yes
 MEC-0014,Positive Balancing Reserve,,,,
 MEC-0015,Negative Balancing Reserve,,,,
 MEC-0016,Short-Term Operating Reserve,,,,
@@ -31,40 +31,40 @@ MEC-0029,Capacity Market (T-1),,,,
 MEC-0030,Capacity Market (T-4),,,,
 MEC-0031,CfD Allocation Rounds,,,,
 MEC-0032,LDES Cap & Floor,,,,
-MEC-0033,Over the Counter: Physical,Self,Self,Yes,N/A
-MEC-0034,Over the Counter: Financial,N/A,N/A,N/A,N/A
-MEC-0035,UK Base Electricity 1x Season Options,N/A,N/A,N/A,N/A
-MEC-0036,UK Base Electricity Future (Gregorian),N/A,N/A,N/A,N/A
-MEC-0037,UK Base Electricity Options,N/A,N/A,N/A,N/A
-MEC-0038,UK Peak Electricity Future (Gregorian),N/A,N/A,N/A,N/A
-MEC-0039,UK Spark Spread,N/A,N/A,N/A,N/A
-MEC-0040,EEX GB Power Base Day Futures,N/A,N/A,N/A,N/A
-MEC-0041,EEX GB Power Base Weekend Futures,N/A,N/A,N/A,N/A
-MEC-0042,EEX GB Power Base Week Futures,N/A,N/A,N/A,N/A
-MEC-0043,EEX GB Power Base Month Futures,N/A,N/A,N/A,N/A
-MEC-0044,EEX GB Power Base Quarter Futures,N/A,N/A,N/A,N/A
-MEC-0045,EEX GB Power Base Season Futures,N/A,N/A,N/A,N/A
-MEC-0046,EEX GB Power Base Year Futures,N/A,N/A,N/A,N/A
-MEC-0047,EEX GB Power Peak Day Futures,N/A,N/A,N/A,N/A
-MEC-0048,EEX GB Power Peak Weekend Futures,N/A,N/A,N/A,N/A
-MEC-0049,EEX GB Power Peak Week Futures,N/A,N/A,N/A,N/A
-MEC-0050,EEX GB Power Peak Month Futures,N/A,N/A,N/A,N/A
-MEC-0051,EEX GB Power Peak Quarter Futures,N/A,N/A,N/A,N/A
-MEC-0052,EEX GB Power Peak Season Futures,N/A,N/A,N/A,N/A
-MEC-0053,EEX GB Power Peak Year Futures,N/A,N/A,N/A,N/A
-MEC-0054,EEX GB TB2 Power Month Futures,N/A,N/A,N/A,N/A
-MEC-0055,EEX GB TB2 Power Quarter Futures,N/A,N/A,N/A,N/A
-MEC-0056,EEX GB TB2 Power Year Futures,N/A,N/A,N/A,N/A
-MEC-0057,GB Intraday 1 Auction,Self,Self,Yes,No
-MEC-0058,GB Intraday 2 Auction,Self,Self,Yes,No
-MEC-0059,GB Day Ahead 60 min Auction,Self,Self,Yes,No
-MEC-0060,GB Day Ahead 30 min Auction,Self,Self,Yes,No
-MEC-0061,EPEX Continuous Intraday Market,Self,Self,Yes,No
-MEC-0062,N2EX Day Ahead Auction,Self,Self,Yes,No
-MEC-0063,GB Half Hour Auction,Self,Self,Yes,No
-MEC-0064,SEM-GB Auction 1,Self,Self,Yes,No
-MEC-0065,SEM-GB Auction 2,Self,Self,Yes,No
-MEC-0066,GB Continuous Intraday Market,Self,Self,Yes,No
+MEC-0033,Over the Counter: Physical,Self,Self,yes,not_applicable
+MEC-0034,Over the Counter: Financial,N/A,N/A,not_applicable,not_applicable
+MEC-0035,UK Base Electricity 1x Season Options,N/A,N/A,not_applicable,not_applicable
+MEC-0036,UK Base Electricity Future (Gregorian),N/A,N/A,not_applicable,not_applicable
+MEC-0037,UK Base Electricity Options,N/A,N/A,not_applicable,not_applicable
+MEC-0038,UK Peak Electricity Future (Gregorian),N/A,N/A,not_applicable,not_applicable
+MEC-0039,UK Spark Spread,N/A,N/A,not_applicable,not_applicable
+MEC-0040,EEX GB Power Base Day Futures,N/A,N/A,not_applicable,not_applicable
+MEC-0041,EEX GB Power Base Weekend Futures,N/A,N/A,not_applicable,not_applicable
+MEC-0042,EEX GB Power Base Week Futures,N/A,N/A,not_applicable,not_applicable
+MEC-0043,EEX GB Power Base Month Futures,N/A,N/A,not_applicable,not_applicable
+MEC-0044,EEX GB Power Base Quarter Futures,N/A,N/A,not_applicable,not_applicable
+MEC-0045,EEX GB Power Base Season Futures,N/A,N/A,not_applicable,not_applicable
+MEC-0046,EEX GB Power Base Year Futures,N/A,N/A,not_applicable,not_applicable
+MEC-0047,EEX GB Power Peak Day Futures,N/A,N/A,not_applicable,not_applicable
+MEC-0048,EEX GB Power Peak Weekend Futures,N/A,N/A,not_applicable,not_applicable
+MEC-0049,EEX GB Power Peak Week Futures,N/A,N/A,not_applicable,not_applicable
+MEC-0050,EEX GB Power Peak Month Futures,N/A,N/A,not_applicable,not_applicable
+MEC-0051,EEX GB Power Peak Quarter Futures,N/A,N/A,not_applicable,not_applicable
+MEC-0052,EEX GB Power Peak Season Futures,N/A,N/A,not_applicable,not_applicable
+MEC-0053,EEX GB Power Peak Year Futures,N/A,N/A,not_applicable,not_applicable
+MEC-0054,EEX GB TB2 Power Month Futures,N/A,N/A,not_applicable,not_applicable
+MEC-0055,EEX GB TB2 Power Quarter Futures,N/A,N/A,not_applicable,not_applicable
+MEC-0056,EEX GB TB2 Power Year Futures,N/A,N/A,not_applicable,not_applicable
+MEC-0057,GB Intraday 1 Auction,Self,Self,yes,no
+MEC-0058,GB Intraday 2 Auction,Self,Self,yes,no
+MEC-0059,GB Day Ahead 60 min Auction,Self,Self,yes,no
+MEC-0060,GB Day Ahead 30 min Auction,Self,Self,yes,no
+MEC-0061,EPEX Continuous Intraday Market,Self,Self,yes,no
+MEC-0062,N2EX Day Ahead Auction,Self,Self,yes,no
+MEC-0063,GB Half Hour Auction,Self,Self,yes,no
+MEC-0064,SEM-GB Auction 1,Self,Self,yes,no
+MEC-0065,SEM-GB Auction 2,Self,Self,yes,no
+MEC-0066,GB Continuous Intraday Market,Self,Self,yes,no
 MEC-0067,Dynamic LT,,,,
 MEC-0068,OU15,,,,
 MEC-0069,Restore LT,,,,

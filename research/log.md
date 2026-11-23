@@ -16,6 +16,24 @@ Entry template:
 
 ---
 
+## 2026-11-23 · R-021 · Apply R-009 lookups, ORGANISATIONS and SOURCES
+**Outcome:** done
+**Summary:** Main session, on the human's instruction.
+- **Decisions:** the human approved R-009 D1-D11. D8 was amended: only `Standard Variant` is added, since the variant lookup already records the product.
+- **Human change 1:** `LK_CONTRACT_LENGTH_BAND` now holds min/max ISO 8601 durations instead of a range in one cell. A later review of a yes/no-per-duration design is R-022.
+- **Human change 2:** `LK_MECHANISM_CLASS` must allow for charges and taxes (BSUoS, carbon taxes), recorded in R-001 Change 6 and R-003.
+- **Applied with `scripts/apply_r021.py`:**
+  - 12 new tables added to `CSV/`.
+  - KEY_DATA `Market Type` replaced by `Mechanism Class` + `Category`; `Standard Variant` added for 45 DSO rows (MEC-0076 on hold).
+  - Market Operator, Status, Commodity, Direction, Contract Length Band and 13 yes/no columns converted to codes in place.
+  - 8 columns whose lookups don't exist yet are left as text (R-020).
+  - The qualifiers dropped by a mapping are kept in Notes.
+- **Checks:** all passed: same IDs and order; no cell outside the converted columns changed; Notes only appended to; every code resolves to its lookup; every source and organisation reference resolves; BOM and CRLF kept. 141 change-log rows. Backup: research/backups/2026-11-23-pre-r021/.
+**Proposal:** research/proposals/2026-11-23-R-009-lookups-and-organisations.md ("Human decisions")
+**Sources consulted:** none new (sources are in CSV/SOURCES.csv)
+**Open questions for human:** none
+**Suggested new backlog items:** R-022 contract-length representation; R-023 Phase 2 governance tables (CITATIONS, record status and confidence, CHANGE_LOG).
+
 ## 2026-11-23 · R-009 · Lookup tables, ORGANISATIONS, SOURCES and the value mapping
 **Outcome:** done (scope items 1-3 complete; item 4 moved to R-020)
 **Summary:** Drafted the Phase 2 reference tables in `research/drafts/R-009/` (UTF-8 BOM, CRLF, `csv` module; `CSV/` untouched):

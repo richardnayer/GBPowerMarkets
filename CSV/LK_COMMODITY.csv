@@ -1,0 +1,5 @@
+﻿code,label,definition,source_id
+active_power,Active power and energy,"Real power, measured in MW, and the energy it delivers over time, measured in MWh. Covers both energy trades and MW of active-power availability or response.",SRC-0038
+reactive_power,Reactive power,"The part of AC power set by the phase difference between voltage and current, measured in MVAr. It is absorbed or injected to control voltage.",SRC-0038
+stability,Stability (inertia and short-circuit level),Contributions to system inertia and short-circuit level that help the system withstand disturbances.,SRC-0033
+firm_capacity,Firm capacity,"A commitment to have reliable capacity (MW) available at times of system stress, paid for separately from any energy sold.",SRC-0022

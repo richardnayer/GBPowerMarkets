@@ -1,15 +1,15 @@
 ﻿ID,Market Name,BMUs,Non-BMUs,Generation,Demand,Storage,Suppliers,Aggregation,Notes
-MEC-0001,Dynamic Containment High,Yes,Yes,Yes,Yes,Yes,No?,GSP,
-MEC-0002,Dynamic Containment Low,Yes,Yes,Yes,Yes,Yes,No?,GSP,
-MEC-0003,Dynamic Moderation High,Yes,Yes,Yes,Yes,Yes,No?,GSP,
-MEC-0004,Dynamic Moderation Low,Yes,Yes,Yes,Yes,Yes,No?,GSP,
-MEC-0005,Dynamic Regulation High,Yes,Yes,Yes,Yes,Yes,No?,GSP,
-MEC-0006,Dynamic Regulation Low,Yes,Yes,Yes,Yes,Yes,No?,GSP,
+MEC-0001,Dynamic Containment High,yes,yes,yes,yes,yes,no,GSP,"Suppliers = no is low confidence (was ""No?""; to move to a confidence field, R-001 Change 7)."
+MEC-0002,Dynamic Containment Low,yes,yes,yes,yes,yes,no,GSP,"Suppliers = no is low confidence (was ""No?""; to move to a confidence field, R-001 Change 7)."
+MEC-0003,Dynamic Moderation High,yes,yes,yes,yes,yes,no,GSP,"Suppliers = no is low confidence (was ""No?""; to move to a confidence field, R-001 Change 7)."
+MEC-0004,Dynamic Moderation Low,yes,yes,yes,yes,yes,no,GSP,"Suppliers = no is low confidence (was ""No?""; to move to a confidence field, R-001 Change 7)."
+MEC-0005,Dynamic Regulation High,yes,yes,yes,yes,yes,no,GSP,"Suppliers = no is low confidence (was ""No?""; to move to a confidence field, R-001 Change 7)."
+MEC-0006,Dynamic Regulation Low,yes,yes,yes,yes,yes,no,GSP,"Suppliers = no is low confidence (was ""No?""; to move to a confidence field, R-001 Change 7)."
 MEC-0007,Mandatory Frequency Response: Limited Frequency Sensitive Mode,,,,,,,,
 MEC-0008,Mandatory Frequency Response: Frequency Sensitive Mode,,,,,,,,
-MEC-0009,Static Firm Frequency Response,Yes,Yes,Yes,Yes,Yes,,National,
-MEC-0010,Positive Quick Reserve,Yes,Yes,,,,,GSP,
-MEC-0011,Negative Quick Reserve,Yes,Yes,,,,,GSP,
+MEC-0009,Static Firm Frequency Response,yes,yes,yes,yes,yes,,National,
+MEC-0010,Positive Quick Reserve,yes,yes,,,,,GSP,
+MEC-0011,Negative Quick Reserve,yes,yes,,,,,GSP,
 MEC-0012,Positive Slow Reserve,,,,,,,,
 MEC-0013,Negative Slow Reserve,,,,,,,,
 MEC-0014,Positive Balancing Reserve,,,,,,,,

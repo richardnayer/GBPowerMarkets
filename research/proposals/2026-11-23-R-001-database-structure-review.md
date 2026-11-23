@@ -231,6 +231,19 @@ were derived from the data. Definitions are to be sourced.
 | `ORGANISATIONS` | mechanism and roles | `org_id, name, short_name, org_type (SO/DNO/TO/exchange/regulator/government/counterparty/settlement_agent/broker), parent_org_id, licence_id, url, valid_from, valid_to, predecessor_org_id` | Free-text operators; DNO renames (ENWL -> SPENW); `Brokers & Bilaterals` is not an organisation. |
 | `MECHANISM_ORG_ROLE` | mechanism | `mechanism_id, org_id, role` with role in {`operator`, `platform`, `counterparty`, `settlement_agent`, `policy_owner`, `regulator`, `clearing_house`, `delivery_body`} | `Market Operator` holds a single value, but the CfD involves DESNZ (policy), NESO as EMR Delivery Body (allocation) and LCCC (counterparty); the CM involves NESO (delivery body) and EMR Settlement / ESC; LDES cap and floor involves Ofgem (operator blank today). `Market Platform` = `NESO EAC & SMP` and `Nordpool / EUPHEMIA` are multi-valued cells. Sources: https://www.emrdeliverybody.com/ and https://www.lowcarboncontracts.uk/ |
 
+_Notes added 2026-11-23 (human decisions on R-009):_
+- **The code lists can grow.** `LK_MECHANISM_CLASS` must cover other kinds of mechanism as the scope
+  grows, e.g. BSUoS (`system_charge`), TNUoS/DUoS (`network_charge`), Carbon Price Support and CCL
+  (`tax`), the UK ETS (`emissions_trading`) and policy cost levies (`policy_levy`).
+  - Each code is added with a sourced definition when R-002 / R-003 draft the rows.
+  - The validator (R-010) checks codes against the lookup files, not a fixed list, so adding a class
+    means adding one row.
+  - `LK_CATEGORY` may need matching purposes. For example, BSUoS recovers balancing costs, which
+    `network_cost_recovery` does not describe.
+- **`LK_CONTRACT_LENGTH_BAND`** holds its range as `min_duration_exclusive` and
+  `max_duration_inclusive` (ISO 8601 durations). Whether contract length is better recorded as
+  yes/no for set durations, or as actual lengths on SUB_MARKET rows, is reviewed in R-022.
+
 #### Change 7. Missing-value and confidence convention
 
 This follows Frictionless `missingValues` (https://datapackage.org/standard/table-schema/#missingValues).

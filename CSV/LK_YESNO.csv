@@ -1,0 +1,5 @@
+﻿code,label,definition,source_id
+yes,Yes,Researched: the attribute applies or the feature is present.,SRC-0042
+no,No,Researched: the attribute does not apply or the feature is absent.,SRC-0042
+not_applicable,Not applicable,Researched: the question does not apply to this mechanism.,SRC-0042
+unknown,Unknown,"Researched, but no authoritative source was found.",SRC-0042
