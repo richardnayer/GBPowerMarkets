@@ -1,0 +1,11 @@
+﻿code,label,definition,source_id
+system_operator,System operator,Body licensed to run the GB electricity system in real time and to buy the balancing services it needs.,SRC-0001
+dno,Distribution network operator (group),"A distribution network operator as it presents itself to the market, usually a trading name covering one or more licensed distribution companies.",SRC-0015
+dno_licensee,Distribution licensee,A company that holds an Ofgem electricity distribution licence for one of the 14 regional DNO licence areas.,SRC-0003
+exchange,Exchange,An organised trading venue that lists standard power contracts (spot or derivatives) and matches buyers and sellers.,SRC-0005
+regulator,Regulator,The body that regulates the GB energy sector and its licensees.,SRC-0025
+government_department,Government department,A UK government department that sets energy policy and owns government-backed schemes.,SRC-0024
+counterparty,Scheme counterparty,A company that holds the contracts with scheme participants and makes or collects the scheme payments.,SRC-0021
+settlement_agent,Settlement agent,A company that calculates and administers settlement of a scheme on behalf of its counterparty or settlement body.,SRC-0020
+code_administrator,Code administrator,A company that administers an industry code and runs the central systems and processes that the code requires.,SRC-0019
+industry_body,Industry body,An association of licensed companies that develops shared guidance and standards but does not run mechanisms itself.,SRC-0028

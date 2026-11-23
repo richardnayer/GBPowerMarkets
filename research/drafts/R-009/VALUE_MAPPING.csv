@@ -1,0 +1,112 @@
+﻿file,column,current_value,mechanism_ids,target_table,target_column,proposed_code,mapping_status,note
+KEY_DATA.csv,Market Type,Frequency Response,MEC-0001..MEC-0009,LK_MECHANISM_CLASS,Mechanism Class,so_ancillary_service,clean,
+KEY_DATA.csv,Market Type,Frequency Response,MEC-0001..MEC-0009,LK_CATEGORY,Category,frequency_response,clean,
+KEY_DATA.csv,Market Type,Reserve,MEC-0010..MEC-0017,LK_MECHANISM_CLASS,Mechanism Class,so_ancillary_service,clean,
+KEY_DATA.csv,Market Type,Reserve,MEC-0010..MEC-0017,LK_CATEGORY,Category,reserve,clean,
+KEY_DATA.csv,Market Type,Thermal,MEC-0018..MEC-0020,LK_MECHANISM_CLASS,Mechanism Class,so_ancillary_service,clean,
+KEY_DATA.csv,Market Type,Thermal,MEC-0018..MEC-0020,LK_CATEGORY,Category,thermal_constraint,clean,
+KEY_DATA.csv,Market Type,Voltage,MEC-0021,LK_MECHANISM_CLASS,Mechanism Class,so_ancillary_service,clean,
+KEY_DATA.csv,Market Type,Voltage,MEC-0021,LK_CATEGORY,Category,voltage,clean,
+KEY_DATA.csv,Market Type,Voltage,MEC-0022..MEC-0023,LK_MECHANISM_CLASS,Mechanism Class,so_ancillary_service,clean,
+KEY_DATA.csv,Market Type,Voltage,MEC-0022..MEC-0023,LK_CATEGORY,Category,stability,flag,"Stability Markets buy inertia and short-circuit level, not voltage support (SRC-0033)."
+KEY_DATA.csv,Market Type,Restoration,MEC-0024..MEC-0025,LK_MECHANISM_CLASS,Mechanism Class,so_ancillary_service,clean,
+KEY_DATA.csv,Market Type,Restoration,MEC-0024..MEC-0025,LK_CATEGORY,Category,restoration,clean,
+KEY_DATA.csv,Market Type,Balancing Mechanism,MEC-0026,LK_MECHANISM_CLASS,Mechanism Class,balancing_mechanism,clean,
+KEY_DATA.csv,Market Type,Balancing Mechanism,MEC-0026,LK_CATEGORY,Category,energy,clean,
+KEY_DATA.csv,Market Type,Balancing Mechanism,MEC-0027,LK_MECHANISM_CLASS,Mechanism Class,so_ancillary_service,flag,"NESO Trading is forward bilateral trading under Grid Trade Master Agreements, listed as a separate NESO balancing service, not part of the BM: https://www.neso.energy/industry-information/balancing-services/trading"
+KEY_DATA.csv,Market Type,Balancing Mechanism,MEC-0027,LK_CATEGORY,Category,energy,flag,See class note.
+KEY_DATA.csv,Market Type,Balancing Mechanism,MEC-0028,LK_MECHANISM_CLASS,Mechanism Class,so_ancillary_service,flag,"DFS is a separate NESO balancing service (an in-merit margin tool), not a BM action: https://www.neso.energy/industry-information/balancing-services/demand-flexibility-service-dfs"
+KEY_DATA.csv,Market Type,Balancing Mechanism,MEC-0028,LK_CATEGORY,Category,energy,flag,"NESO says DFS replaces the Local Constraint Market from 7 Oct 2026 (SRC-0036), so thermal_constraint may also apply."
+KEY_DATA.csv,Market Type,Forwards,MEC-0029..MEC-0030,LK_MECHANISM_CLASS,Mechanism Class,capacity_mechanism,flag,"Re-typed: the Capacity Market is a capacity payment scheme, not a forward contract (SRC-0022)."
+KEY_DATA.csv,Market Type,Forwards,MEC-0029..MEC-0030,LK_CATEGORY,Category,capacity_adequacy,flag,SRC-0022.
+KEY_DATA.csv,Market Type,Forwards,MEC-0031,LK_MECHANISM_CLASS,Mechanism Class,revenue_support_scheme,flag,Re-typed: CfD is a government revenue support scheme (SRC-0021).
+KEY_DATA.csv,Market Type,Forwards,MEC-0031,LK_CATEGORY,Category,investment_support,flag,SRC-0021.
+KEY_DATA.csv,Market Type,Forwards,MEC-0032,LK_MECHANISM_CLASS,Mechanism Class,revenue_support_scheme,flag,Re-typed: LDES cap and floor is a regulated revenue support regime (SRC-0023).
+KEY_DATA.csv,Market Type,Forwards,MEC-0032,LK_CATEGORY,Category,investment_support,flag,SRC-0023.
+KEY_DATA.csv,Market Type,Forwards,MEC-0033..MEC-0034,LK_MECHANISM_CLASS,Mechanism Class,otc_bilateral,clean,
+KEY_DATA.csv,Market Type,Forwards,MEC-0033..MEC-0034,LK_CATEGORY,Category,energy,clean,
+KEY_DATA.csv,Market Type,Futures,MEC-0035..MEC-0056,LK_MECHANISM_CLASS,Mechanism Class,exchange_derivative,clean,MEC-0035 and MEC-0037 are options; the class covers futures and options.
+KEY_DATA.csv,Market Type,Futures,MEC-0035..MEC-0056,LK_CATEGORY,Category,energy,clean,
+KEY_DATA.csv,Market Type,Wholesale Spot,MEC-0057..MEC-0060; MEC-0062..MEC-0065,LK_MECHANISM_CLASS,Mechanism Class,exchange_auction,clean,
+KEY_DATA.csv,Market Type,Wholesale Spot,MEC-0057..MEC-0060; MEC-0062..MEC-0065,LK_CATEGORY,Category,energy,clean,
+KEY_DATA.csv,Market Type,Wholesale Spot,MEC-0061; MEC-0066,LK_MECHANISM_CLASS,Mechanism Class,exchange_continuous,clean,
+KEY_DATA.csv,Market Type,Wholesale Spot,MEC-0061; MEC-0066,LK_CATEGORY,Category,energy,clean,
+KEY_DATA.csv,Market Type,DSO Flex Market,MEC-0067..MEC-0112,LK_MECHANISM_CLASS,Mechanism Class,dso_flexibility,clean,
+KEY_DATA.csv,Market Type,DSO Flex Market,MEC-0067..MEC-0068; MEC-0070..MEC-0112,LK_CATEGORY,Category,thermal_constraint,flag,"Medium confidence: DNO statements describe reinforcement deferral and outage cover, i.e. thermal capacity needs."
+KEY_DATA.csv,Market Type,DSO Flex Market,MEC-0069,LK_CATEGORY,Category,thermal_constraint,flag,Legacy Restore is about restoring supplies after a distribution fault; `restoration` (system-level) is the alternative.
+KEY_DATA.csv,Market Operator,NESO,MEC-0001..MEC-0028,ORGANISATIONS,Market Operator,ORG-0001,clean,
+KEY_DATA.csv,Market Operator,NESO,MEC-0029..MEC-0031,ORGANISATIONS,Market Operator,ORG-0001,flag,"NESO is the EMR delivery body, not the operator. Full role set (DESNZ policy owner, LCCC/ESC counterparty, EMRS settlement) to go in MECHANISM_ORG_ROLE (R-020)."
+KEY_DATA.csv,Market Operator,EEX,MEC-0040..MEC-0056,ORGANISATIONS,Market Operator,ORG-0012,clean,
+KEY_DATA.csv,Market Operator,NPg,MEC-0075..MEC-0088,ORGANISATIONS,Market Operator,ORG-0016,clean,
+KEY_DATA.csv,Market Operator,SPENW,MEC-0094..MEC-0103,ORGANISATIONS,Market Operator,ORG-0018,clean,
+KEY_DATA.csv,Market Operator,NGED,MEC-0067..MEC-0074,ORGANISATIONS,Market Operator,ORG-0014,clean,
+KEY_DATA.csv,Market Operator,SSEN,MEC-0104..MEC-0109,ORGANISATIONS,Market Operator,ORG-0020,clean,
+KEY_DATA.csv,Market Operator,ICE,MEC-0035..MEC-0039,ORGANISATIONS,Market Operator,ORG-0013,clean,
+KEY_DATA.csv,Market Operator,EPEX Spot,MEC-0057..MEC-0061,ORGANISATIONS,Market Operator,ORG-0010,clean,
+KEY_DATA.csv,Market Operator,Nord Pool,MEC-0062..MEC-0066,ORGANISATIONS,Market Operator,ORG-0011,clean,
+KEY_DATA.csv,Market Operator,SPEN,MEC-0089..MEC-0093,ORGANISATIONS,Market Operator,ORG-0017,clean,
+KEY_DATA.csv,Market Operator,UKPN,MEC-0110..MEC-0112,ORGANISATIONS,Market Operator,ORG-0021,clean,
+KEY_DATA.csv,Market Operator,Brokers & Bilaterals,MEC-0033..MEC-0034,ORGANISATIONS,Market Operator,,unmapped,Not an organisation. OTC deals have no operator; the otc_bilateral class records how they trade. Leave blank.
+KEY_DATA.csv,Market Operator,(blank),MEC-0032,ORGANISATIONS,Market Operator,ORG-0008,fill,New value for a blank cell: DESNZ tasked Ofgem with implementing the LDES cap and floor regime (SRC-0023).
+KEY_DATA.csv,Status,Live,MEC-0001..MEC-0017; MEC-0019; MEC-0024..MEC-0029; MEC-0031..MEC-0112,LK_STATUS,Status,live,clean,"Doubtful statuses are passed to R-006 (e.g. MEC-0019: NESO says DFS replaces LCM from 7 Oct 2026, SRC-0036)."
+KEY_DATA.csv,Status,Planned,MEC-0020..MEC-0023,LK_STATUS,Status,planned,clean,"R-006: NESO launched its first long-term (Y-4) stability tender in 2025 (SRC-0033), so MEC-0023 may no longer be planned."
+KEY_DATA.csv,Status,(blank),MEC-0018; MEC-0030,LK_STATUS,Status,,unmapped,Blank today; R-006.
+KEY_DATA.csv,Commodity,Active Power,MEC-0001..MEC-0009; MEC-0012..MEC-0020; MEC-0024..MEC-0028; MEC-0033; MEC-0057..MEC-0112,LK_COMMODITY,Commodity,active_power,clean,
+KEY_DATA.csv,Commodity,Active Power Capacity,MEC-0010..MEC-0011,LK_COMMODITY,Commodity,active_power,flag,Under the recommended option the energy/availability split is carried by MARKET_INFO Availability Payment (yes for both rows).
+KEY_DATA.csv,Commodity,Reactive Power,MEC-0021,LK_COMMODITY,Commodity,reactive_power,clean,
+KEY_DATA.csv,Commodity,Reactive Power,MEC-0022..MEC-0023,LK_COMMODITY,Commodity,stability,flag,Stability Markets buy inertia and short-circuit level (SRC-0033).
+KEY_DATA.csv,Commodity,Financial Futures,MEC-0035..MEC-0039,LK_COMMODITY,Commodity,active_power,flag,"""Financial"" describes settlement, not commodity. ICE UK Base futures are physically delivered via ECVNs (SRC-0010); record settlement in LK_SETTLEMENT_TYPE (R-020)."
+KEY_DATA.csv,Commodity,Financial Futures,MEC-0040..MEC-0056,LK_COMMODITY,Commodity,active_power,flag,"EEX lists GB Power Futures as ""Cash settlement / Physical fulfilment"" (SRC-0009); settlement type to LK_SETTLEMENT_TYPE (R-020)."
+KEY_DATA.csv,Commodity,Financial Forwards,MEC-0034,LK_COMMODITY,Commodity,active_power,flag,Ofgem: OTC Financial trades have no physical delivery and hedge spot prices (SRC-0041); settlement type to LK_SETTLEMENT_TYPE (R-020).
+KEY_DATA.csv,Commodity,(blank),MEC-0029..MEC-0030,LK_COMMODITY,Commodity,firm_capacity,fill,New value: the Capacity Market pays for reliable capacity (SRC-0022).
+KEY_DATA.csv,Commodity,(blank),MEC-0031,LK_COMMODITY,Commodity,active_power,fill,New value: CfD generators are paid per unit of electricity produced (SRC-0021).
+KEY_DATA.csv,Commodity,(blank),MEC-0032,LK_COMMODITY,Commodity,,unmapped,LDES cap and floor: left for R-002.
+KEY_DATA.csv,Direction,Up,MEC-0002; MEC-0004; MEC-0006; MEC-0009..MEC-0010; MEC-0012; MEC-0014,LK_DIRECTION,Direction,up,clean,
+KEY_DATA.csv,Direction,Down,MEC-0001; MEC-0003; MEC-0005; MEC-0011; MEC-0013; MEC-0015; MEC-0018,LK_DIRECTION,Direction,down,clean,
+KEY_DATA.csv,Direction,Up/Down,MEC-0007..MEC-0008,LK_DIRECTION,Direction,both,clean,
+KEY_DATA.csv,Direction,Up/Down,MEC-0067..MEC-0112,LK_DIRECTION,Direction,both,flag,Most DSO sub-markets are demand turn-down / generation turn-up only (up); R-013 checks each row.
+KEY_DATA.csv,Direction,Flat,MEC-0057..MEC-0066,LK_DIRECTION,Direction,both,flag,"Decision D6: participants can buy or sell, so both (recommended); alternative not_applicable."
+KEY_DATA.csv,Direction,N/A,MEC-0034; MEC-0040..MEC-0056,LK_DIRECTION,Direction,not_applicable,clean,
+KEY_DATA.csv,Direction,N/A,MEC-0035..MEC-0039,LK_DIRECTION,Direction,not_applicable,flag,ICE UK electricity futures are physically delivered (SRC-0010); both may fit better. R-005.
+KEY_DATA.csv,Direction,(blank),MEC-0016..MEC-0017; MEC-0019..MEC-0033,LK_DIRECTION,Direction,,unmapped,Blank today; R-005.
+KEY_DATA.csv,Contract Length Band,Month < x <= Year,MEC-0075; MEC-0077..MEC-0078; MEC-0080..MEC-0081; MEC-0093; MEC-0095; MEC-0097; MEC-0099; MEC-0101,LK_CONTRACT_LENGTH_BAND,Contract Length Band,month_to_year,clean,
+KEY_DATA.csv,Contract Length Band,Week < x <= Month,MEC-0079; MEC-0082; MEC-0089; MEC-0092; MEC-0094; MEC-0096; MEC-0098; MEC-0100,LK_CONTRACT_LENGTH_BAND,Contract Length Band,week_to_month,clean,
+KEY_DATA.csv,Contract Length Band,Day < x <= Week,MEC-0090,LK_CONTRACT_LENGTH_BAND,Contract Length Band,day_to_week,clean,
+KEY_DATA.csv,Contract Length Band,Less Than or Equal to a Day,MEC-0091,LK_CONTRACT_LENGTH_BAND,Contract Length Band,le_day,clean,
+MARKET_INFO.csv,Market Platform,NESO Enduring Auction Capability (EAC) & Single Market Platform (SMP),MEC-0001..MEC-0007; MEC-0009..MEC-0011,ORGANISATIONS,platform role,ORG-0001,flag,"EAC and SMP are NESO systems, not organisations (SRC-0039, SRC-0040); NESO spells it ""Single Markets Platform"". System names are lost unless decision D4 adds a platform table."
+MARKET_INFO.csv,Market Platform,EPEX Spot,MEC-0057..MEC-0060,ORGANISATIONS,platform role,ORG-0010,clean,
+MARKET_INFO.csv,Market Platform,Nord Pool,MEC-0062..MEC-0063,ORGANISATIONS,platform role,ORG-0011,clean,
+MARKET_INFO.csv,Market Platform,Nord Pool / EUPHEMIA,MEC-0064..MEC-0065,ORGANISATIONS,platform role,ORG-0011,flag,"EUPHEMIA is a price-coupling algorithm, not an organisation; record it as an attribute (D4)."
+MARKET_INFO.csv,Pricing Structure,Pay-as-Clear,MEC-0001..MEC-0007; MEC-0009..MEC-0011; MEC-0057..MEC-0065,LK_PRICING_RULE,Pricing Structure,pay_as_clear,deferred,Lookup file drafted in R-020.
+MARKET_INFO.csv,Auction Type,Closed Double Sided,MEC-0001..MEC-0007; MEC-0009..MEC-0011; MEC-0059..MEC-0060; MEC-0062..MEC-0063,LK_AUCTION_TYPE,Auction Type,sealed_double_sided,deferred,Lookup file drafted in R-020.
+MARKET_INFO.csv,Market Structure,One-to-Many,MEC-0001..MEC-0007; MEC-0009..MEC-0011,(none),Market Structure,one_to_many,deferred,No lookup in R-001 Change 6; R-020 to propose LK_MARKET_STRUCTURE or drop the column.
+MARKET_INFO.csv,Market Structure,Many-to-Many,MEC-0057..MEC-0060; MEC-0062..MEC-0065,(none),Market Structure,many_to_many,deferred,As above.
+MARKET_INFO.csv,Market Objective,Maximise Social Welfare,MEC-0001..MEC-0007; MEC-0009..MEC-0011; MEC-0062..MEC-0064,(none),Market Objective,maximise_social_welfare,deferred,No lookup in Change 6; R-020.
+MARKET_INFO.csv,Market Objective,Nor,MEC-0065,(none),Market Objective,,unmapped,Truncated value; R-005.
+MARKET_INFO.csv,Market Co-Optimisation,Yes: Response & Reserve,MEC-0001..MEC-0007; MEC-0009..MEC-0011,LK_YESNO,Market Co-Optimisation,yes,flag,"The ""Response & Reserve"" part becomes co_optimised_with relationship rows (R-001 Change 13)."
+MARKET_INFO.csv,Availability Payment,Yes,MEC-0001..MEC-0006; MEC-0009..MEC-0011,LK_YESNO,Availability Payment,yes,clean,
+MARKET_INFO.csv,Utilisation Payment,No,MEC-0001..MEC-0006; MEC-0009,LK_YESNO,Utilisation Payment,no,clean,
+MARKET_INFO.csv,Utilisation Payment,Yes (via. BM),MEC-0010..MEC-0011,LK_YESNO,Utilisation Payment,yes,flag,"""via BM"" moves to Notes or a settles_via relationship (R-001 Change 13)."
+MARKET_INFO.csv,Parent-Child Orders,Yes,MEC-0001..MEC-0006; MEC-0009..MEC-0011; MEC-0057..MEC-0060,LK_YESNO,Parent-Child Orders,yes,clean,
+MARKET_INFO.csv,Block Orders,Yes,MEC-0057..MEC-0060,LK_YESNO,Block Orders,yes,clean,
+DISPATCH.csv,Dispatcher,Self,MEC-0001..MEC-0007; MEC-0009; MEC-0033; MEC-0057..MEC-0066,(none),Dispatcher,self,deferred,Not an organisation; R-001 Change 10 allows `self` (Phase 3).
+DISPATCH.csv,Dispatcher,NESO,MEC-0010..MEC-0011,ORGANISATIONS,Dispatcher,ORG-0001,clean,
+DISPATCH.csv,Dispatcher,N/A,MEC-0034..MEC-0056,(none),Dispatcher,not_applicable,clean,
+DISPATCH.csv,Dispatch Type,Auto,MEC-0001..MEC-0007; MEC-0009,(none),Dispatch Type,automatic_frequency,deferred,R-001 Change 10 codes (Phase 3).
+DISPATCH.csv,Dispatch Type,BOA/OBP,MEC-0010..MEC-0011,(none),Dispatch Type,boa;obp,flag,Multi-valued; R-001 Change 10 (Phase 3).
+DISPATCH.csv,Dispatch Type,Self,MEC-0033; MEC-0057..MEC-0066,(none),Dispatch Type,self_dispatch,deferred,R-001 Change 10 (Phase 3).
+DISPATCH.csv,Dispatch Type,N/A,MEC-0034..MEC-0056,(none),Dispatch Type,not_applicable,deferred,R-001 Change 10 (Phase 3).
+DISPATCH.csv,Pre-Fault,Yes,MEC-0003..MEC-0007; MEC-0010..MEC-0011; MEC-0033; MEC-0057..MEC-0066,LK_YESNO,Pre-Fault,yes,clean,
+DISPATCH.csv,Pre-Fault,No,MEC-0001..MEC-0002; MEC-0009; MEC-0012..MEC-0013,LK_YESNO,Pre-Fault,no,clean,
+DISPATCH.csv,Pre-Fault,N/A,MEC-0034..MEC-0056,LK_YESNO,Pre-Fault,not_applicable,clean,
+DISPATCH.csv,Post-Fault,Yes,MEC-0001..MEC-0002; MEC-0007; MEC-0009..MEC-0013,LK_YESNO,Post-Fault,yes,clean,
+DISPATCH.csv,Post-Fault,No,MEC-0003..MEC-0006; MEC-0057..MEC-0066,LK_YESNO,Post-Fault,no,clean,
+DISPATCH.csv,Post-Fault,N/A,MEC-0033..MEC-0056,LK_YESNO,Post-Fault,not_applicable,clean,
+PARTICIPANTS.csv,BMUs,Yes,MEC-0001..MEC-0006; MEC-0009..MEC-0011,LK_YESNO,BMUs,yes,clean,
+PARTICIPANTS.csv,Non-BMUs,Yes,MEC-0001..MEC-0006; MEC-0009..MEC-0011,LK_YESNO,Non-BMUs,yes,clean,
+PARTICIPANTS.csv,Generation,Yes,MEC-0001..MEC-0006; MEC-0009,LK_YESNO,Generation,yes,clean,
+PARTICIPANTS.csv,Demand,Yes,MEC-0001..MEC-0006; MEC-0009,LK_YESNO,Demand,yes,clean,
+PARTICIPANTS.csv,Storage,Yes,MEC-0001..MEC-0006; MEC-0009,LK_YESNO,Storage,yes,clean,
+PARTICIPANTS.csv,Suppliers,No?,MEC-0001..MEC-0006,LK_YESNO,Suppliers,no,flag,"R-001 Change 7: record the doubt as confidence low, not in the value."
+PARTICIPANTS.csv,Aggregation,GSP,MEC-0001..MEC-0006; MEC-0010..MEC-0011,LK_AGGREGATION_LEVEL,Aggregation,gsp,deferred,Lookup file in R-020; check whether the service terms mean GSP or GSP Group.
+PARTICIPANTS.csv,Aggregation,National,MEC-0009,LK_AGGREGATION_LEVEL,Aggregation,national,deferred,Lookup file in R-020.

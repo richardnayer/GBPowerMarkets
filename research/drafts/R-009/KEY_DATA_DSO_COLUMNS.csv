@@ -1,0 +1,47 @@
+﻿ID,Market Name,Market Operator,Standard Product,Standard Variant,product_fit (from lookup),source_id,locator
+MEC-0067,Dynamic LT,NGED,,legacy_dynamic,legacy,SRC-0043,PDF p.5-6: legacy ENA product; product definition in SRC-0029 p.9
+MEC-0068,OU15,NGED,ou,ou_15,standard,SRC-0011,"PDF p.6, p.15 (OU_15)"
+MEC-0069,Restore LT,NGED,,legacy_restore,legacy,SRC-0043,PDF p.5-6: legacy ENA product; product definition in SRC-0029 p.9
+MEC-0070,SAOU_DA,NGED,sa_ou,sa_ou_da,standard,SRC-0011,"PDF p.6, p.15 (SAOU_DA)"
+MEC-0071,Secure LT,NGED,,legacy_secure,legacy,SRC-0043,PDF p.5-6: legacy ENA product; product definition in SRC-0029 p.9
+MEC-0072,SU_HV (Day Ahead),NGED,su,su,standard,SRC-0011,PDF p.15
+MEC-0073,SU_HV (Week Ahead),NGED,su,su,standard,SRC-0011,PDF p.15
+MEC-0074,SU_LV,NGED,su,su,standard,SRC-0011,PDF p.6; code SU_LV not found (R-008)
+MEC-0075,1) Reinforcement optimisation LV SU Winter ahead,NPg,su,su,standard,SRC-0012,"Figure 2, PDF p.16 (Sub-Market 1)"
+MEC-0076,2) Reinforcement optimisation HV SAOU-WA winter+1 ahead,NPg,,,hold,,"HOLD: R-008 Change 3 on hold; su if renamed to Sub-Market 2, sa_ou / sa_ou_wa if kept as labelled"
+MEC-0077,3) Reinforcement optimisation HV SAOU-WA winter+1 ahead,NPg,sa_ou,sa_ou_wa,standard,SRC-0012,"PDF p.11, p.16 (Sub-Market 3)"
+MEC-0078,4) Reinforcement optimisation HV SAOU-WA winter ahead,NPg,sa_ou,sa_ou_wa,standard,SRC-0012,PDF p.16 (Sub-Market 4)
+MEC-0079,5) Reinforcement optimisation HV SAOU-WA month ahead,NPg,sa_ou,sa_ou_wa,standard,SRC-0012,PDF p.16 (Sub-Market 5)
+MEC-0080,6) Reinforcement optimisation HV Flex Advance winter+1 ahead,NPg,,npg_flexadvance,non_standard,SRC-0012,"PDF p.3 fn 1, p.9, p.16 (Sub-Market 6)"
+MEC-0081,7) Reinforcement optimisation HV Flex Advance winter ahead,NPg,,npg_flexadvance,non_standard,SRC-0012,PDF p.16 (Sub-Market 7)
+MEC-0082,8) Planned outages HV SAOU-15,NPg,sa_ou,sa_ou_15,standard,SRC-0012,"PDF p.14 Table 7, p.21 (Sub-Market 8)"
+MEC-0083,9) Planned outages HV SAOU-15,NPg,sa_ou,sa_ou_15,standard,SRC-0012,"PDF p.14, p.21; flagged as window/duplicate of MEC-0082"
+MEC-0084,10) Planned outages HV SAOU-15,NPg,sa_ou,sa_ou_15,standard,SRC-0012,"PDF p.14, p.21; flagged as window/duplicate of MEC-0082"
+MEC-0085,All CMZs - SU Winter Ahead,NPg,su,su,standard,SRC-0044,PDF p.6
+MEC-0086,HV - SAOU Month Ahead,NPg,sa_ou,sa_ou_wa,standard,SRC-0045,Section 6.1 and Table 1; also SRC-0044 PDF p.6; standard variant since FLX CP003 (SRC-0030)
+MEC-0087,HV - SU Winter Ahead +1,NPg,su,su,standard,SRC-0044,PDF p.6-7
+MEC-0088,LV - SU Month Ahead,NPg,su,su,standard,SRC-0045,Table 2 (LV SU month ahead)
+MEC-0089,Operational Utilisation - 15 Minutes,SPEN,ou,ou_15,standard,SRC-0013,PDF p.8
+MEC-0090,Operational Utilisation - 15 Minutes,SPEN,ou,ou_15,standard,SRC-0013,PDF p.8
+MEC-0091,Scheduled Availability + Operational Utilisation - Day Ahead,SPEN,sa_ou,sa_ou_da,standard,SRC-0013,PDF p.7
+MEC-0092,Scheduled Utilisation (SU),SPEN,su,su,standard,SRC-0013,PDF p.7
+MEC-0093,Scheduled Utilisation (SU),SPEN,su,su,standard,SRC-0013,PDF p.7
+MEC-0094,Operational Utilisation + 15 mins,SPENW,ou,ou_15,standard,SRC-0014,PDF p.10-11
+MEC-0095,Operational Utilisation + 15 mins,SPENW,ou,ou_15,standard,SRC-0014,PDF p.10-11
+MEC-0096,Operational Utilisation + 2 mins,SPENW,ou,ou_2,standard,SRC-0014,PDF p.10-11
+MEC-0097,Operational Utilisation + 2 mins,SPENW,ou,ou_2,standard,SRC-0014,PDF p.10-11
+MEC-0098,Peak Reduction,SPENW,pr,pr,standard,SRC-0014,PDF p.10-11
+MEC-0099,Peak Reduction (PR),SPENW,pr,pr,standard,SRC-0014,PDF p.10-11
+MEC-0100,Scheduled Utilisation,SPENW,su,su,standard,SRC-0014,PDF p.10-11
+MEC-0101,Scheduled Utilisation (SU),SPENW,su,su,standard,SRC-0014,PDF p.10-11
+MEC-0102,Variable Availability Operational Utilisation + 15 mins,SPENW,va_ou,va_ou_15,standard,SRC-0014,PDF p.11
+MEC-0103,Variable Availability Operational + 2 mins,SPENW,va_ou,va_ou_2,standard,SRC-0014,PDF p.11; FMR-PD Table 5 VA OU-2 (SRC-0026)
+MEC-0104,OU Long-Term,SSEN,ou,ou_2,standard,SRC-0015,PDF p.6
+MEC-0105,SAOU Long-Term,SSEN,sa_ou,sa_ou_da,standard,SRC-0015,"PDF p.4, p.6"
+MEC-0106,SAOU Month-Ahead,SSEN,sa_ou,sa_ou_da,standard,SRC-0015,PDF p.4
+MEC-0107,SU Day-Ahead,SSEN,su,su,standard,SRC-0015,PDF p.4
+MEC-0108,SU Season-Ahead,SSEN,su,su,standard,SRC-0015,PDF p.4
+MEC-0109,VAOU Long-Term,SSEN,va_ou,va_ou_wa,standard,SRC-0015,"PDF p.4, p.6"
+MEC-0110,Scheduled Availability + Operational Utilisation - Day Ahead (Long - Term),UKPN,sa_ou,sa_ou_da,standard,SRC-0016,PDF p.6
+MEC-0111,Scheduled Utilisation (Day Ahead),UKPN,su,su,standard,SRC-0016,PDF p.6
+MEC-0112,Scheduled Utilisation (Long-Term),UKPN,su,su,standard,SRC-0016,PDF p.6

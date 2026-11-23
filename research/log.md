@@ -16,6 +16,70 @@ Entry template:
 
 ---
 
+## 2026-11-23 · R-009 · Lookup tables, ORGANISATIONS, SOURCES and the value mapping
+**Outcome:** done (scope items 1-3 complete; item 4 moved to R-020)
+**Summary:** Drafted the Phase 2 reference tables in `research/drafts/R-009/` (UTF-8 BOM, CRLF, `csv` module; `CSV/` untouched):
+- ORGANISATIONS: 35 rows. These are 13 bodies (including the NGESO predecessor), 6 DNO groups plus the WPD and ENWL former brands, and the 14 DNO licensees with Companies House numbers.
+- SOURCES: 45 rows, all cited. Reuse terms are in `notes`: GOV.UK and Ofgem are under the OGL; NESO's website and Grid Code are all rights reserved, so every definition is paraphrased.
+- 10 lookups: LK_DSO_STANDARD_PRODUCT (5), LK_DSO_PRODUCT_VARIANT (17, with FMR-PD Table 3 parameters re-checked), LK_MECHANISM_CLASS, LK_CATEGORY, LK_STATUS, LK_COMMODITY, LK_DIRECTION, LK_YESNO, LK_CONTRACT_LENGTH_BAND, and a new LK_ORG_TYPE.
+- VALUE_MAPPING.csv: 111 rows covering every value in 27 categorical columns (64 clean, 28 flagged, 3 sourced fills, 5 unmapped, 11 deferred). Its build script fails unless the ID sets match `CSV/` exactly.
+- KEY_DATA_DSO_COLUMNS.csv: R-008 Change 2 in the new codes (40 standard, 3 legacy, 2 non-standard, MEC-0076 on hold).
+
+Main findings:
+- `Market Type` doesn't map cleanly for CM, CfD and LDES (re-typed), MEC-0022/0023 (stability, not voltage) and MEC-0027/0028 (NESO Trading and DFS are not BM actions).
+- NESO says DFS replaces the Local Constraint Market from 7 Oct 2026. NESO's own name is "Single Markets Platform".
+**Proposal:** research/proposals/2026-11-23-R-009-lookups-and-organisations.md
+**Sources consulted:**
+- Government and Companies House:
+  - https://www.gov.uk/government/publications/designation-of-the-national-energy-system-operator-neso
+  - https://www.gov.uk/government/collections/contracts-for-difference
+  - https://www.gov.uk/government/collections/electricity-market-reform-capacity-market
+  - https://www.gov.uk/government/organisations/department-for-energy-security-and-net-zero
+  - https://find-and-update.company-information.service.gov.uk/ (company pages 11014226, 03600574, 02366949, 03782949, 08818711, 08961281, 08924703, 01528617; searches)
+- Ofgem:
+  - https://www.ofgem.gov.uk/sites/default/files/2026-03/all-electricity-licensees.pdf
+  - https://www.ofgem.gov.uk/copyright
+  - https://www.ofgem.gov.uk/about-us
+  - https://www.ofgem.gov.uk/sites/default/files/docs/final_decisions_on_applications_to_be_designated_a_nemo_in_gb_10122015_2.pdf
+  - https://www.ofgem.gov.uk/sites/default/files/docs/2016/11/final_decisions_on_epex_spot_nemo_designation_and_revocation_of_apx_nemo_designation_in_gb.pdf
+  - https://www.ofgem.gov.uk/call-for-input/ldes-cap-and-floor-regime-our-role-plan-and-response-desnz-publication
+  - https://www.ofgem.gov.uk/decision/long-duration-electricity-storage-ldes-window-1-eligibility-assessment-outcome
+  - https://www.ofgem.gov.uk/sites/default/files/2023-12/Call%20for%20Input%20-%20Power%20Market%20Liquidity.pdf
+- NESO:
+  - https://www.neso.energy/industry-information/balancing-services and its sub-pages: response-and-reserve, stability-market, electricity-system-restoration-standard, reactive-power-services, local-constraint-market, trading, demand-flexibility-service-dfs, enduring-auction-capability-eac, single-markets-platform
+  - https://www.neso.energy/what-we-do/systems-operations/what-balancing-mechanism
+  - https://www.neso.energy/document/382376/download (Grid Code GD Issue 6 Rev 40)
+  - https://www.neso.energy/terms-and-conditions
+- Elexon and EMR Settlement:
+  - https://www.elexon.co.uk/flexibility-markets/about/elexons-role/
+  - https://www.elexon.co.uk/what-we-do/
+  - https://www.emrsettlement.co.uk/
+- Exchanges:
+  - https://www.nordpoolgroup.com/en/about-us/
+  - https://www.nordpoolgroup.com/en/trading/Day-ahead-trading/
+  - https://www.nordpoolgroup.com/en/trading/Intraday-trading/
+  - https://www.eex.com/en/markets/power/power-futures
+  - https://www.ice.com/products/20788778/UK-Base-Electricity-Future-Gregorian
+- Other:
+  - https://www.ssen.co.uk/about-ssen/
+  - https://org-id.guide/list/GB-COH
+- R-008 sources were re-used from that run's copies.
+- Not readable: ukpowernetworks.co.uk, enwl.co.uk (only the about page loaded), epexspot.com, lowcarboncontracts.uk, emrdeliverybody.com, energynetworks.org and the Iberdrola press release.
+
+**Open questions for human:** R-009 decisions D1-D11 and approval of the D7 re-typings and fills. In short:
+- extra columns (`registry_id`, `source_id`, `reuse_terms`);
+- drop `licence_id`;
+- a platform lookup;
+- commodity Option A vs B;
+- `Flat` -> `both`;
+- DSO columns (variant + product, with fit in the lookup) and their code style;
+- replace text with codes in place.
+
+**Suggested new backlog items:**
+- R-020: the remaining lookups and MECHANISM_ORG_ROLE.
+- R-021: apply R-009 after approval (blocked).
+- Annotated R-002, R-003, R-006 and R-010.
+
 ## 2026-11-23 · R-008 · Apply approved changes (human decisions)
 **Outcome:** done
 **Summary:** Main session, on the human's instruction. The human confirmed that the DSO rows came from Elexon's Flexibility Market Catalogue, and that the catalogue has no export option.

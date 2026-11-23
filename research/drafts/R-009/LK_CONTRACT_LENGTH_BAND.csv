@@ -1,0 +1,5 @@
+﻿code,label,definition,source_id
+le_day,Less than or equal to a day,The provider's delivery contract lasts one day or less.,SRC-0027
+day_to_week,Day < x <= Week,The provider's delivery contract lasts more than a day and up to a week.,SRC-0027
+week_to_month,Week < x <= Month,The provider's delivery contract lasts more than a week and up to a month.,SRC-0027
+month_to_year,Month < x <= Year,The provider's delivery contract lasts more than a month and up to a year.,SRC-0027

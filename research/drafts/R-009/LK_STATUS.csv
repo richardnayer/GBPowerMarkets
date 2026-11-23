@@ -1,0 +1,6 @@
+﻿code,label,definition,source_id
+live,Live,"Open for participation, or still running under existing contracts, at the date given in status_as_of.",SRC-0042
+planned,Planned,"Announced by the operator and in design or implementation, but not yet open to participants.",SRC-0042
+trial,Trial,Running as a time-limited trial or innovation project.,SRC-0042
+suspended,Suspended,Temporarily not procuring or not operating; the operator expects to resume it.,SRC-0042
+closed,Closed,Permanently ended or replaced. The record is kept for history.,SRC-0042
