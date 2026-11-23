@@ -1,112 +1,113 @@
-﻿Market Name,Dispatcher,Dispatch Type,Pre-Fault,Post-Faul
-Dynamic Containment High,Self,Auto,No,Yes
-Dynamic Containment Low,Self,Auto,No,Yes
-Dynamic Moderation High,Self,Auto,Yes,No
-Dynamic Moderation Low,Self,Auto,Yes,No
-Dynamic Regulation High,Self,Auto,Yes,No
-Dynamic Regulation Low,Self,Auto,Yes,No
-Mandatory Frequency Response: Limited Frequency Sensitive Mode,Self,Auto,Yes,Yes
-Mandatory Frequency Response: Frequency Sensitive Mode,,,,
-Static Firm Frequency Response,Self,Auto,No,Yes
-Positive Quick Reserve,NESO,BOA/OBP,Yes,Yes
-Negative Quick Reserve,NESO,BOA/OBP,Yes,Yes
-Positive Slow Reserve,,,No,Yes
-Negative Slow Reserve,,,No,Yes
-Positive Balancing Reserve,,,,
-Negative Balancing Reserve,,,,
-Short-Term Operating Reserve,,,,
-Optional Fast Reserve,,,,
-Megawatt Dispatch,,,,
-Local Constraint Management,,,,
-Demand for Constraint,,,,
-Short Term (D-1) Reactive Power Market,,,,
-Mid Term (Y-1) Stability Market,,,,
-Long Term (Y-4) Stability Market,,,,
-Electricity System Restoration Events,,,,
-Distributed Restart,,,,
-Bids & Offers,,,,
-Trading,,,,
-Demand Flexibility Service,,,,
-Capacity Market,,,,
-CfD Allocation Rounds,,,,
-LDES Cap & Floor,,,,
-Over the Counter: Physical,Self,Self,Yes,N/A
-Over the Counter: Financial,N/A,N/A,N/A,N/A
-UK Base Electricity 1x Season Options,N/A,N/A,N/A,N/A
-UK Base Electricity Future (Gregorian),N/A,N/A,N/A,N/A
-UK Base Electricity Options,N/A,N/A,N/A,N/A
-UK Peak Electricity Future (Gregorian),N/A,N/A,N/A,N/A
-UK Spark Spread,N/A,N/A,N/A,N/A
-EEX GB Power Base Day Futures,N/A,N/A,N/A,N/A
-EEX GB Power Base Weekend Futures,N/A,N/A,N/A,N/A
-EEX GB Power Base Week Futures,N/A,N/A,N/A,N/A
-EEX GB Power Base Month Futures,N/A,N/A,N/A,N/A
-EEX GB Power Base Quarter Futures,N/A,N/A,N/A,N/A
-EEX GB Power Base Season Futures,N/A,N/A,N/A,N/A
-EEX GB Power Base Year Futures,N/A,N/A,N/A,N/A
-EEX GB Power Peak Day Futures,N/A,N/A,N/A,N/A
-EEX GB Power Peak Weekend Futures,N/A,N/A,N/A,N/A
-EEX GB Power Peak Week Futures,N/A,N/A,N/A,N/A
-EEX GB Power Peak Month Futures,N/A,N/A,N/A,N/A
-EEX GB Power Peak Quarter Futures,N/A,N/A,N/A,N/A
-EEX GB Power Peak Season Futures,N/A,N/A,N/A,N/A
-EEX GB Power Peak Year Futures,N/A,N/A,N/A,N/A
-EEX GB TB2 Power Month Futures,N/A,N/A,N/A,N/A
-EEX GB TB2 Power Quarter Futures,N/A,N/A,N/A,N/A
-EEX GB TB2 Power Year Futures,N/A,N/A,N/A,N/A
-GB Intraday 1 Auction,Self,Self,Yes,No
-GB Intraday 2 Auction,Self,Self,Yes,No
-GB Day Ahead 60 min Auction,Self,Self,Yes,No
-GB Day Ahead 30 min Auction,Self,Self,Yes,No
-EPEX Continuous Intraday Market,Self,Self,Yes,No
-N2EX Day Ahead Auction,Self,Self,Yes,No
-GB Half Hour Auction,Self,Self,Yes,No
-SEM-GB Auction 1,Self,Self,Yes,No
-SEM-GB Auction 2,Self,Self,Yes,No
-GB Continuous Intraday Market,Self,Self,Yes,No
-Dynamic LT,,,,
-OU15,,,,
-Restore LT,,,,
-SAOU_DA,,,,
-Secure LT,,,,
-SU_HV (Day Ahead),,,,
-SU_HV (Week Ahead),,,,
-SU_LV,,,,
-1) Reinforcement optimisation LV SU Winter ahead,,,,
-2) Reinforcement optimisation HV SAOU-WA winter+1 ahead,,,,
-3) Reinforcement optimisation HV SAOU-WA winter+1 ahead,,,,
-4) Reinforcement optimisation HV SAOU-WA winter ahead,,,,
-5) Reinforcement optimisation HV SAOU-WA month ahead,,,,
-6) Reinforcement optimisation HV Flex Advance winter+1 ahead,,,,
-7) Reinforcement optimisation HV Flex Advance winter ahead,,,,
-8) Planned outages HV SAOU-15,,,,
-9) Planned outages HV SAOU-15,,,,
-10) Planned outages HV SAOU-15,,,,
-All CMZs - SU Winter Ahead,,,,
-HV - SAOU Month Ahead,,,,
-HV - SU Winter Ahead +1,,,,
-LV - SU Month Ahead,,,,
-Operational Utilisation - 15 Minutes,,,,
-Operational Utilisation - 15 Minutes,,,,
-Scheduled Availability + Operational Utilisation - Day Ahead,,,,
-Schedule Utilisation (SU),,,,
-Scheduled Utilisation (SU),,,,
-Operational Utilisation + 15 mins,,,,
-Operational Utilisation + 15 mins,,,,
-Operational Utilisation + 2 mins,,,,
-Operational Utilisation + 2 mins,,,,
-Peak Reduction,,,,
-Peak Reduction (PR),,,,
-Scheduled Utilisation ,,,,
-Scheduled Utilisation (SU),,,,
-Variable Availabiulity Operational Utilisation + 15 mins,,,,
-Variable Availabiulity Operational + 2 mins,,,,
-OU Long-Term,,,,
-SAOU Long-Term,,,,
-SAOU Month-Ahead,,,,
-SU Day-Ahead,,,,
-SU Season-Ahead,,,,
-VAOU Long-Term,,,,
-Scheduled Availability + Operational Utilisation - Day Ahead (Long - Term),,,,
-Schedule Utilisation (Day Ahead),,,,
-Scheduled Utilisation (Long-Term),,,,
+﻿ID,Market Name,Dispatcher,Dispatch Type,Pre-Fault,Post-Fault
+001,Dynamic Containment High,Self,Auto,No,Yes
+002,Dynamic Containment Low,Self,Auto,No,Yes
+003,Dynamic Moderation High,Self,Auto,Yes,No
+004,Dynamic Moderation Low,Self,Auto,Yes,No
+005,Dynamic Regulation High,Self,Auto,Yes,No
+006,Dynamic Regulation Low,Self,Auto,Yes,No
+007,Mandatory Frequency Response: Limited Frequency Sensitive Mode,Self,Auto,Yes,Yes
+008,Mandatory Frequency Response: Frequency Sensitive Mode,,,,
+009,Static Firm Frequency Response,Self,Auto,No,Yes
+010,Positive Quick Reserve,NESO,BOA/OBP,Yes,Yes
+011,Negative Quick Reserve,NESO,BOA/OBP,Yes,Yes
+012,Positive Slow Reserve,,,No,Yes
+013,Negative Slow Reserve,,,No,Yes
+014,Positive Balancing Reserve,,,,
+015,Negative Balancing Reserve,,,,
+016,Short-Term Operating Reserve,,,,
+017,Optional Fast Reserve,,,,
+018,Megawatt Dispatch,,,,
+019,Local Constraint Management,,,,
+020,Demand for Constraint,,,,
+021,Short Term (D-1) Reactive Power Market,,,,
+022,Mid Term (Y-1) Stability Market,,,,
+023,Long Term (Y-4) Stability Market,,,,
+024,Electricity System Restoration Events,,,,
+025,Distributed ReStart,,,,
+026,Bids & Offers,,,,
+027,Trading,,,,
+028,Demand Flexibility Service,,,,
+029,Capacity Market (T-1),,,,
+030,Capacity Market (T-4),,,,
+031,CfD Allocation Rounds,,,,
+032,LDES Cap & Floor,,,,
+033,Over the Counter: Physical,Self,Self,Yes,N/A
+034,Over the Counter: Financial,N/A,N/A,N/A,N/A
+035,UK Base Electricity 1x Season Options,N/A,N/A,N/A,N/A
+036,UK Base Electricity Future (Gregorian),N/A,N/A,N/A,N/A
+037,UK Base Electricity Options,N/A,N/A,N/A,N/A
+038,UK Peak Electricity Future (Gregorian),N/A,N/A,N/A,N/A
+039,UK Spark Spread,N/A,N/A,N/A,N/A
+040,EEX GB Power Base Day Futures,N/A,N/A,N/A,N/A
+041,EEX GB Power Base Weekend Futures,N/A,N/A,N/A,N/A
+042,EEX GB Power Base Week Futures,N/A,N/A,N/A,N/A
+043,EEX GB Power Base Month Futures,N/A,N/A,N/A,N/A
+044,EEX GB Power Base Quarter Futures,N/A,N/A,N/A,N/A
+045,EEX GB Power Base Season Futures,N/A,N/A,N/A,N/A
+046,EEX GB Power Base Year Futures,N/A,N/A,N/A,N/A
+047,EEX GB Power Peak Day Futures,N/A,N/A,N/A,N/A
+048,EEX GB Power Peak Weekend Futures,N/A,N/A,N/A,N/A
+049,EEX GB Power Peak Week Futures,N/A,N/A,N/A,N/A
+050,EEX GB Power Peak Month Futures,N/A,N/A,N/A,N/A
+051,EEX GB Power Peak Quarter Futures,N/A,N/A,N/A,N/A
+052,EEX GB Power Peak Season Futures,N/A,N/A,N/A,N/A
+053,EEX GB Power Peak Year Futures,N/A,N/A,N/A,N/A
+054,EEX GB TB2 Power Month Futures,N/A,N/A,N/A,N/A
+055,EEX GB TB2 Power Quarter Futures,N/A,N/A,N/A,N/A
+056,EEX GB TB2 Power Year Futures,N/A,N/A,N/A,N/A
+057,GB Intraday 1 Auction,Self,Self,Yes,No
+058,GB Intraday 2 Auction,Self,Self,Yes,No
+059,GB Day Ahead 60 min Auction,Self,Self,Yes,No
+060,GB Day Ahead 30 min Auction,Self,Self,Yes,No
+061,EPEX Continuous Intraday Market,Self,Self,Yes,No
+062,N2EX Day Ahead Auction,Self,Self,Yes,No
+063,GB Half Hour Auction,Self,Self,Yes,No
+064,SEM-GB Auction 1,Self,Self,Yes,No
+065,SEM-GB Auction 2,Self,Self,Yes,No
+066,GB Continuous Intraday Market,Self,Self,Yes,No
+067,Dynamic LT,,,,
+068,OU15,,,,
+069,Restore LT,,,,
+070,SAOU_DA,,,,
+071,Secure LT,,,,
+072,SU_HV (Day Ahead),,,,
+073,SU_HV (Week Ahead),,,,
+074,SU_LV,,,,
+075,1) Reinforcement optimisation LV SU Winter ahead,,,,
+076,2) Reinforcement optimisation HV SAOU-WA winter+1 ahead,,,,
+077,3) Reinforcement optimisation HV SAOU-WA winter+1 ahead,,,,
+078,4) Reinforcement optimisation HV SAOU-WA winter ahead,,,,
+079,5) Reinforcement optimisation HV SAOU-WA month ahead,,,,
+080,6) Reinforcement optimisation HV Flex Advance winter+1 ahead,,,,
+081,7) Reinforcement optimisation HV Flex Advance winter ahead,,,,
+082,8) Planned outages HV SAOU-15,,,,
+083,9) Planned outages HV SAOU-15,,,,
+084,10) Planned outages HV SAOU-15,,,,
+085,All CMZs - SU Winter Ahead,,,,
+086,HV - SAOU Month Ahead,,,,
+087,HV - SU Winter Ahead +1,,,,
+088,LV - SU Month Ahead,,,,
+089,Operational Utilisation - 15 Minutes,,,,
+090,Operational Utilisation - 15 Minutes,,,,
+091,Scheduled Availability + Operational Utilisation - Day Ahead,,,,
+092,Scheduled Utilisation (SU),,,,
+093,Scheduled Utilisation (SU),,,,
+094,Operational Utilisation + 15 mins,,,,
+095,Operational Utilisation + 15 mins,,,,
+096,Operational Utilisation + 2 mins,,,,
+097,Operational Utilisation + 2 mins,,,,
+098,Peak Reduction,,,,
+099,Peak Reduction (PR),,,,
+100,Scheduled Utilisation,,,,
+101,Scheduled Utilisation (SU),,,,
+102,Variable Availability Operational Utilisation + 15 mins,,,,
+103,Variable Availability Operational + 2 mins,,,,
+104,OU Long-Term,,,,
+105,SAOU Long-Term,,,,
+106,SAOU Month-Ahead,,,,
+107,SU Day-Ahead,,,,
+108,SU Season-Ahead,,,,
+109,VAOU Long-Term,,,,
+110,Scheduled Availability + Operational Utilisation - Day Ahead (Long - Term),,,,
+111,Scheduled Utilisation (Day Ahead),,,,
+112,Scheduled Utilisation (Long-Term),,,,
