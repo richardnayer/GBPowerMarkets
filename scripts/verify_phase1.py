@@ -3,6 +3,9 @@
 Read-only. Checks that all six CSVs in CSV/ share IDs 001-112, that names match KEY_DATA, that
 BOM/CRLF formatting is preserved, and diffs the files against research/backups/2026-11-23-pre-phase1/.
 Run:  python scripts/verify_phase1.py
+
+HISTORICAL: this checks the state straight after Phase 1. Once R-001 Change 1a renames IDs to
+MEC-0001..MEC-0112 (scripts/apply_mec_ids.py), the ID checks here fail by design.
 """
 import csv, io, os
 from collections import Counter

@@ -16,6 +16,57 @@ Entry template:
 
 ---
 
+## 2026-11-23 · R-017 · Prefixed permanent IDs (MEC-0001..MEC-0112) and R-001 decisions
+**Outcome:** done
+**Summary:** Main session, on the human's instruction. The human answered all remaining R-001 questions: rename "market" to "mechanism"; `snake_case` headers with unit suffixes; one row per product family with child tables; field-level citations; include SEM-GB and interconnector mechanisms with a `jurisdiction` column. Storage stays CSV as the master copy, plus `datapackage.json`, a pre-commit validator and a generated SQLite build that is not committed. Phase 2 design is approved. The human also approved R-001 Change 1a (prefixed, permanent IDs for every table), because the dataset will be published and its IDs will appear in website URLs. `scripts/apply_mec_ids.py` renamed the ID column in all six CSVs from `001`-`112` to `MEC-0001`-`MEC-0112`, keeping the same number. Nothing else changed: the script verified every non-ID cell, the BOM and CRLF. 112 mapping rows were added to research/change_log.csv. Backup: research/backups/2026-11-23-pre-mec-ids/.
+**Proposal:** research/proposals/2026-11-23-R-001-database-structure-review.md (Change 1a; Questions 2-7)
+**Sources consulted:** none (internal change)
+**Open questions for human:** none
+**Suggested new backlog items:** R-018 SQLite build with views; R-019 publication readiness.
+
+## 2026-11-23 · R-008 · DSO flexibility product taxonomy and mapping
+**Outcome:** done
+**Summary:** The ENA Feb 2024 alignment report was read from a Wayback snapshot, since the direct URL still returns 403. Its five aligned products (PR, SU, OU, OU+SA, OU+VA) replaced Sustain/Secure/Dynamic/Restore, which it calls "historical nomenclature". The standard is now Elexon's Flexibility Market Rule FMR-PD v4.2 (25/08/2026): 5 products with 12 variants, of which SA OU-2/15/WA were added by NPg's change proposal FLX CP003 (11/06/2026). All 46 DSO rows were mapped from each DNO's own 2026/27 statement: 41 standard, 3 NGED legacy, 2 NPg FlexAdvance (non-standard). The NPg numbers 1)-10) are NPg's sub-market numbers, of which only 8 exist. 076 is probably a mislabelled Sub-Market 2 (LV SU month-ahead), 083/084 are windows or duplicates of 082 (SA OU-15), and 085-088 are NPg's 2025/26 sub-markets.
+**Proposal:** research/proposals/2026-11-23-R-008-dso-product-taxonomy.md
+**Sources consulted:**
+- ENA and Elexon:
+  - https://web.archive.org/web/20240503005600/https://www.energynetworks.org/assets/images/2023/Aug/on-flexibility-products-alignment-(feb-2024).pdf
+  - https://www.energynetworks.org/assets/images/202412-rationalisation-of-dso-flexibility-products-(1)-(2).pdf
+  - https://www.energynetworks.org/assets/images/Resource%20library/ON22-WS1A-P6%20Active%20Power%20Products%20Review%20(01%20Aug%202022).pdf
+  - https://bscdocs.elexon.co.uk/flex-market/flexibility-market-rules/fmr-pd-product-definitions
+  - https://bscdocs.elexon.co.uk/flex-market/flexibility-market-rules/fmr-smd-sub-market-definitions
+  - https://www.elexon.co.uk/flexibility-markets/change-proposals/flx-cp003/
+  - https://www.elexon.co.uk/flexibility-markets/implementation-monitoring/flexibility-market-catalogue/ (Power BI, not read)
+- NGED:
+  - https://dso.nationalgrid.co.uk/downloads/15141/nged-dso-distribution-flexibility-services-procurement-statement-2026-27.pdf
+  - https://dso.nationalgrid.co.uk/downloads/15152/nged-distribution-flexibility-services-procurement-report-2025-26.pdf
+  - https://dso.nationalgrid.co.uk/downloads/15098/unlocking-the-power-of-flexibility-deep-dive-oct-2025-1-.pdf
+- NPg:
+  - https://www.northernpowergrid.com/sites/default/files/assets/Distribution%20Flexibility%20Services%20Procurement%20Statement%202026-27.pdf
+  - https://www.northernpowergrid.com/sites/default/files/assets/Distribution%20Flexibility%20Services%20Procurement%20Statement%202025-26%20v2.pdf
+  - https://piclo-so-docs.s3.eu-west-2.amazonaws.com/Northern+Powergrid+/2025.12/Document+2+-+Scope+and+Specification.pdf
+  - https://piclo-so-docs.s3.eu-west-2.amazonaws.com/Northern+Powergrid+/06.2026/Document+2+-+Scope+and+Specification.pdf
+- SPEN, SP ENW, SSEN and UKPN:
+  - https://www.spenergynetworks.co.uk/userfiles/file/SP5175_SPEN_DSO_C31E_Procurement_Statement_2026_v8_003.pdf (403; read from the Ofgem ZIP)
+  - https://www.enwl.co.uk/globalassets/future-energy/flexibility-hub/document-library/ofgem-dfp-reporting/sp-enw-distribution-flexibility-services-procurement-statement-2026..pdf
+  - https://www.ssen.co.uk/globalassets/our-services/flexibility-services-document-library/slc31e-reports--statements/slc31e--ssen-2026-27-flexibility-services-procurement-statement.pdf
+- Ofgem:
+  - https://www.ofgem.gov.uk/transparency-document/electricity-distribution-standard-licence-condition-31e-flexibility-procurement-statements-2026-2027
+  - https://www.ofgem.gov.uk/sites/default/files/2026-06/Procurement-statements-2026-2027.zip (SPEN and UKPN statements)
+
+**Open questions for human:**
+1. The R-001 proposal now records Question 4 as answered (product family plus child tables), which was edited during this run. My brief said it was still open. Which is correct?
+2. Add `Standard Product` / `Standard Variant` / `Product Fit` columns to KEY_DATA now, or wait for the Phase 2 lookups?
+3. Do you know where the DSO rows came from (e.g. an Elexon catalogue export)? That would confirm the 076 rename and what 083/084 are.
+4. For 083/084: keep them as windows until Phase 3, or delete them now?
+
+**Suggested new backlog items:**
+- R-013: DSO `Direction` values.
+- R-014: Elexon Flexibility Market Catalogue export.
+- R-015: fill DSO MARKET_INFO/TECHNICAL from FMR-PD.
+- R-016: DSO coverage gaps.
+- R-011 has been annotated with evidence that likely closes it.
+
 ## 2026-11-23 · R-012 · Nord Pool spelling in Market Platform (human decisions)
 **Outcome:** done
 **Summary:** Applied by the main session on the human's instruction. MARKET_INFO `Market Platform` for IDs 062-065 changed from `Nordpool` to `Nord Pool` (4 cells, logged in research/change_log.csv). The human also decided that duplicate market names (e.g. 092/093 `Scheduled Utilisation (SU)`) are acceptable until Phase 3 (R-001 Change 12).

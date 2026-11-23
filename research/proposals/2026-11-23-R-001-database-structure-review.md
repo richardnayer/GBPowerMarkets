@@ -1,6 +1,6 @@
 # Database structure review: keys, naming, vocabularies, provenance and scope extension
 **Backlog item:** R-001
-**Status:** pending review (Phases 2-4; Questions 2-7 open). Phase 1: approved 2026-11-23, applied (R-007).
+**Status:** Phase 1: approved 2026-11-23, applied (R-007). Phase 2: design approved 2026-11-23, not yet applied (R-009, R-010); content added under it is still flagged `proposed` for human review. Phases 3-4: pending review. All questions answered 2026-11-23.
 **Date:** 2026-11-23
 
 ## Summary
@@ -53,7 +53,8 @@ missing-value conventions for plain CSV files:
 **Phase 1 status: approved 2026-11-23, applied (R-007).** Every change is logged cell by cell in
 `research/change_log.csv` (95 rows). The pre-change CSVs are in `research/backups/2026-11-23-pre-phase1/`.
 How each item was applied:
-- ID is plain text `001`-`112` (no `GBM-` prefix). It is the first column of all five child files,
+- ID is plain text `001`-`112` (no `GBM-` prefix; later replaced by `MEC-0001`-`MEC-0112`, see
+  Change 1a). It is the first column of all five child files,
   and the child `Capacity Market` row is split into 029 (T-1) and 030 (T-4).
 - KEY_DATA `Notes` is renamed `Contract Length Band`, with a new empty `Notes` column after it.
 - ID 103 had only its spelling fixed: `Variable Availability Operational + 2 mins`. The word
@@ -95,6 +96,42 @@ Positional mapping, verified by sequence alignment of names:
 | MARKET_INFO, TECHNICAL, DISPATCH, PARTICIPANTS, DESCRIPTION | all rows | `ID` (new) | (absent) | back-filled per mapping above | internal analysis; CSVW primer s.3.14 https://www.w3.org/TR/tabular-data-primer/ |
 | same five files | row 29 | `Market Name` | `Capacity Market` | `Capacity Market (T-1)` (ID 029) + new row `Capacity Market (T-4)` (ID 030) | KEY_DATA.csv rows 029/030 |
 | same five files | row 25 | `Market Name` | `Distributed Restart` | `Distributed ReStart` | KEY_DATA.csv row 025 |
+
+#### Change 1a. Prefixed, permanent IDs for every table (approved 2026-11-23)
+
+The human approved this on 2026-11-23, after Phase 1 was applied. It replaces the plain `001`-`112`
+format from Change 1. The reason: the dataset will be published, and its IDs will appear in website
+URLs and in other people's citations.
+
+Rules:
+- **IDs carry no meaning.** An ID never encodes a name, operator or product, because those change
+  (National Grid ESO became NESO; ENWL became SPENW). Meaning lives in the name and acronym columns. If
+  readable URLs are wanted, a separate `slug` column can provide them, e.g.
+  `/mechanism/MEC-0029/capacity-market-t1`. The slug may change; the ID may not.
+- **Format:** an uppercase prefix, a hyphen, then a zero-padded number of fixed width: 4 digits for
+  core and reference tables, 6 for high-volume tables. No prefix may look like a month name, because
+  Excel can read e.g. `MAR-0001` as a date.
+- **IDs are permanent.** Never renumber or reuse an ID. A retired or merged record is kept with
+  `record_status = deprecated`. New records take the next free number.
+- **Existing mechanisms keep their numbers:** `001` becomes `MEC-0001`, `029` becomes `MEC-0029`.
+- **Historical records keep the old IDs.** This covers change-log rows written before the rename,
+  proposals and `research/log.md`. The rename itself is logged as one mapping row per ID.
+- **Lookup tables (`LK_*`) have no prefix.** Their codes are readable snake_case words such as
+  `pay_as_clear`.
+
+| Table | Prefix | Digits | Example |
+|---|---|---|---|
+| MECHANISM (today KEY_DATA and its child files) | `MEC` | 4 | `MEC-0029` |
+| ORGANISATIONS | `ORG` | 4 | `ORG-0001` |
+| SOURCES | `SRC` | 4 | `SRC-0001` |
+| MECHANISM_RELATIONSHIP | `REL` | 4 | `REL-0001` |
+| CITATIONS | `CIT` | 6 | `CIT-000001` |
+| PROCUREMENT_WINDOW | `WIN` | 6 | `WIN-000001` |
+| PARAMETER_VALUES | `PAR` | 6 | `PAR-000001` |
+| CHANGE_LOG | `CHG` | 6 | `CHG-000001` |
+
+Applying it: `scripts/apply_mec_ids.py` renames the mechanism IDs in all six CSVs. The other prefixes
+come into use as their tables are created, starting with R-009.
 
 #### Change 2. Fix header typos
 
@@ -351,6 +388,9 @@ and taxes). This proposal defines only where that content goes.
 
 #### Change 14 (optional). Storage format
 
+_Decided 2026-11-23 (Question 6): CSV canonical + `datapackage.json` + pre-commit validator +
+generated SQLite build with views._
+
 Keep CSV as the canonical, diff-friendly store in git. Add a `datapackage.json` (Frictionless) or CSVW
 metadata file that declares primary keys, foreign keys and enums, and add a small validation script
 (new backlog item). Option: generate a SQLite build from the CSVs for querying. The UTF-8 BOM can stay
@@ -430,14 +470,26 @@ Governance:
 ## Questions for the human
 
 1. ~~Approve Phase 1~~ Answered: approved 2026-11-23 and applied (R-007).
-2. Rename the core entity from "market" to "mechanism" (KEY_DATA -> MECHANISM) to cover schemes,
-   charges and taxes?
-3. Headers: switch to machine-friendly `snake_case` with units in a data dictionary, or keep the
-   current human-readable headers (`Max Time to Full Delivery [s]`)?
-4. Granularity: should DSO products, CM/CfD rounds and futures tenors be one row per product family,
+2. ~~Rename the core entity from "market" to "mechanism" (KEY_DATA -> MECHANISM) to cover schemes,
+   charges and taxes?~~ Answered 2026-11-23: **yes**, rename to "mechanism".
+3. ~~Headers: switch to machine-friendly `snake_case` with units in a data dictionary, or keep the
+   current human-readable headers (`Max Time to Full Delivery [s]`)?~~ Answered 2026-11-23:
+   **`snake_case` with the unit as a suffix** (e.g. `max_time_to_full_delivery_s`), plus a data
+   dictionary.
+4. ~~Granularity: should DSO products, CM/CfD rounds and futures tenors be one row per product family,
    with windows/tenors in child tables (recommended)? Or keep one row per tender line or contract tenor
-   as now?
-5. Provenance: field-level CITATIONS (recommended), or record-level only?
-6. Format: CSV-only with a `datapackage.json`, or also a generated SQLite build? Keep the UTF-8 BOM?
-7. Should the database be GB-only, or include SEM-GB coupled products and interconnector capacity
-   auctions (e.g. JAO / interconnector explicit auctions) as their own mechanisms?
+   as now?~~ Answered 2026-11-23: **one row per product family**, with procurement windows, CM/CfD
+   rounds and futures tenors in child tables.
+5. ~~Provenance: field-level CITATIONS (recommended), or record-level only?~~ Answered 2026-11-23:
+   **field-level**, with `field_name = *` allowed where one source covers the whole record.
+6. ~~Format: CSV-only with a `datapackage.json`, or also a generated SQLite build? Keep the UTF-8
+   BOM?~~ Answered 2026-11-23: **CSV is the canonical store.** A Frictionless `datapackage.json`
+   declares keys, foreign keys and allowed values. A standard-library validator runs as a git
+   pre-commit hook. A build script generates a SQLite database (foreign keys enforced) with views that
+   join the tables back into readable form. The SQLite file is a build output and is not committed.
+   Keep the UTF-8 BOM for now, document it in the data dictionary, and revisit before publication.
+   Context: the human intends to publish the dataset and later build an open-source website on it for
+   looking up mechanisms and how they are linked.
+7. ~~Should the database be GB-only, or include SEM-GB coupled products and interconnector capacity
+   auctions (e.g. JAO / interconnector explicit auctions) as their own mechanisms?~~ Answered
+   2026-11-23: **include them** as their own mechanisms, tagged with a `jurisdiction` column.
