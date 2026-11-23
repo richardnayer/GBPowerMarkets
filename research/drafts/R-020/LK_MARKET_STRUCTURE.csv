@@ -1,0 +1,3 @@
+﻿code,label,definition,source_id
+single_buyer,Single buyer (one-to-many),"One party buys from many competing sellers, as when a system or network operator procures a service.",SRC-0046
+multilateral,Multilateral (many-to-many),"Many buyers and many sellers trade with one another through a central venue, such as an exchange auction or order book.",SRC-0041

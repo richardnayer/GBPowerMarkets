@@ -1,0 +1,3 @@
+﻿file,key,column,current_value,proposed_value,reason
+SOURCES.csv,SRC-0002,notes,(append),"Also read 2026-11-23 for R-020: 09914060 (Chaddenwych Services Limited), 14266869 (Piclo Ltd), 06219884 (ICE Clear Europe Limited) and the search results for ""piclo"" and ""open utility"" (Open Utility Ltd 08384033).",Records the extra Companies House pages read for ORG-0036 and ORG-0037.
+ORGANISATIONS.csv,ORG-0014,notes,(append),Owns the Flexible Power trademark (SRC-0057); runs the Market Gateway platform (SRC-0011).,Links NGED to LK_PLATFORM nged_market_gateway and to ORG-0038.

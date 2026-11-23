@@ -7,13 +7,37 @@ Humans can add, reorder or remove items at any time.
 
 **Priority:** P1 (do next) · P2 · P3
 
+**Model:** researcher runs use Sonnet by default (set in `.claude/agents/gb-markets-researcher.md`). Items tagged **(opus)** redesign the database structure and are launched on Opus. Add or remove the tag to change this.
+
 ---
 
 ## Open
 
-- [ ] **P2 · R-010 · Schema metadata and validator.** Write a `datapackage.json` (Frictionless Table Schema) declaring primary keys, foreign keys, allowed values and the ID patterns from R-001 Change 1a. Add a stdlib-only Python validator and install it as a git pre-commit hook. Decided in R-001 Question 6. _R-009 inputs: declare `not_applicable` and `unknown` as missingValues; `registry_id` pattern `^(GB-COH|FR-RCS)-[A-Z0-9]+$`; `Standard Product` / `Standard Variant` required only when `Mechanism Class = dso_flexibility`; check that the variant's `product_code` equals `Standard Product`._ _R-021 update (2026-11-23): only `Standard Variant` was added (D8 amended), so check that it is filled only on `dso_flexibility` rows. Check allowed values as foreign keys to the `LK_*` files, not as enums written into the schema, so that a new class (e.g. for BSUoS or carbon taxes) needs only a new lookup row. `LK_CONTRACT_LENGTH_BAND` durations are ISO 8601 (Frictionless `duration` type)._
+- [ ] **P2 · R-031 · Schema entries for R-020's tables.** When R-020 is applied, add resources to `CSV/datapackage.json` for LK_PLATFORM, LK_PRICING_RULE, LK_AUCTION_TYPE, LK_AGGREGATION_LEVEL, LK_SETTLEMENT_TYPE, the role lookup and MECHANISM_ORG_ROLE. Replace the plain-text typing of each converted column with a foreign key. Do it in the same commit as the R-020 apply step: validator check P2 fails on any CSV that is not declared.
+- [ ] **P3 · R-032 · Lookups for the remaining coded columns, and the publisher foreign key.** R-010 D5/D6.
+  - Draft sourced lookups for SOURCES `source_type` and `doc_type`, and for the LK_DSO_PRODUCT_VARIANT columns `product_fit`, `payment_structure`, `availability_refinement` and `utilisation_instruction_timing` (FMR-PD Table 3).
+  - Make SOURCES `publisher` a strict foreign key: add Companies House to ORGANISATIONS (it needs a sourced `org_type`), and allow a blank publisher only for `internal` sources (SRC-0042).
+- [ ] **P2 · R-033 · Machine-readable citations for the R-009 facts.** Validator X9 found 9 sources that no foreign key reaches.
+  - SRC-0030 and SRC-0043..0045 are cited only in `research/drafts/R-009/KEY_DATA_DSO_COLUMNS.csv`, which gives a source and locator for each KEY_DATA `Standard Variant` value.
+  - SRC-0004, 0018, 0023, 0039 and 0040 are cited only in ORGANISATIONS `notes`.
+
+  Move both sets into CITATIONS once R-023 creates it.
 - [ ] **P2 · R-018 · SQLite build with readable views.** A stdlib `sqlite3` script that loads the CSVs into a SQLite file with foreign keys enforced, so the build fails on a broken reference. Add views that join the tables back into readable wide form. Output goes to a git-ignored build folder; the CSVs stay the master copy. Decided in R-001 Question 6. Use the schema from R-010.
-- [ ] **P2 · R-020 · Remaining lookups and MECHANISM_ORG_ROLE.** Draft `LK_PRICING_RULE`, `LK_AUCTION_TYPE`, `LK_AGGREGATION_LEVEL` (check GSP vs GSP Group in the DC/QR service terms) and `LK_SETTLEMENT_TYPE` (ICE physical via ECVN, EEX cash, OTC physical/financial), plus a role lookup. Then draft `MECHANISM_ORG_ROLE`: the operator rows (from VALUE_MAPPING), the platform rows, and the sourced CfD/CM/LDES role facts in R-009 section 6. Also source NESO's role as Capacity Market delivery body. Depending on R-009 D4, add `LK_PLATFORM` (NESO EAC/SMP, Piclo Flex, NGED Market Gateway/Flexible Power), and decide whether `Market Structure` / `Market Objective` need lookups or can be dropped. Add parent and clearing-house organisations (ICE Clear Europe, ECC) only where a role row needs them. _R-021 update (2026-11-23): D4 was approved, so `LK_PLATFORM` is required. These columns were left as text and should be converted once their lookups exist: MARKET_INFO `Market Platform`, `Pricing Structure`, `Auction Type`, `Market Structure` and `Market Objective`; DISPATCH `Dispatcher`; PARTICIPANTS `Aggregation`. DISPATCH `Dispatch Type` waits for Phase 3 Change 10. Convert a column only when every non-blank value in it can be converted._
+- [ ] **P3 · R-024 · Instrument settlement type and clearing houses.** Moved out of R-020 (its D12): no current column uses these; they belong to Phase 4 `INSTRUMENT_INFO`.
+  - Draft `LK_SETTLEMENT_TYPE`: ICE physical via ECVN (SRC-0010), EEX cash or physical fulfilment (SRC-0009), OTC physical / financial (SRC-0041 para 2.13).
+  - Add a `clearing_house` role (LK_ORG_ROLE) with rows for MEC-0035..0056. Add ICE Clear Europe Limited (Companies House 06219884, read in R-020) and European Commodity Clearing AG to ORGANISATIONS, each with a source that names it as the clearing house for these contracts.
+  - Revisit Direction and Dispatcher `not_applicable` for the physically delivered ICE contracts (MEC-0035..0039).
+- [ ] **P3 · R-026 · SEM-GB intraday auctions (MEC-0064/0065): algorithm, objective, pricing.** R-020 found no primary source on whether the SEM-GB IDAs still clear with EUPHEMIA after GB left SDAC:
+  - Nord Pool's SEM-GB article (SRC-0060) names no algorithm.
+  - The EUPHEMIA description (SRC-0054) does not mention GB.
+  - SEMOpx's pages and two Ofgem 2019 decisions do not mention it either.
+
+  Read the SEMOpx intraday auction rules or market rules, or a Nord Pool/EPEX SEM-GB rulebook. Then confirm or correct `Clearing Algorithm` = `euphemia`, fill MEC-0065 `Market Objective` (cleared from `Nor`), and check the Nord Pool GB auctions' objective (MEC-0062/0063).
+- [ ] **P3 · R-027 · Verify carried-over EAC values for MEC-0007 (MFR LFSM) and MEC-0009 (Static FFR).**
+  - MEC-0007's MARKET_INFO values (platform, pricing, auction type, structure, objective) look copied down from the EAC rows (R-001 data-quality list). MFR is a Grid Code requirement, not an EAC product.
+  - MEC-0009: the SMP is confirmed (SRC-0050), but EAC is not. SRC-0039 does not list Static FFR, and its rules name only a "Designated Auction Platform".
+
+  Check NESO's MFR and Static FFR pages and documents, and propose corrections to the flagged R-020 role and mapping rows.
 - [ ] **P3 · R-019 · Publication readiness.** The dataset will be published, and later used for an open-source lookup website. Research and draft: a data licence (e.g. CC BY 4.0 or ODbL; the repo's MIT licence covers code only); the reuse terms of the main sources (Open Government Licence, NESO, Elexon, DNOs); a `README.md` (the current `README.me` is empty and misnamed); `CITATION.cff`; a data dictionary; versioned releases with a Zenodo DOI. Choosing the licence is the human's decision.
 - [ ] **P2 · R-002 · Scope gap: government mechanisms.** No CfD or Capacity Market entries appear in `Market Type`. Identify the missing mechanisms (CfD allocation rounds, Capacity Market T-1/T-4, RO, etc.) and draft rows. _R-009: the classes `certificate_scheme`, the commodity `emissions_allowance` and the category `decarbonisation` are reserved in R-001 Change 6. Add them to the lookups, with sourced definitions, when the rows need them._
 - [ ] **P2 · R-003 · Scope gap: system charges and taxes.** Identify charges and taxes that enable the system (TNUoS, BSUoS, DUoS, CCL, UK ETS, Carbon Price Support, etc.) and propose how to represent them (they may not fit the current "market" columns). _R-009: the reserved codes `network_charge`, `system_charge`, `policy_levy`, `tax`, `emissions_trading` (class) and `network_cost_recovery`, `decarbonisation` (category) need sourced definitions when added. ORG-0022..ORG-0035 (DNO licensees) are ready for DUoS rows._ _Human (2026-11-23): make sure `LK_MECHANISM_CLASS` covers these mechanisms, e.g. BSUoS → `system_charge`, TNUoS/DUoS → `network_charge`, Carbon Price Support and CCL → `tax`, UK ETS → `emissions_trading`, policy cost levies → `policy_levy`. Check `LK_CATEGORY` too: BSUoS recovers balancing costs, which `network_cost_recovery` does not describe. Charge attributes go in Phase 4 CHARGE_INFO (R-001 Change 13)._
@@ -31,14 +55,44 @@ Humans can add, reorder or remove items at any time.
   - `CHANGE_LOG` with `CHG-NNNNNN` IDs (Change 8), including how to migrate `research/change_log.csv`.
 
   Then move the R-021 qualifier notes into their proper place, e.g. the low-confidence `Suppliers = no` for MEC-0001..0006 (PARTICIPANTS `Notes`).
-- [ ] **P3 · R-022 · Contract length: band, min/max or yes/no per duration?** Human request (2026-11-23). `LK_CONTRACT_LENGTH_BAND` now holds min/max ISO 8601 durations. As research covers more markets, review whether contract length is better recorded as yes/no for set durations (e.g. day / week / month / year / multi-year), or as actual lengths on `SUB_MARKET` rows (R-001 Change 12), from which the bands and yes/no flags could be derived. Revisit after R-002 (CM/CfD agreements run for years) and when Phase 3 is designed.
+- [ ] **P3 · R-022 · (opus) · Contract length: band, min/max or yes/no per duration?** Human request (2026-11-23). `LK_CONTRACT_LENGTH_BAND` now holds min/max ISO 8601 durations. As research covers more markets, review whether contract length is better recorded as yes/no for set durations (e.g. day / week / month / year / multi-year), or as actual lengths on `SUB_MARKET` rows (R-001 Change 12), from which the bands and yes/no flags could be derived. Revisit after R-002 (CM/CfD agreements run for years) and when Phase 3 is designed.
 
 ## Blocked / needs human input
 
-_(none)_
+- [?] **P3 · R-034 · Install the pre-commit hook (human action).** The human chose not to install it yet (2026-11-23). When ready, run `git config core.hooksPath scripts/hooks` from the repository root; to undo it, run `git config --unset core.hooksPath`. Until then, run `python scripts/validate.py` before committing changes to `CSV/`.
+- [?] **P2 · R-025 · Apply R-020 (after approval).** Blocked on the human's decisions D1-D12 in `research/proposals/2026-11-23-R-020-remaining-lookups-and-org-roles.md`.
+  - Apply mechanically from `research/drafts/R-020/`: `COLUMN_ACTIONS.csv`, `VALUE_MAPPING.csv`, the `*_additions.csv` files and `EXISTING_ROW_UPDATES.csv`. Log each change in research/change_log.csv.
+  - Do it in the same commit as R-031 (schema entries). Note for R-031: the tables to declare are LK_PLATFORM, LK_ORG_ROLE, LK_PRICING_RULE, LK_AUCTION_TYPE, LK_MARKET_STRUCTURE, LK_MARKET_OBJECTIVE, LK_CLEARING_ALGORITHM, LK_DISPATCHER, LK_AGGREGATION_LEVEL and MECHANISM_ORG_ROLE. LK_SETTLEMENT_TYPE has moved to R-024.
+  - If D3 is approved, also remove the KEY_DATA `Market Operator` foreign key, and add the rule "platform row org_id = LK_PLATFORM.operator_org_id".
+  - Run `python scripts/validate.py` before committing.
 
 ## Done
 
+- [x] **P2 · R-020 · Remaining lookups and MECHANISM_ORG_ROLE.** _Done 2026-11-23 (pending review):_
+  - _Drafts in `research/drafts/R-020/`, regenerated and machine-checked by `build/build_r020.py`:_
+    - _9 lookups (LK_PLATFORM 7 rows, LK_ORG_ROLE 8, plus pricing, auction type, market structure, objective, clearing algorithm, dispatcher, aggregation);_
+    - _MECHANISM_ORG_ROLE (245 rows, `MOR-` IDs);_
+    - _ORG-0036..0038 (Piclo, Electron, Flexible Power), SRC-0046..0060;_
+    - _VALUE_MAPPING (51 rows covering the 7 text columns and Market Operator) and COLUMN_ACTIONS._
+  - _NESO's CM and CfD delivery-body role is sourced from legislation (Capacity Regulations reg 2/24, CfD Allocation Regulations reg 2, Energy Act 2013 s.8(3)/s.27(6))._
+  - _GSP is GSP Group in the current NESO rules._
+  - _MEC-0061 is continuous trading, so it should be pay-as-bid._
+  - _The DSO platform rows come from the 2026-27 statements._
+  - _EUPHEMIA for SEM-GB is unconfirmed (R-026)._
+  - _Proposal: `research/proposals/2026-11-23-R-020-remaining-lookups-and-org-roles.md` (D1-D12). Follow-ups: R-024..R-027._
+- [x] **P1 · R-030 · Apply R-010 decisions (after approval).** _Done 2026-11-23:_
+  - _The human approved D1-D8 with D3 amended: no `.gitattributes`; instead `scripts/validate.py` check F1 accepts LF or CRLF, one style per file (mixed endings or a bare CR are still errors)._
+  - _D1: the three files are committed, the hook as executable._
+  - _D2, D4 and D8 are as drafted. D5/D6 go to R-032._
+  - _D7: the human chose not to install the hook yet (R-034)._
+
+- [x] **P2 · R-010 · Schema metadata and validator.** Write a `datapackage.json` (Frictionless Table Schema) declaring primary keys, foreign keys, allowed values and the ID patterns from R-001 Change 1a. Add a stdlib-only Python validator and a git pre-commit hook. Decided in R-001 Question 6. _Done 2026-11-23 (pending review):_
+  - _`CSV/datapackage.json` (Data Package v2): 18 resources, 146 described fields, 42 foreign keys; allowed values are foreign keys to the lookups, not enums._
+  - _`not_applicable` and `unknown` stay codes; `missingValues` is `[""]` (D2)._
+  - _`scripts/validate.py` (stdlib only): passes with 0 errors and 12 warnings; tested with 29 mutation cases._
+  - _`scripts/hooks/pre-commit` checks the staged copies; not installed (D7)._
+  - _Finding: git stores the CSVs with LF, so CRLF holds only in Windows checkouts (D3)._
+  - _Proposal: `research/proposals/2026-11-23-R-010-schema-and-validator.md`, decisions D1-D8. Follow-ups: R-030 to R-033._
 - [x] **P1 · R-021 · Apply R-009 (after approval).** _Done 2026-11-23: human approved D1-D11, with D8 amended (`Standard Variant` only) and two human changes. Applied with `scripts/apply_r021.py`: 12 new tables in `CSV/` (ORGANISATIONS, SOURCES, 10 `LK_*`). KEY_DATA now has `Mechanism Class`, `Category` and `Standard Variant` in place of `Market Type`, and its coded columns and the yes/no columns hold codes. 8 columns are left as text for R-020. 141 rows in research/change_log.csv; backup in `research/backups/2026-11-23-pre-r021/`._
 - [x] **P2 · R-009 · Draft lookup tables and the ORGANISATIONS table.** _Done 2026-11-23: drafts are in `research/drafts/R-009/`: ORGANISATIONS (35 rows), SOURCES (45), 10 lookups (incl. LK_DSO_STANDARD_PRODUCT 5 and LK_DSO_PRODUCT_VARIANT 17; new LK_ORG_TYPE), VALUE_MAPPING (111 rows covering every value in 27 categorical columns, machine-checked) and KEY_DATA_DSO_COLUMNS (R-008 Change 2 in the new codes; MEC-0076 on hold). Proposal: `research/proposals/2026-11-23-R-009-lookups-and-organisations.md`, with decisions D1-D11. Remaining lookups and MECHANISM_ORG_ROLE moved to R-020; applying moved to R-021._
 - [x] **P1 · R-017 · Prefixed permanent IDs.** Rename mechanism IDs `001`-`112` to `MEC-0001`-`MEC-0112` in all six CSVs (R-001 Change 1a). _Done 2026-11-23: human approved; applied with `scripts/apply_mec_ids.py`; 112 mapping rows in research/change_log.csv; backup in `research/backups/2026-11-23-pre-mec-ids/`. Older proposals and logs keep the 3-digit form (`067` = `MEC-0067`)._

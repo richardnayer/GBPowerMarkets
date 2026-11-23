@@ -1,0 +1,3 @@
+﻿code,label,definition,source_id
+pay_as_clear,Pay-as-clear (uniform price),"All accepted orders for the same product and period settle at one clearing price set by the auction, whatever price each order stated.",SRC-0046
+pay_as_bid,Pay-as-bid (own price),"Each accepted order or trade settles at its own price, not at a common clearing price. In continuous trading, an incoming order trades at the price of the matching order already waiting in the order book.",SRC-0055

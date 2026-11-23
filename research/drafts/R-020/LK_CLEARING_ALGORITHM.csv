@@ -1,0 +1,2 @@
+﻿code,label,definition,source_id
+euphemia,EUPHEMIA,"The price-coupling algorithm that European power exchanges built under the Price Coupling of Regions project. It is used for EU day-ahead market coupling and EU intraday auctions, matching orders across bidding zones within network limits so as to maximise overall economic surplus. It is an algorithm, not a platform or an organisation.",SRC-0054

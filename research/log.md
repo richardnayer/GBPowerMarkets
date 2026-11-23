@@ -16,6 +16,117 @@ Entry template:
 
 ---
 
+## 2026-11-23 · R-020 · Remaining lookups, LK_PLATFORM and MECHANISM_ORG_ROLE
+**Outcome:** done (pending review). The run was resumed once after a usage limit.
+**Summary:** Drafted in `research/drafts/R-020/` (BOM, CRLF, `csv` module). `build/build_r020.py` regenerates the drafts and fails on any coverage or reference error. `CSV/` is untouched.
+- **New lookups (9):**
+  - LK_PLATFORM: NESO EAC and SMP, NGED Market Gateway, Flexible Power, Piclo Flex, ElectronConnect, EPEX Localflex;
+  - LK_ORG_ROLE: 8 roles; `platform` is split into market and dispatch platforms;
+  - LK_PRICING_RULE, LK_AUCTION_TYPE, LK_MARKET_STRUCTURE, LK_MARKET_OBJECTIVE, LK_CLEARING_ALGORITHM (EUPHEMIA, D4), LK_DISPATCHER (operator/self/not_applicable, so the column holds no ORG IDs) and LK_AGGREGATION_LEVEL.
+- **MECHANISM_ORG_ROLE:** 245 rows with `MOR-` IDs:
+  - operators carried over from KEY_DATA;
+  - CM and CfD NESO rows corrected to `delivery_body`;
+  - 13 new DESNZ/LCCC/ESC/EMRS/Ofgem role rows;
+  - 28 platform rows carried over from MARKET_INFO;
+  - 94 new DSO platform rows from the 2026-27 procurement statements.
+- **Additions:** ORG-0036..0038, SRC-0046..0060, org type `platform_provider`.
+- **Mapping:** VALUE_MAPPING (51 rows) and COLUMN_ACTIONS. The proposal recommends dropping `Market Operator` and `Market Platform` once the role rows exist.
+
+Findings:
+- NESO's delivery-body role for the CM and CfD is now sourced from legislation.
+- NESO's rules say aggregation is within a GSP Group, not a GSP.
+- MEC-0061 (continuous trading) is mis-recorded as pay-as-clear.
+- SPEN moved from Piclo to ElectronConnect in April 2026.
+
+LK_SETTLEMENT_TYPE and the clearing houses moved to R-024.
+**Proposal:** research/proposals/2026-11-23-R-020-remaining-lookups-and-org-roles.md
+**Sources consulted:**
+- NESO:
+  - https://www.neso.energy/industry-information/balancing-services/enduring-auction-capability-eac
+  - .../frequency-response-services/dynamic-containment
+  - .../reserve-services/quick-reserve
+  - .../frequency-response-services/static-firm-frequency-response-sffr
+  - documents 282401, 286021, 290566, 290571, 290576, 286031, 378246, 378266, 364276, 384301, 384306, 377331 (https://www.neso.energy/document/<n>/download)
+- Legislation:
+  - https://www.legislation.gov.uk/uksi/2014/2043/regulation/2 and /regulation/24
+  - https://www.legislation.gov.uk/ukpga/2013/32/section/8 and /section/27
+  - https://www.legislation.gov.uk/uksi/2024/706/regulation/9/made and /regulation/1/made
+  - https://www.legislation.gov.uk/uksi/2014/2011/regulation/2
+  - https://www.legislation.gov.uk/help
+- DNO statements:
+  - SRC-0011..0016 URLs, re-read; NGED, SPEN and UKPN from the Ofgem ZIP
+  - https://www.ssen.co.uk/globalassets/our-services/flexibility-services-document-library/service-documentation/flexible-power---ssen-fsp-user-guide-v1.1.pdf
+- Platforms:
+  - https://web.archive.org/web/20260115015058/https://www.flexiblepower.co.uk/ and https://www.flexiblepower.co.uk/about
+  - https://electron.net/ and /electron-privacy-policy/
+- Companies House: 09914060, 14266869, 06219884; searches for piclo, open utility, electron connect, ICE Clear Europe
+- NEMO Committee:
+  - https://www.nemo-committee.eu/sdac and /publications
+  - euphemia-public-description-2024.pdf
+  - public-description-continuous-trading-matching-algorithm-updated.pdf
+- Nord Pool:
+  - https://support.nordpoolgroup.com/support/solutions/articles/8000086528-about-the-sem-gb-intraday-auction
+  - https://www.nordpoolgroup.com/en/trading/Intraday-trading/
+- SEMOpx: https://www.semopx.com/ and /markets/
+- Ofgem: the 2019 EPEX/EEX commitments notice and decision (no EUPHEMIA mention)
+- SEMO: the EU re-integration response
+- Not readable: piclo.com (connection reset), www.flexiblepower.co.uk home page (live), nationalgrid.co.uk news page (404).
+
+**Open questions for human:** D1-D12 in the proposal, and approval of the 12 flagged mapping rows, the 94 DSO platform fills and the 13 new role rows. Main points:
+- the `MOR-` prefix and validity dates;
+- splitting the platform role;
+- dropping `Market Operator` / `Market Platform`;
+- keeping `Market Structure` / `Market Objective`;
+- the new `Clearing Algorithm` column;
+- MEC-0061 changing to `pay_as_bid`;
+- GSP becoming `gsp_group`.
+
+**Suggested new backlog items:**
+- R-024: settlement type and clearing houses;
+- R-025: apply R-020, blocked on approval and paired with R-031;
+- R-026: SEM-GB algorithm, objective and pricing (the open EUPHEMIA point);
+- R-027: verify the carried-over EAC values for MEC-0007/0009.
+
+## 2026-11-23 · R-030 · Apply R-010 decisions (human decisions)
+**Outcome:** done
+**Summary:** Main session, on the human's instruction. The human approved R-010 D1-D8, with D3 amended:
+- **D3 (line endings):** no `.gitattributes`. Validator check F1 now accepts LF or CRLF, one style per file, because git stores LF and checkouts on other systems and release downloads get LF. Tested in a scratch copy: the all-LF files pass, and a mixed file fails. The hook needs no `eol=lf` rule either.
+- **D5/D6:** carried out in R-032.
+- **D7:** the hook is not installed, at the human's request (R-034).
+- **Checks:** before committing, the main session re-ran the validator (0 errors, 12 expected warnings) and its staged-copy mode in a throwaway clone (pass).
+**Proposal:** research/proposals/2026-11-23-R-010-schema-and-validator.md ("Human decisions")
+**Sources consulted:** none
+**Open questions for human:** when to install the hook (R-034)
+**Suggested new backlog items:** R-034 (install the hook)
+
+## 2026-11-23 · R-010 · Schema metadata (datapackage.json), validator and pre-commit hook
+**Outcome:** done (pending review)
+**Summary:** Built the R-001 Question 6 design. No CSV data file was changed, and the hook is not installed.
+- `CSV/datapackage.json` (Frictionless Data Package v2) describes all 18 CSVs: 146 fields, each with a type, a description and constraints; 18 primary keys; 42 foreign keys. Allowed values are foreign keys to the `LK_*` files, ORGANISATIONS or SOURCES, never enums.
+- `missingValues` is `[""]`, so a blank still means not yet researched. `not_applicable` and `unknown` stay codes, because declaring them missing would merge them with blank in typed readers and break the lookups' primary keys.
+- The 8 R-020 text columns and the `N/A`/multi-value columns are typed as they are today, with their targets in the descriptions.
+- `scripts/validate.py` (stdlib only) checks files, types, keys and 11 cross-table rules (X1-X11). On today's data it passes: 0 errors, 12 warnings. It was tested with 29 mutation cases, and the hook end to end in a scratch repository.
+- `scripts/hooks/pre-commit` validates the staged copies.
+- Main finding: git stores the CSVs with LF (`i/lf w/crlf`), so CRLF holds only in Windows checkouts; `.gitattributes` is proposed. Also, 9 sources have no foreign-key reference: 4 are cited only in the R-009 draft evidence for `Standard Variant`, and 5 only in ORGANISATIONS notes.
+**Proposal:** research/proposals/2026-11-23-R-010-schema-and-validator.md
+**Sources consulted:**
+- https://datapackage.org/standard/table-schema/
+- https://datapackage.org/standard/data-resource/
+- https://datapackage.org/standard/data-package/
+- https://datapackage.org/standard/table-dialect/
+- https://git-scm.com/docs/gitattributes
+- https://org-id.guide/about
+**Open questions for human:** decisions D1-D8 in the proposal:
+- adopt the files;
+- codes rather than missing values for `not_applicable` / `unknown`;
+- `.gitattributes` for line endings;
+- the required fields;
+- `SOURCES.publisher` as a strict foreign key;
+- lookups for coded columns that have none;
+- installing the hook (`git config core.hooksPath scripts/hooks`);
+- warning and error levels.
+**Suggested new backlog items:** R-030 apply the R-010 decisions; R-031 schema entries for R-020's tables; R-032 lookups for the remaining coded columns and the publisher foreign key; R-033 move the R-009 per-row citations into CITATIONS.
+
 ## 2026-11-23 · R-021 · Apply R-009 lookups, ORGANISATIONS and SOURCES
 **Outcome:** done
 **Summary:** Main session, on the human's instruction.

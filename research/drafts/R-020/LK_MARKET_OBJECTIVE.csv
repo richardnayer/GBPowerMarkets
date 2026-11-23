@@ -1,0 +1,2 @@
+﻿code,label,definition,source_id
+maximise_social_welfare,Maximise social welfare,"The clearing algorithm chooses the accepted orders that give the largest total surplus: what the accepted buyers were willing to pay minus what the accepted sellers asked, over the accepted volumes.",SRC-0046

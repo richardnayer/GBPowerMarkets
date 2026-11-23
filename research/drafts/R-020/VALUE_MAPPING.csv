@@ -1,0 +1,52 @@
+﻿file,column,current_value,mechanism_ids,target_table,target_column,proposed_code,mapping_status,note
+KEY_DATA.csv,Market Operator,ORG-0001,MEC-0001..MEC-0028,MECHANISM_ORG_ROLE,org_id (role operator),ORG-0001,clean,
+KEY_DATA.csv,Market Operator,ORG-0001,MEC-0029..MEC-0031,MECHANISM_ORG_ROLE,org_id (role delivery_body),ORG-0001,flag,"Resolves the R-009 flag: NESO is the EMR delivery body for the CM and CfD, set by legislation (SRC-0051, SRC-0053, SRC-0052). Other roles for these schemes are new rows (see MECHANISM_ORG_ROLE)."
+KEY_DATA.csv,Market Operator,ORG-0008,MEC-0032,MECHANISM_ORG_ROLE,org_id (role operator),ORG-0008,clean,
+KEY_DATA.csv,Market Operator,ORG-0013,MEC-0035..MEC-0039,MECHANISM_ORG_ROLE,org_id (role operator),ORG-0013,clean,
+KEY_DATA.csv,Market Operator,ORG-0012,MEC-0040..MEC-0056,MECHANISM_ORG_ROLE,org_id (role operator),ORG-0012,clean,
+KEY_DATA.csv,Market Operator,ORG-0010,MEC-0057..MEC-0061,MECHANISM_ORG_ROLE,org_id (role operator),ORG-0010,clean,
+KEY_DATA.csv,Market Operator,ORG-0011,MEC-0062..MEC-0066,MECHANISM_ORG_ROLE,org_id (role operator),ORG-0011,clean,
+KEY_DATA.csv,Market Operator,ORG-0014,MEC-0067..MEC-0074,MECHANISM_ORG_ROLE,org_id (role operator),ORG-0014,clean,
+KEY_DATA.csv,Market Operator,ORG-0016,MEC-0075..MEC-0088,MECHANISM_ORG_ROLE,org_id (role operator),ORG-0016,clean,
+KEY_DATA.csv,Market Operator,ORG-0017,MEC-0089..MEC-0093,MECHANISM_ORG_ROLE,org_id (role operator),ORG-0017,clean,
+KEY_DATA.csv,Market Operator,ORG-0018,MEC-0094..MEC-0103,MECHANISM_ORG_ROLE,org_id (role operator),ORG-0018,clean,
+KEY_DATA.csv,Market Operator,ORG-0020,MEC-0104..MEC-0109,MECHANISM_ORG_ROLE,org_id (role operator),ORG-0020,clean,
+KEY_DATA.csv,Market Operator,ORG-0021,MEC-0110..MEC-0112,MECHANISM_ORG_ROLE,org_id (role operator),ORG-0021,clean,
+KEY_DATA.csv,Market Operator,(blank),MEC-0033..MEC-0034,MECHANISM_ORG_ROLE,(no row),,unmapped,OTC deals have no operator (R-009); no role row.
+MARKET_INFO.csv,Market Platform,NESO Enduring Auction Capability (EAC) & Single Market Platform (SMP),MEC-0001..MEC-0006; MEC-0010..MEC-0011,MECHANISM_ORG_ROLE,org_id / platform_code (role market_platform),ORG-0001 neso_eac; ORG-0001 neso_smp,clean,"Two rows per mechanism. EAC runs the DC, DM, DR and QR auctions (SRC-0039); SMP is the registration platform (SRC-0040)."
+MARKET_INFO.csv,Market Platform,NESO Enduring Auction Capability (EAC) & Single Market Platform (SMP),MEC-0007,MECHANISM_ORG_ROLE,org_id / platform_code (role market_platform),ORG-0001 neso_eac; ORG-0001 neso_smp,flag,"Carried over but unverified: MFR is a Grid Code requirement, not an EAC product; probable copy-down error (R-001 data-quality list; R-027)."
+MARKET_INFO.csv,Market Platform,NESO Enduring Auction Capability (EAC) & Single Market Platform (SMP),MEC-0009,MECHANISM_ORG_ROLE,org_id / platform_code (role market_platform),ORG-0001 neso_eac; ORG-0001 neso_smp,flag,"SMP confirmed for Static FFR (SRC-0050, PDF p.21). EAC not confirmed: SRC-0039 does not list Static FFR and its rules name only a ""Designated Auction Platform"" (R-027)."
+MARKET_INFO.csv,Market Platform,EPEX Spot,MEC-0057..MEC-0060,MECHANISM_ORG_ROLE,org_id (role market_platform),ORG-0010,clean,platform_code blank: the exchange's own trading system.
+MARKET_INFO.csv,Market Platform,Nord Pool,MEC-0062..MEC-0063,MECHANISM_ORG_ROLE,org_id (role market_platform),ORG-0011,clean,platform_code blank.
+MARKET_INFO.csv,Market Platform,Nord Pool / EUPHEMIA,MEC-0064..MEC-0065,MECHANISM_ORG_ROLE,org_id (role market_platform),ORG-0011,clean,"The ""EUPHEMIA"" part goes to the new Clearing Algorithm column (next row)."
+MARKET_INFO.csv,Market Platform,Nord Pool / EUPHEMIA,MEC-0064..MEC-0065,LK_CLEARING_ALGORITHM,Clearing Algorithm,euphemia,flag,R-009 D4: EUPHEMIA is an algorithm attribute. No primary source found that the SEM-GB auctions still clear with EUPHEMIA (SRC-0060 names no algorithm; SRC-0054 does not mention GB). Carried over; open point R-026.
+MARKET_INFO.csv,Market Platform,(blank),MEC-0067..MEC-0074,MECHANISM_ORG_ROLE,org_id / platform_code,ORG-0014 nged_market_gateway; ORG-0036 piclo_flex (market_platform); ORG-0038 flexible_power (dispatch_platform),fill,"SRC-0011 PDF p.6, p.22."
+MARKET_INFO.csv,Market Platform,(blank),MEC-0075..MEC-0088,MECHANISM_ORG_ROLE,org_id / platform_code,ORG-0036 piclo_flex (market_platform; dispatch_platform except MEC-0082..0084),fill,"SRC-0012 PDF p.10: outage-support services (MEC-0082..0084) are dispatched by telephone, so no dispatch row."
+MARKET_INFO.csv,Market Platform,(blank),MEC-0089..MEC-0093,MECHANISM_ORG_ROLE,org_id / platform_code,"ORG-0037 electronconnect (market_platform; dispatch_platform), valid_from 2026-04-01",fill,"SRC-0013 PDF p.9, p.10, p.12."
+MARKET_INFO.csv,Market Platform,(blank),MEC-0094..MEC-0103,MECHANISM_ORG_ROLE,org_id / platform_code,ORG-0037 electronconnect (market_platform; dispatch_platform),fill,"SRC-0014 PDF p.7, p.20."
+MARKET_INFO.csv,Market Platform,(blank),MEC-0104..MEC-0109,MECHANISM_ORG_ROLE,org_id / platform_code,ORG-0037 electronconnect (market_platform); ORG-0038 flexible_power (dispatch_platform),fill,"SRC-0015 PDF p.14, p.26; SRC-0056."
+MARKET_INFO.csv,Market Platform,(blank),MEC-0110..MEC-0112,MECHANISM_ORG_ROLE,org_id / platform_code,ORG-0010 epex_localflex (market_platform),fill,"SRC-0016 PDF p.3, p.7, p.12."
+MARKET_INFO.csv,Pricing Structure,Pay-as-Clear,MEC-0001..MEC-0006; MEC-0010..MEC-0011,LK_PRICING_RULE,Pricing Structure,pay_as_clear,clean,Uniform clearing price (SRC-0046 PDF p.8; SRC-0047 para 12.2; SRC-0048 para 13.2).
+MARKET_INFO.csv,Pricing Structure,Pay-as-Clear,MEC-0007,LK_PRICING_RULE,Pricing Structure,pay_as_clear,flag,Probable copy-down from the EAC rows (R-027).
+MARKET_INFO.csv,Pricing Structure,Pay-as-Clear,MEC-0009,LK_PRICING_RULE,Pricing Structure,pay_as_clear,clean,One Market Clearing Price per EFA block (SRC-0050 para 9.1).
+MARKET_INFO.csv,Pricing Structure,Pay-as-Clear,MEC-0057..MEC-0060; MEC-0062..MEC-0065,LK_PRICING_RULE,Pricing Structure,pay_as_clear,clean,Exchange auctions give one price per period (LK_MECHANISM_CLASS exchange_auction).
+MARKET_INFO.csv,Pricing Structure,Pay-as-Clear,MEC-0061,LK_PRICING_RULE,Pricing Structure,pay_as_bid,flag,"Correction. MEC-0061 is continuous trading: each trade takes the price of the order already in the book (SRC-0055 PDF p.15), as the approved exchange_continuous definition says. If rejected, clear the cell (R-005)."
+MARKET_INFO.csv,Auction Type,Closed Double Sided,MEC-0001..MEC-0006; MEC-0010..MEC-0011,LK_AUCTION_TYPE,Auction Type,sealed_double_sided,clean,"SRC-0046 PDF p.8: ""Closed double-sided auction""."
+MARKET_INFO.csv,Auction Type,Closed Double Sided,MEC-0007,LK_AUCTION_TYPE,Auction Type,sealed_double_sided,flag,Probable copy-down from the EAC rows (R-027).
+MARKET_INFO.csv,Auction Type,Closed Double Sided,MEC-0009,LK_AUCTION_TYPE,Auction Type,sealed_double_sided,clean,"NESO buy order and provider sell orders, cleared together (SRC-0050 paras 7-9)."
+MARKET_INFO.csv,Auction Type,Closed Double Sided,MEC-0059..MEC-0060; MEC-0062..MEC-0063,LK_AUCTION_TYPE,Auction Type,sealed_double_sided,clean,Carried over; exchange day-ahead auctions take buy and sell orders.
+MARKET_INFO.csv,Market Structure,One-to-Many,MEC-0001..MEC-0006; MEC-0009..MEC-0011,LK_MARKET_STRUCTURE,Market Structure,single_buyer,clean,NESO is the only buyer (SRC-0046 PDF p.4 glossary).
+MARKET_INFO.csv,Market Structure,One-to-Many,MEC-0007,LK_MARKET_STRUCTURE,Market Structure,single_buyer,flag,Probable copy-down from the EAC rows (R-027).
+MARKET_INFO.csv,Market Structure,Many-to-Many,MEC-0057..MEC-0060; MEC-0062..MEC-0065,LK_MARKET_STRUCTURE,Market Structure,multilateral,clean,
+MARKET_INFO.csv,Market Objective,Maximise Social Welfare,MEC-0001..MEC-0006; MEC-0010..MEC-0011,LK_MARKET_OBJECTIVE,Market Objective,maximise_social_welfare,clean,SRC-0046 PDF p.8; SRC-0047 para 9.1.1; SRC-0048 para 10.1.1.
+MARKET_INFO.csv,Market Objective,Maximise Social Welfare,MEC-0007,LK_MARKET_OBJECTIVE,Market Objective,maximise_social_welfare,flag,Probable copy-down from the EAC rows (R-027).
+MARKET_INFO.csv,Market Objective,Maximise Social Welfare,MEC-0009,LK_MARKET_OBJECTIVE,Market Objective,maximise_social_welfare,clean,Total auction surplus is maximised (SRC-0050 para 9.2.1).
+MARKET_INFO.csv,Market Objective,Maximise Social Welfare,MEC-0062..MEC-0064,LK_MARKET_OBJECTIVE,Market Objective,maximise_social_welfare,clean,Carried over; not re-verified for the Nord Pool auctions in this run (R-026).
+MARKET_INFO.csv,Market Objective,Nor,MEC-0065,LK_MARKET_OBJECTIVE,Market Objective,,unmapped,Truncated value. Clear the cell (old value kept in the change log); R-026 fills it from the SEM-GB rules.
+DISPATCH.csv,Dispatcher,Self,MEC-0001..MEC-0007; MEC-0009,LK_DISPATCHER,Dispatcher,self,clean,"Automatic response to frequency, no instruction (Dispatch Type = Auto)."
+DISPATCH.csv,Dispatcher,Self,MEC-0033; MEC-0057..MEC-0066,LK_DISPATCHER,Dispatcher,self,clean,Participants dispatch themselves to their traded positions (SRC-0059).
+DISPATCH.csv,Dispatcher,NESO,MEC-0010..MEC-0011,LK_DISPATCHER,Dispatcher,operator,clean,"NESO (the operator, ORG-0001) issues BOAs or Instructions (SRC-0049 PDF p.5, p.13). The org is read from MECHANISM_ORG_ROLE, so the column holds no ORG ID."
+DISPATCH.csv,Dispatcher,N/A,MEC-0034..MEC-0056,LK_DISPATCHER,Dispatcher,not_applicable,clean,MEC-0035..0039: ICE UK Base futures are physically delivered via ECVNs (SRC-0010); revisit in R-024.
+PARTICIPANTS.csv,Aggregation,GSP,MEC-0001..MEC-0006,LK_AGGREGATION_LEVEL,Aggregation,gsp_group,flag,"The rules say GSP Group, not GSP; NESO may tighten this to one grid supply point (SRC-0047 PDF p.32)."
+PARTICIPANTS.csv,Aggregation,GSP,MEC-0010..MEC-0011,LK_AGGREGATION_LEVEL,Aggregation,gsp_group,flag,As above (SRC-0048 PDF p.29).
+PARTICIPANTS.csv,Aggregation,National,MEC-0009,LK_AGGREGATION_LEVEL,Aggregation,national,flag,"Medium confidence: the Static FFR rules define a unit as a collection of assets and set no location limit (SRC-0050 PDF p.22), unlike the Response and QR rules."

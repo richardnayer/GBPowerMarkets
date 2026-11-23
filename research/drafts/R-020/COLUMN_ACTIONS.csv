@@ -1,0 +1,11 @@
+﻿file,column,action,detail,lookup_or_table,decision
+KEY_DATA.csv,Market Operator,drop,"After MECHANISM_ORG_ROLE is applied. The operator is then the role row with role = operator (SQLite view, R-018).",MECHANISM_ORG_ROLE,D3
+MARKET_INFO.csv,Market Platform,drop,After the platform rows are added to MECHANISM_ORG_ROLE.,MECHANISM_ORG_ROLE,D3
+MARKET_INFO.csv,Pricing Structure,convert in place,Text to code per VALUE_MAPPING.,LK_PRICING_RULE,D6
+MARKET_INFO.csv,Auction Type,convert in place,Text to code.,LK_AUCTION_TYPE,D6
+MARKET_INFO.csv,Market Structure,convert in place,Text to code.,LK_MARKET_STRUCTURE,D7
+MARKET_INFO.csv,Market Objective,convert in place,Text to code; MEC-0065 cleared.,LK_MARKET_OBJECTIVE,D8
+MARKET_INFO.csv,Clearing Algorithm,add,New column after Market Objective; MEC-0064..0065 = euphemia.,LK_CLEARING_ALGORITHM,D9
+DISPATCH.csv,Dispatcher,convert in place,Text to code; no ORG IDs in this column.,LK_DISPATCHER,D10
+PARTICIPANTS.csv,Aggregation,convert in place,Text to code.,LK_AGGREGATION_LEVEL,D11
+DISPATCH.csv,Dispatch Type,no change,Waits for Phase 3 Change 10.,,

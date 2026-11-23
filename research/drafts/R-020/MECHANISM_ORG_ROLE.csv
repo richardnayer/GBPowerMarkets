@@ -1,0 +1,246 @@
+﻿role_id,mechanism_id,org_id,role,platform_code,valid_from,valid_to,source_id,notes
+MOR-000001,MEC-0001,ORG-0001,operator,,,,SRC-0039,From KEY_DATA Market Operator.
+MOR-000002,MEC-0001,ORG-0001,market_platform,neso_eac,,,SRC-0039,From MARKET_INFO Market Platform.
+MOR-000003,MEC-0001,ORG-0001,market_platform,neso_smp,,,SRC-0040,From MARKET_INFO Market Platform.
+MOR-000004,MEC-0002,ORG-0001,operator,,,,SRC-0039,From KEY_DATA Market Operator.
+MOR-000005,MEC-0002,ORG-0001,market_platform,neso_eac,,,SRC-0039,From MARKET_INFO Market Platform.
+MOR-000006,MEC-0002,ORG-0001,market_platform,neso_smp,,,SRC-0040,From MARKET_INFO Market Platform.
+MOR-000007,MEC-0003,ORG-0001,operator,,,,SRC-0039,From KEY_DATA Market Operator.
+MOR-000008,MEC-0003,ORG-0001,market_platform,neso_eac,,,SRC-0039,From MARKET_INFO Market Platform.
+MOR-000009,MEC-0003,ORG-0001,market_platform,neso_smp,,,SRC-0040,From MARKET_INFO Market Platform.
+MOR-000010,MEC-0004,ORG-0001,operator,,,,SRC-0039,From KEY_DATA Market Operator.
+MOR-000011,MEC-0004,ORG-0001,market_platform,neso_eac,,,SRC-0039,From MARKET_INFO Market Platform.
+MOR-000012,MEC-0004,ORG-0001,market_platform,neso_smp,,,SRC-0040,From MARKET_INFO Market Platform.
+MOR-000013,MEC-0005,ORG-0001,operator,,,,SRC-0039,From KEY_DATA Market Operator.
+MOR-000014,MEC-0005,ORG-0001,market_platform,neso_eac,,,SRC-0039,From MARKET_INFO Market Platform.
+MOR-000015,MEC-0005,ORG-0001,market_platform,neso_smp,,,SRC-0040,From MARKET_INFO Market Platform.
+MOR-000016,MEC-0006,ORG-0001,operator,,,,SRC-0039,From KEY_DATA Market Operator.
+MOR-000017,MEC-0006,ORG-0001,market_platform,neso_eac,,,SRC-0039,From MARKET_INFO Market Platform.
+MOR-000018,MEC-0006,ORG-0001,market_platform,neso_smp,,,SRC-0040,From MARKET_INFO Market Platform.
+MOR-000019,MEC-0007,ORG-0001,operator,,,,SRC-0032,From KEY_DATA Market Operator.
+MOR-000020,MEC-0007,ORG-0001,market_platform,neso_eac,,,SRC-0046,"From MARKET_INFO Market Platform. FLAG: unverified. MFR is a Grid Code requirement, not one of the services listed for EAC (SRC-0039); R-001 lists this row's MARKET_INFO values as a probable copy-down error (R-027)."
+MOR-000021,MEC-0007,ORG-0001,market_platform,neso_smp,,,SRC-0040,"From MARKET_INFO Market Platform. FLAG: unverified, as for the EAC row (R-027)."
+MOR-000022,MEC-0008,ORG-0001,operator,,,,SRC-0032,From KEY_DATA Market Operator.
+MOR-000023,MEC-0009,ORG-0001,operator,,,,SRC-0050,From KEY_DATA Market Operator.
+MOR-000024,MEC-0009,ORG-0001,market_platform,neso_eac,,,SRC-0046,"From MARKET_INFO Market Platform. FLAG: unverified. Static FFR is not among the services listed for EAC (SRC-0039); its rules say only that NESO designates the auction platform (SRC-0050, PDF p.19) (R-027)."
+MOR-000025,MEC-0009,ORG-0001,market_platform,neso_smp,,,SRC-0050,"From MARKET_INFO Market Platform. Static FFR registration and pre-qualification are done on the SMP (SRC-0050, PDF p.21)."
+MOR-000026,MEC-0010,ORG-0001,operator,,,,SRC-0039,From KEY_DATA Market Operator.
+MOR-000027,MEC-0010,ORG-0001,market_platform,neso_eac,,,SRC-0039,From MARKET_INFO Market Platform.
+MOR-000028,MEC-0010,ORG-0001,market_platform,neso_smp,,,SRC-0040,From MARKET_INFO Market Platform.
+MOR-000029,MEC-0011,ORG-0001,operator,,,,SRC-0039,From KEY_DATA Market Operator.
+MOR-000030,MEC-0011,ORG-0001,market_platform,neso_eac,,,SRC-0039,From MARKET_INFO Market Platform.
+MOR-000031,MEC-0011,ORG-0001,market_platform,neso_smp,,,SRC-0040,From MARKET_INFO Market Platform.
+MOR-000032,MEC-0012,ORG-0001,operator,,,,SRC-0032,From KEY_DATA Market Operator.
+MOR-000033,MEC-0013,ORG-0001,operator,,,,SRC-0032,From KEY_DATA Market Operator.
+MOR-000034,MEC-0014,ORG-0001,operator,,,,SRC-0032,From KEY_DATA Market Operator.
+MOR-000035,MEC-0015,ORG-0001,operator,,,,SRC-0032,From KEY_DATA Market Operator.
+MOR-000036,MEC-0016,ORG-0001,operator,,,,SRC-0032,From KEY_DATA Market Operator.
+MOR-000037,MEC-0017,ORG-0001,operator,,,,SRC-0032,From KEY_DATA Market Operator.
+MOR-000038,MEC-0018,ORG-0001,operator,,,,SRC-0031,From KEY_DATA Market Operator.
+MOR-000039,MEC-0019,ORG-0001,operator,,,,SRC-0036,From KEY_DATA Market Operator.
+MOR-000040,MEC-0020,ORG-0001,operator,,,,SRC-0031,From KEY_DATA Market Operator.
+MOR-000041,MEC-0021,ORG-0001,operator,,,,SRC-0035,From KEY_DATA Market Operator.
+MOR-000042,MEC-0022,ORG-0001,operator,,,,SRC-0033,From KEY_DATA Market Operator.
+MOR-000043,MEC-0023,ORG-0001,operator,,,,SRC-0033,From KEY_DATA Market Operator.
+MOR-000044,MEC-0024,ORG-0001,operator,,,,SRC-0034,From KEY_DATA Market Operator.
+MOR-000045,MEC-0025,ORG-0001,operator,,,,SRC-0034,From KEY_DATA Market Operator.
+MOR-000046,MEC-0026,ORG-0001,operator,,,,SRC-0037,From KEY_DATA Market Operator.
+MOR-000047,MEC-0027,ORG-0001,operator,,,,SRC-0031,From KEY_DATA Market Operator.
+MOR-000048,MEC-0028,ORG-0001,operator,,,,SRC-0031,From KEY_DATA Market Operator.
+MOR-000049,MEC-0029,ORG-0001,delivery_body,,,,SRC-0051,"From KEY_DATA Market Operator. Role corrected from operator. Reg 2 makes the Delivery Body the national system operator and reg 24 requires it to hold the auction; Energy Act 2013 s.27(6) (SRC-0052) defines the national system operator as the designated ISOP from 1 October 2024, which is NESO (SRC-0001)."
+MOR-000050,MEC-0029,ORG-0007,policy_owner,,,,SRC-0022,"New. DESNZ publishes the Capacity Market policy collection; the Secretary of State is an administrative party (SRC-0051, reg 2)."
+MOR-000051,MEC-0029,ORG-0006,counterparty,,,,SRC-0020,New. ESC is the Capacity Market Settlement Body (SRC-0020).
+MOR-000052,MEC-0029,ORG-0004,settlement_agent,,,,SRC-0020,New. EMRS provides settlement services for ESC.
+MOR-000053,MEC-0029,ORG-0008,regulator,,,,SRC-0051,"New. ""The Authority"" (Ofgem) is an administrative party under reg 2."
+MOR-000054,MEC-0030,ORG-0001,delivery_body,,,,SRC-0051,"From KEY_DATA Market Operator. Role corrected from operator. Reg 2 makes the Delivery Body the national system operator and reg 24 requires it to hold the auction; Energy Act 2013 s.27(6) (SRC-0052) defines the national system operator as the designated ISOP from 1 October 2024, which is NESO (SRC-0001)."
+MOR-000055,MEC-0030,ORG-0007,policy_owner,,,,SRC-0022,"New. DESNZ publishes the Capacity Market policy collection; the Secretary of State is an administrative party (SRC-0051, reg 2)."
+MOR-000056,MEC-0030,ORG-0006,counterparty,,,,SRC-0020,New. ESC is the Capacity Market Settlement Body (SRC-0020).
+MOR-000057,MEC-0030,ORG-0004,settlement_agent,,,,SRC-0020,New. EMRS provides settlement services for ESC.
+MOR-000058,MEC-0030,ORG-0008,regulator,,,,SRC-0051,"New. ""The Authority"" (Ofgem) is an administrative party under reg 2."
+MOR-000059,MEC-0031,ORG-0001,delivery_body,,,,SRC-0053,"From KEY_DATA Market Operator. Role corrected from operator. Reg 2 makes the delivery body the national system operator; Energy Act 2013 s.8(3) (SRC-0052) defines it as the designated ISOP from 1 October 2024, which is NESO (SRC-0001). SRC-0021 still names National Grid ESO."
+MOR-000060,MEC-0031,ORG-0007,policy_owner,,,,SRC-0021,New. DESNZ publishes the CfD policy collection.
+MOR-000061,MEC-0031,ORG-0005,counterparty,,,,SRC-0021,New. LCCC is the CfD counterparty.
+MOR-000062,MEC-0031,ORG-0004,settlement_agent,,,,SRC-0020,New. EMRS provides settlement services for LCCC.
+MOR-000063,MEC-0031,ORG-0008,regulator,,,,SRC-0021,New. Ofgem hears certain CfD appeals (SRC-0021).
+MOR-000064,MEC-0032,ORG-0008,operator,,,,SRC-0023,From KEY_DATA Market Operator. DESNZ tasked Ofgem with implementing the regime (R-009 fill).
+MOR-000065,MEC-0032,ORG-0007,policy_owner,,,,SRC-0023,New. DESNZ tasked Ofgem with implementing the regime.
+MOR-000066,MEC-0035,ORG-0013,operator,,,,SRC-0010,From KEY_DATA Market Operator. SRC-0010 is the UK Base future (MEC-0036); the other ICE product pages were not read.
+MOR-000067,MEC-0036,ORG-0013,operator,,,,SRC-0010,From KEY_DATA Market Operator. SRC-0010 is the UK Base future (MEC-0036); the other ICE product pages were not read.
+MOR-000068,MEC-0037,ORG-0013,operator,,,,SRC-0010,From KEY_DATA Market Operator. SRC-0010 is the UK Base future (MEC-0036); the other ICE product pages were not read.
+MOR-000069,MEC-0038,ORG-0013,operator,,,,SRC-0010,From KEY_DATA Market Operator. SRC-0010 is the UK Base future (MEC-0036); the other ICE product pages were not read.
+MOR-000070,MEC-0039,ORG-0013,operator,,,,SRC-0010,From KEY_DATA Market Operator. SRC-0010 is the UK Base future (MEC-0036); the other ICE product pages were not read.
+MOR-000071,MEC-0040,ORG-0012,operator,,,,SRC-0009,From KEY_DATA Market Operator.
+MOR-000072,MEC-0041,ORG-0012,operator,,,,SRC-0009,From KEY_DATA Market Operator.
+MOR-000073,MEC-0042,ORG-0012,operator,,,,SRC-0009,From KEY_DATA Market Operator.
+MOR-000074,MEC-0043,ORG-0012,operator,,,,SRC-0009,From KEY_DATA Market Operator.
+MOR-000075,MEC-0044,ORG-0012,operator,,,,SRC-0009,From KEY_DATA Market Operator.
+MOR-000076,MEC-0045,ORG-0012,operator,,,,SRC-0009,From KEY_DATA Market Operator.
+MOR-000077,MEC-0046,ORG-0012,operator,,,,SRC-0009,From KEY_DATA Market Operator.
+MOR-000078,MEC-0047,ORG-0012,operator,,,,SRC-0009,From KEY_DATA Market Operator.
+MOR-000079,MEC-0048,ORG-0012,operator,,,,SRC-0009,From KEY_DATA Market Operator.
+MOR-000080,MEC-0049,ORG-0012,operator,,,,SRC-0009,From KEY_DATA Market Operator.
+MOR-000081,MEC-0050,ORG-0012,operator,,,,SRC-0009,From KEY_DATA Market Operator.
+MOR-000082,MEC-0051,ORG-0012,operator,,,,SRC-0009,From KEY_DATA Market Operator.
+MOR-000083,MEC-0052,ORG-0012,operator,,,,SRC-0009,From KEY_DATA Market Operator.
+MOR-000084,MEC-0053,ORG-0012,operator,,,,SRC-0009,From KEY_DATA Market Operator.
+MOR-000085,MEC-0054,ORG-0012,operator,,,,SRC-0009,From KEY_DATA Market Operator.
+MOR-000086,MEC-0055,ORG-0012,operator,,,,SRC-0009,From KEY_DATA Market Operator.
+MOR-000087,MEC-0056,ORG-0012,operator,,,,SRC-0009,From KEY_DATA Market Operator.
+MOR-000088,MEC-0057,ORG-0010,operator,,,,SRC-0005,From KEY_DATA Market Operator.
+MOR-000089,MEC-0057,ORG-0010,market_platform,,,,SRC-0005,From MARKET_INFO Market Platform. The exchange's own trading system.
+MOR-000090,MEC-0058,ORG-0010,operator,,,,SRC-0005,From KEY_DATA Market Operator.
+MOR-000091,MEC-0058,ORG-0010,market_platform,,,,SRC-0005,From MARKET_INFO Market Platform. The exchange's own trading system.
+MOR-000092,MEC-0059,ORG-0010,operator,,,,SRC-0005,From KEY_DATA Market Operator.
+MOR-000093,MEC-0059,ORG-0010,market_platform,,,,SRC-0005,From MARKET_INFO Market Platform. The exchange's own trading system.
+MOR-000094,MEC-0060,ORG-0010,operator,,,,SRC-0005,From KEY_DATA Market Operator.
+MOR-000095,MEC-0060,ORG-0010,market_platform,,,,SRC-0005,From MARKET_INFO Market Platform. The exchange's own trading system.
+MOR-000096,MEC-0061,ORG-0010,operator,,,,SRC-0005,From KEY_DATA Market Operator.
+MOR-000097,MEC-0062,ORG-0011,operator,,,,SRC-0007,From KEY_DATA Market Operator.
+MOR-000098,MEC-0062,ORG-0011,market_platform,,,,SRC-0007,From MARKET_INFO Market Platform. The exchange's own trading system.
+MOR-000099,MEC-0063,ORG-0011,operator,,,,SRC-0007,From KEY_DATA Market Operator.
+MOR-000100,MEC-0063,ORG-0011,market_platform,,,,SRC-0007,From MARKET_INFO Market Platform. The exchange's own trading system.
+MOR-000101,MEC-0064,ORG-0011,operator,,,,SRC-0060,From KEY_DATA Market Operator.
+MOR-000102,MEC-0064,ORG-0011,market_platform,,,,SRC-0060,"From MARKET_INFO Market Platform. Was ""Nord Pool / EUPHEMIA"": EUPHEMIA moves to MARKET_INFO Clearing Algorithm."
+MOR-000103,MEC-0065,ORG-0011,operator,,,,SRC-0060,From KEY_DATA Market Operator.
+MOR-000104,MEC-0065,ORG-0011,market_platform,,,,SRC-0060,"From MARKET_INFO Market Platform. Was ""Nord Pool / EUPHEMIA"": EUPHEMIA moves to MARKET_INFO Clearing Algorithm."
+MOR-000105,MEC-0066,ORG-0011,operator,,,,SRC-0008,From KEY_DATA Market Operator.
+MOR-000106,MEC-0067,ORG-0014,operator,,,,SRC-0011,From KEY_DATA Market Operator.
+MOR-000107,MEC-0067,ORG-0014,market_platform,nged_market_gateway,,,SRC-0011,"New. NGED Market Gateway handles registration, qualification, contracting, asset registration and trading (SRC-0011, PDF p.6)."
+MOR-000108,MEC-0067,ORG-0036,market_platform,piclo_flex,,,SRC-0011,"New. NGED has partnered with Piclo since 2024 as a second route into its markets (SRC-0011, PDF p.6)."
+MOR-000109,MEC-0067,ORG-0038,dispatch_platform,flexible_power,,,SRC-0011,"New. The Flexible Power Portal is NGED's core operational system for dispatch, performance monitoring and settlement (SRC-0011, PDF p.6 and p.22)."
+MOR-000110,MEC-0068,ORG-0014,operator,,,,SRC-0011,From KEY_DATA Market Operator.
+MOR-000111,MEC-0068,ORG-0014,market_platform,nged_market_gateway,,,SRC-0011,"New. NGED Market Gateway handles registration, qualification, contracting, asset registration and trading (SRC-0011, PDF p.6)."
+MOR-000112,MEC-0068,ORG-0036,market_platform,piclo_flex,,,SRC-0011,"New. NGED has partnered with Piclo since 2024 as a second route into its markets (SRC-0011, PDF p.6)."
+MOR-000113,MEC-0068,ORG-0038,dispatch_platform,flexible_power,,,SRC-0011,"New. The Flexible Power Portal is NGED's core operational system for dispatch, performance monitoring and settlement (SRC-0011, PDF p.6 and p.22)."
+MOR-000114,MEC-0069,ORG-0014,operator,,,,SRC-0011,From KEY_DATA Market Operator.
+MOR-000115,MEC-0069,ORG-0014,market_platform,nged_market_gateway,,,SRC-0011,"New. NGED Market Gateway handles registration, qualification, contracting, asset registration and trading (SRC-0011, PDF p.6)."
+MOR-000116,MEC-0069,ORG-0036,market_platform,piclo_flex,,,SRC-0011,"New. NGED has partnered with Piclo since 2024 as a second route into its markets (SRC-0011, PDF p.6)."
+MOR-000117,MEC-0069,ORG-0038,dispatch_platform,flexible_power,,,SRC-0011,"New. The Flexible Power Portal is NGED's core operational system for dispatch, performance monitoring and settlement (SRC-0011, PDF p.6 and p.22)."
+MOR-000118,MEC-0070,ORG-0014,operator,,,,SRC-0011,From KEY_DATA Market Operator.
+MOR-000119,MEC-0070,ORG-0014,market_platform,nged_market_gateway,,,SRC-0011,"New. NGED Market Gateway handles registration, qualification, contracting, asset registration and trading (SRC-0011, PDF p.6)."
+MOR-000120,MEC-0070,ORG-0036,market_platform,piclo_flex,,,SRC-0011,"New. NGED has partnered with Piclo since 2024 as a second route into its markets (SRC-0011, PDF p.6)."
+MOR-000121,MEC-0070,ORG-0038,dispatch_platform,flexible_power,,,SRC-0011,"New. The Flexible Power Portal is NGED's core operational system for dispatch, performance monitoring and settlement (SRC-0011, PDF p.6 and p.22)."
+MOR-000122,MEC-0071,ORG-0014,operator,,,,SRC-0011,From KEY_DATA Market Operator.
+MOR-000123,MEC-0071,ORG-0014,market_platform,nged_market_gateway,,,SRC-0011,"New. NGED Market Gateway handles registration, qualification, contracting, asset registration and trading (SRC-0011, PDF p.6)."
+MOR-000124,MEC-0071,ORG-0036,market_platform,piclo_flex,,,SRC-0011,"New. NGED has partnered with Piclo since 2024 as a second route into its markets (SRC-0011, PDF p.6)."
+MOR-000125,MEC-0071,ORG-0038,dispatch_platform,flexible_power,,,SRC-0011,"New. The Flexible Power Portal is NGED's core operational system for dispatch, performance monitoring and settlement (SRC-0011, PDF p.6 and p.22)."
+MOR-000126,MEC-0072,ORG-0014,operator,,,,SRC-0011,From KEY_DATA Market Operator.
+MOR-000127,MEC-0072,ORG-0014,market_platform,nged_market_gateway,,,SRC-0011,"New. NGED Market Gateway handles registration, qualification, contracting, asset registration and trading (SRC-0011, PDF p.6)."
+MOR-000128,MEC-0072,ORG-0036,market_platform,piclo_flex,,,SRC-0011,"New. NGED has partnered with Piclo since 2024 as a second route into its markets (SRC-0011, PDF p.6)."
+MOR-000129,MEC-0072,ORG-0038,dispatch_platform,flexible_power,,,SRC-0011,"New. The Flexible Power Portal is NGED's core operational system for dispatch, performance monitoring and settlement (SRC-0011, PDF p.6 and p.22)."
+MOR-000130,MEC-0073,ORG-0014,operator,,,,SRC-0011,From KEY_DATA Market Operator.
+MOR-000131,MEC-0073,ORG-0014,market_platform,nged_market_gateway,,,SRC-0011,"New. NGED Market Gateway handles registration, qualification, contracting, asset registration and trading (SRC-0011, PDF p.6)."
+MOR-000132,MEC-0073,ORG-0036,market_platform,piclo_flex,,,SRC-0011,"New. NGED has partnered with Piclo since 2024 as a second route into its markets (SRC-0011, PDF p.6)."
+MOR-000133,MEC-0073,ORG-0038,dispatch_platform,flexible_power,,,SRC-0011,"New. The Flexible Power Portal is NGED's core operational system for dispatch, performance monitoring and settlement (SRC-0011, PDF p.6 and p.22)."
+MOR-000134,MEC-0074,ORG-0014,operator,,,,SRC-0011,From KEY_DATA Market Operator.
+MOR-000135,MEC-0074,ORG-0014,market_platform,nged_market_gateway,,,SRC-0011,"New. NGED Market Gateway handles registration, qualification, contracting, asset registration and trading (SRC-0011, PDF p.6)."
+MOR-000136,MEC-0074,ORG-0036,market_platform,piclo_flex,,,SRC-0011,"New. NGED has partnered with Piclo since 2024 as a second route into its markets (SRC-0011, PDF p.6)."
+MOR-000137,MEC-0074,ORG-0038,dispatch_platform,flexible_power,,,SRC-0011,"New. The Flexible Power Portal is NGED's core operational system for dispatch, performance monitoring and settlement (SRC-0011, PDF p.6 and p.22)."
+MOR-000138,MEC-0075,ORG-0016,operator,,,,SRC-0012,From KEY_DATA Market Operator.
+MOR-000139,MEC-0075,ORG-0036,market_platform,piclo_flex,,,SRC-0012,"New. NPg uses Piclo Flex from qualification and asset registration through bidding (SRC-0012, PDF p.10, p.17, p.19)."
+MOR-000140,MEC-0075,ORG-0036,dispatch_platform,piclo_flex,,,SRC-0012,"New. NPg uses Piclo Flex for dispatch and settlement (SRC-0012, PDF p.10)."
+MOR-000141,MEC-0076,ORG-0016,operator,,,,SRC-0012,From KEY_DATA Market Operator.
+MOR-000142,MEC-0076,ORG-0036,market_platform,piclo_flex,,,SRC-0012,"New. NPg uses Piclo Flex from qualification and asset registration through bidding (SRC-0012, PDF p.10, p.17, p.19)."
+MOR-000143,MEC-0076,ORG-0036,dispatch_platform,piclo_flex,,,SRC-0012,"New. NPg uses Piclo Flex for dispatch and settlement (SRC-0012, PDF p.10)."
+MOR-000144,MEC-0077,ORG-0016,operator,,,,SRC-0012,From KEY_DATA Market Operator.
+MOR-000145,MEC-0077,ORG-0036,market_platform,piclo_flex,,,SRC-0012,"New. NPg uses Piclo Flex from qualification and asset registration through bidding (SRC-0012, PDF p.10, p.17, p.19)."
+MOR-000146,MEC-0077,ORG-0036,dispatch_platform,piclo_flex,,,SRC-0012,"New. NPg uses Piclo Flex for dispatch and settlement (SRC-0012, PDF p.10)."
+MOR-000147,MEC-0078,ORG-0016,operator,,,,SRC-0012,From KEY_DATA Market Operator.
+MOR-000148,MEC-0078,ORG-0036,market_platform,piclo_flex,,,SRC-0012,"New. NPg uses Piclo Flex from qualification and asset registration through bidding (SRC-0012, PDF p.10, p.17, p.19)."
+MOR-000149,MEC-0078,ORG-0036,dispatch_platform,piclo_flex,,,SRC-0012,"New. NPg uses Piclo Flex for dispatch and settlement (SRC-0012, PDF p.10)."
+MOR-000150,MEC-0079,ORG-0016,operator,,,,SRC-0012,From KEY_DATA Market Operator.
+MOR-000151,MEC-0079,ORG-0036,market_platform,piclo_flex,,,SRC-0012,"New. NPg uses Piclo Flex from qualification and asset registration through bidding (SRC-0012, PDF p.10, p.17, p.19)."
+MOR-000152,MEC-0079,ORG-0036,dispatch_platform,piclo_flex,,,SRC-0012,"New. NPg uses Piclo Flex for dispatch and settlement (SRC-0012, PDF p.10)."
+MOR-000153,MEC-0080,ORG-0016,operator,,,,SRC-0012,From KEY_DATA Market Operator.
+MOR-000154,MEC-0080,ORG-0036,market_platform,piclo_flex,,,SRC-0012,"New. NPg uses Piclo Flex from qualification and asset registration through bidding (SRC-0012, PDF p.10, p.17, p.19)."
+MOR-000155,MEC-0080,ORG-0036,dispatch_platform,piclo_flex,,,SRC-0012,"New. NPg uses Piclo Flex for dispatch and settlement (SRC-0012, PDF p.10)."
+MOR-000156,MEC-0081,ORG-0016,operator,,,,SRC-0012,From KEY_DATA Market Operator.
+MOR-000157,MEC-0081,ORG-0036,market_platform,piclo_flex,,,SRC-0012,"New. NPg uses Piclo Flex from qualification and asset registration through bidding (SRC-0012, PDF p.10, p.17, p.19)."
+MOR-000158,MEC-0081,ORG-0036,dispatch_platform,piclo_flex,,,SRC-0012,"New. NPg uses Piclo Flex for dispatch and settlement (SRC-0012, PDF p.10)."
+MOR-000159,MEC-0082,ORG-0016,operator,,,,SRC-0012,From KEY_DATA Market Operator.
+MOR-000160,MEC-0082,ORG-0036,market_platform,piclo_flex,,,SRC-0012,"New. NPg uses Piclo Flex from qualification and asset registration through bidding (SRC-0012, PDF p.10, p.17, p.19)."
+MOR-000161,MEC-0083,ORG-0016,operator,,,,SRC-0012,From KEY_DATA Market Operator.
+MOR-000162,MEC-0083,ORG-0036,market_platform,piclo_flex,,,SRC-0012,"New. NPg uses Piclo Flex from qualification and asset registration through bidding (SRC-0012, PDF p.10, p.17, p.19)."
+MOR-000163,MEC-0084,ORG-0016,operator,,,,SRC-0012,From KEY_DATA Market Operator.
+MOR-000164,MEC-0084,ORG-0036,market_platform,piclo_flex,,,SRC-0012,"New. NPg uses Piclo Flex from qualification and asset registration through bidding (SRC-0012, PDF p.10, p.17, p.19)."
+MOR-000165,MEC-0085,ORG-0016,operator,,,,SRC-0012,From KEY_DATA Market Operator.
+MOR-000166,MEC-0085,ORG-0036,market_platform,piclo_flex,,,SRC-0012,"New. NPg uses Piclo Flex from qualification and asset registration through bidding (SRC-0012, PDF p.10, p.17, p.19)."
+MOR-000167,MEC-0085,ORG-0036,dispatch_platform,piclo_flex,,,SRC-0012,"New. NPg uses Piclo Flex for dispatch and settlement (SRC-0012, PDF p.10)."
+MOR-000168,MEC-0086,ORG-0016,operator,,,,SRC-0012,From KEY_DATA Market Operator.
+MOR-000169,MEC-0086,ORG-0036,market_platform,piclo_flex,,,SRC-0012,"New. NPg uses Piclo Flex from qualification and asset registration through bidding (SRC-0012, PDF p.10, p.17, p.19)."
+MOR-000170,MEC-0086,ORG-0036,dispatch_platform,piclo_flex,,,SRC-0012,"New. NPg uses Piclo Flex for dispatch and settlement (SRC-0012, PDF p.10)."
+MOR-000171,MEC-0087,ORG-0016,operator,,,,SRC-0012,From KEY_DATA Market Operator.
+MOR-000172,MEC-0087,ORG-0036,market_platform,piclo_flex,,,SRC-0012,"New. NPg uses Piclo Flex from qualification and asset registration through bidding (SRC-0012, PDF p.10, p.17, p.19)."
+MOR-000173,MEC-0087,ORG-0036,dispatch_platform,piclo_flex,,,SRC-0012,"New. NPg uses Piclo Flex for dispatch and settlement (SRC-0012, PDF p.10)."
+MOR-000174,MEC-0088,ORG-0016,operator,,,,SRC-0012,From KEY_DATA Market Operator.
+MOR-000175,MEC-0088,ORG-0036,market_platform,piclo_flex,,,SRC-0012,"New. NPg uses Piclo Flex from qualification and asset registration through bidding (SRC-0012, PDF p.10, p.17, p.19)."
+MOR-000176,MEC-0088,ORG-0036,dispatch_platform,piclo_flex,,,SRC-0012,"New. NPg uses Piclo Flex for dispatch and settlement (SRC-0012, PDF p.10)."
+MOR-000177,MEC-0089,ORG-0017,operator,,,,SRC-0013,From KEY_DATA Market Operator.
+MOR-000178,MEC-0089,ORG-0037,market_platform,electronconnect,2026-04-01,,SRC-0013,"New. SPEN moved to ElectronConnect from April 2026; all bidding takes place there (SRC-0013, PDF p.9, p.12). Its Piclo contract ended at the end of Q1 2026 (PDF p.10)."
+MOR-000179,MEC-0089,ORG-0037,dispatch_platform,electronconnect,2026-04-01,,SRC-0013,"New. Electron supports SPEN providers through to dispatch and settlement (SRC-0013, PDF p.9)."
+MOR-000180,MEC-0090,ORG-0017,operator,,,,SRC-0013,From KEY_DATA Market Operator.
+MOR-000181,MEC-0090,ORG-0037,market_platform,electronconnect,2026-04-01,,SRC-0013,"New. SPEN moved to ElectronConnect from April 2026; all bidding takes place there (SRC-0013, PDF p.9, p.12). Its Piclo contract ended at the end of Q1 2026 (PDF p.10)."
+MOR-000182,MEC-0090,ORG-0037,dispatch_platform,electronconnect,2026-04-01,,SRC-0013,"New. Electron supports SPEN providers through to dispatch and settlement (SRC-0013, PDF p.9)."
+MOR-000183,MEC-0091,ORG-0017,operator,,,,SRC-0013,From KEY_DATA Market Operator.
+MOR-000184,MEC-0091,ORG-0037,market_platform,electronconnect,2026-04-01,,SRC-0013,"New. SPEN moved to ElectronConnect from April 2026; all bidding takes place there (SRC-0013, PDF p.9, p.12). Its Piclo contract ended at the end of Q1 2026 (PDF p.10)."
+MOR-000185,MEC-0091,ORG-0037,dispatch_platform,electronconnect,2026-04-01,,SRC-0013,"New. Electron supports SPEN providers through to dispatch and settlement (SRC-0013, PDF p.9)."
+MOR-000186,MEC-0092,ORG-0017,operator,,,,SRC-0013,From KEY_DATA Market Operator.
+MOR-000187,MEC-0092,ORG-0037,market_platform,electronconnect,2026-04-01,,SRC-0013,"New. SPEN moved to ElectronConnect from April 2026; all bidding takes place there (SRC-0013, PDF p.9, p.12). Its Piclo contract ended at the end of Q1 2026 (PDF p.10)."
+MOR-000188,MEC-0092,ORG-0037,dispatch_platform,electronconnect,2026-04-01,,SRC-0013,"New. Electron supports SPEN providers through to dispatch and settlement (SRC-0013, PDF p.9)."
+MOR-000189,MEC-0093,ORG-0017,operator,,,,SRC-0013,From KEY_DATA Market Operator.
+MOR-000190,MEC-0093,ORG-0037,market_platform,electronconnect,2026-04-01,,SRC-0013,"New. SPEN moved to ElectronConnect from April 2026; all bidding takes place there (SRC-0013, PDF p.9, p.12). Its Piclo contract ended at the end of Q1 2026 (PDF p.10)."
+MOR-000191,MEC-0093,ORG-0037,dispatch_platform,electronconnect,2026-04-01,,SRC-0013,"New. Electron supports SPEN providers through to dispatch and settlement (SRC-0013, PDF p.9)."
+MOR-000192,MEC-0094,ORG-0018,operator,,,,SRC-0014,From KEY_DATA Market Operator.
+MOR-000193,MEC-0094,ORG-0037,market_platform,electronconnect,,,SRC-0014,"New. ElectronConnect has been SPENW's core market platform since March 2024 (SRC-0014, PDF p.20)."
+MOR-000194,MEC-0094,ORG-0037,dispatch_platform,electronconnect,,,SRC-0014,"New. Dispatch is normally by API from ElectronConnect, by email where there is no API; some services are dispatched through ANM instead (SRC-0014, PDF p.7, p.20)."
+MOR-000195,MEC-0095,ORG-0018,operator,,,,SRC-0014,From KEY_DATA Market Operator.
+MOR-000196,MEC-0095,ORG-0037,market_platform,electronconnect,,,SRC-0014,"New. ElectronConnect has been SPENW's core market platform since March 2024 (SRC-0014, PDF p.20)."
+MOR-000197,MEC-0095,ORG-0037,dispatch_platform,electronconnect,,,SRC-0014,"New. Dispatch is normally by API from ElectronConnect, by email where there is no API; some services are dispatched through ANM instead (SRC-0014, PDF p.7, p.20)."
+MOR-000198,MEC-0096,ORG-0018,operator,,,,SRC-0014,From KEY_DATA Market Operator.
+MOR-000199,MEC-0096,ORG-0037,market_platform,electronconnect,,,SRC-0014,"New. ElectronConnect has been SPENW's core market platform since March 2024 (SRC-0014, PDF p.20)."
+MOR-000200,MEC-0096,ORG-0037,dispatch_platform,electronconnect,,,SRC-0014,"New. Dispatch is normally by API from ElectronConnect, by email where there is no API; some services are dispatched through ANM instead (SRC-0014, PDF p.7, p.20)."
+MOR-000201,MEC-0097,ORG-0018,operator,,,,SRC-0014,From KEY_DATA Market Operator.
+MOR-000202,MEC-0097,ORG-0037,market_platform,electronconnect,,,SRC-0014,"New. ElectronConnect has been SPENW's core market platform since March 2024 (SRC-0014, PDF p.20)."
+MOR-000203,MEC-0097,ORG-0037,dispatch_platform,electronconnect,,,SRC-0014,"New. Dispatch is normally by API from ElectronConnect, by email where there is no API; some services are dispatched through ANM instead (SRC-0014, PDF p.7, p.20)."
+MOR-000204,MEC-0098,ORG-0018,operator,,,,SRC-0014,From KEY_DATA Market Operator.
+MOR-000205,MEC-0098,ORG-0037,market_platform,electronconnect,,,SRC-0014,"New. ElectronConnect has been SPENW's core market platform since March 2024 (SRC-0014, PDF p.20)."
+MOR-000206,MEC-0098,ORG-0037,dispatch_platform,electronconnect,,,SRC-0014,"New. Dispatch is normally by API from ElectronConnect, by email where there is no API; some services are dispatched through ANM instead (SRC-0014, PDF p.7, p.20)."
+MOR-000207,MEC-0099,ORG-0018,operator,,,,SRC-0014,From KEY_DATA Market Operator.
+MOR-000208,MEC-0099,ORG-0037,market_platform,electronconnect,,,SRC-0014,"New. ElectronConnect has been SPENW's core market platform since March 2024 (SRC-0014, PDF p.20)."
+MOR-000209,MEC-0099,ORG-0037,dispatch_platform,electronconnect,,,SRC-0014,"New. Dispatch is normally by API from ElectronConnect, by email where there is no API; some services are dispatched through ANM instead (SRC-0014, PDF p.7, p.20)."
+MOR-000210,MEC-0100,ORG-0018,operator,,,,SRC-0014,From KEY_DATA Market Operator.
+MOR-000211,MEC-0100,ORG-0037,market_platform,electronconnect,,,SRC-0014,"New. ElectronConnect has been SPENW's core market platform since March 2024 (SRC-0014, PDF p.20)."
+MOR-000212,MEC-0100,ORG-0037,dispatch_platform,electronconnect,,,SRC-0014,"New. Dispatch is normally by API from ElectronConnect, by email where there is no API; some services are dispatched through ANM instead (SRC-0014, PDF p.7, p.20)."
+MOR-000213,MEC-0101,ORG-0018,operator,,,,SRC-0014,From KEY_DATA Market Operator.
+MOR-000214,MEC-0101,ORG-0037,market_platform,electronconnect,,,SRC-0014,"New. ElectronConnect has been SPENW's core market platform since March 2024 (SRC-0014, PDF p.20)."
+MOR-000215,MEC-0101,ORG-0037,dispatch_platform,electronconnect,,,SRC-0014,"New. Dispatch is normally by API from ElectronConnect, by email where there is no API; some services are dispatched through ANM instead (SRC-0014, PDF p.7, p.20)."
+MOR-000216,MEC-0102,ORG-0018,operator,,,,SRC-0014,From KEY_DATA Market Operator.
+MOR-000217,MEC-0102,ORG-0037,market_platform,electronconnect,,,SRC-0014,"New. ElectronConnect has been SPENW's core market platform since March 2024 (SRC-0014, PDF p.20)."
+MOR-000218,MEC-0102,ORG-0037,dispatch_platform,electronconnect,,,SRC-0014,"New. Dispatch is normally by API from ElectronConnect, by email where there is no API; some services are dispatched through ANM instead (SRC-0014, PDF p.7, p.20)."
+MOR-000219,MEC-0103,ORG-0018,operator,,,,SRC-0014,From KEY_DATA Market Operator.
+MOR-000220,MEC-0103,ORG-0037,market_platform,electronconnect,,,SRC-0014,"New. ElectronConnect has been SPENW's core market platform since March 2024 (SRC-0014, PDF p.20)."
+MOR-000221,MEC-0103,ORG-0037,dispatch_platform,electronconnect,,,SRC-0014,"New. Dispatch is normally by API from ElectronConnect, by email where there is no API; some services are dispatched through ANM instead (SRC-0014, PDF p.7, p.20)."
+MOR-000222,MEC-0104,ORG-0020,operator,,,,SRC-0015,From KEY_DATA Market Operator.
+MOR-000223,MEC-0104,ORG-0037,market_platform,electronconnect,,,SRC-0015,"New. SSEN uses ElectronConnect for qualification, contracting and bidding (SRC-0015, PDF p.14-15, p.17)."
+MOR-000224,MEC-0104,ORG-0038,dispatch_platform,flexible_power,,,SRC-0015,"New. SSEN delivery and settlement run on Flexible Power (SRC-0015, PDF p.14, p.26; SRC-0056)."
+MOR-000225,MEC-0105,ORG-0020,operator,,,,SRC-0015,From KEY_DATA Market Operator.
+MOR-000226,MEC-0105,ORG-0037,market_platform,electronconnect,,,SRC-0015,"New. SSEN uses ElectronConnect for qualification, contracting and bidding (SRC-0015, PDF p.14-15, p.17)."
+MOR-000227,MEC-0105,ORG-0038,dispatch_platform,flexible_power,,,SRC-0015,"New. SSEN delivery and settlement run on Flexible Power (SRC-0015, PDF p.14, p.26; SRC-0056)."
+MOR-000228,MEC-0106,ORG-0020,operator,,,,SRC-0015,From KEY_DATA Market Operator.
+MOR-000229,MEC-0106,ORG-0037,market_platform,electronconnect,,,SRC-0015,"New. SSEN uses ElectronConnect for qualification, contracting and bidding (SRC-0015, PDF p.14-15, p.17)."
+MOR-000230,MEC-0106,ORG-0038,dispatch_platform,flexible_power,,,SRC-0015,"New. SSEN delivery and settlement run on Flexible Power (SRC-0015, PDF p.14, p.26; SRC-0056)."
+MOR-000231,MEC-0107,ORG-0020,operator,,,,SRC-0015,From KEY_DATA Market Operator.
+MOR-000232,MEC-0107,ORG-0037,market_platform,electronconnect,,,SRC-0015,"New. SSEN uses ElectronConnect for qualification, contracting and bidding (SRC-0015, PDF p.14-15, p.17)."
+MOR-000233,MEC-0107,ORG-0038,dispatch_platform,flexible_power,,,SRC-0015,"New. SSEN delivery and settlement run on Flexible Power (SRC-0015, PDF p.14, p.26; SRC-0056)."
+MOR-000234,MEC-0108,ORG-0020,operator,,,,SRC-0015,From KEY_DATA Market Operator.
+MOR-000235,MEC-0108,ORG-0037,market_platform,electronconnect,,,SRC-0015,"New. SSEN uses ElectronConnect for qualification, contracting and bidding (SRC-0015, PDF p.14-15, p.17)."
+MOR-000236,MEC-0108,ORG-0038,dispatch_platform,flexible_power,,,SRC-0015,"New. SSEN delivery and settlement run on Flexible Power (SRC-0015, PDF p.14, p.26; SRC-0056)."
+MOR-000237,MEC-0109,ORG-0020,operator,,,,SRC-0015,From KEY_DATA Market Operator.
+MOR-000238,MEC-0109,ORG-0037,market_platform,electronconnect,,,SRC-0015,"New. SSEN uses ElectronConnect for qualification, contracting and bidding (SRC-0015, PDF p.14-15, p.17)."
+MOR-000239,MEC-0109,ORG-0038,dispatch_platform,flexible_power,,,SRC-0015,"New. SSEN delivery and settlement run on Flexible Power (SRC-0015, PDF p.14, p.26; SRC-0056)."
+MOR-000240,MEC-0110,ORG-0021,operator,,,,SRC-0016,From KEY_DATA Market Operator.
+MOR-000241,MEC-0110,ORG-0010,market_platform,epex_localflex,,,SRC-0016,"New. UKPN runs its long-term and day-ahead tenders on EPEX SPOT Localflex (SRC-0016, PDF p.3, p.7, p.12)."
+MOR-000242,MEC-0111,ORG-0021,operator,,,,SRC-0016,From KEY_DATA Market Operator.
+MOR-000243,MEC-0111,ORG-0010,market_platform,epex_localflex,,,SRC-0016,"New. UKPN runs its long-term and day-ahead tenders on EPEX SPOT Localflex (SRC-0016, PDF p.3, p.7, p.12)."
+MOR-000244,MEC-0112,ORG-0021,operator,,,,SRC-0016,From KEY_DATA Market Operator.
+MOR-000245,MEC-0112,ORG-0010,market_platform,epex_localflex,,,SRC-0016,"New. UKPN runs its long-term and day-ahead tenders on EPEX SPOT Localflex (SRC-0016, PDF p.3, p.7, p.12)."

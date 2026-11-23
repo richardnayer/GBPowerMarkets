@@ -1,0 +1,44 @@
+#!/bin/sh
+# Git pre-commit hook: check the staged CSV/ files against CSV/datapackage.json (backlog item R-010).
+#
+# Install once per clone, from the repository root:
+#     git config core.hooksPath scripts/hooks
+# Uninstall:
+#     git config --unset core.hooksPath
+# Skip for a single commit (not recommended):
+#     git commit --no-verify
+#
+# The hook runs only when the commit touches CSV/, the validator or this hook. It checks the staged
+# copies (git index), not the working tree, so unstaged edits cannot hide a problem.
+
+repo_root=$(git rev-parse --show-toplevel) || exit 1
+cd "$repo_root" || exit 1
+
+if ! git diff --cached --name-only --diff-filter=ACMRD |
+        grep -Eq '^(CSV/|scripts/validate\.py$|scripts/hooks/pre-commit$)'; then
+    exit 0
+fi
+
+# Find Python 3.8 or later. On Windows the "python3" app-installer stub fails this test and is skipped.
+PY=""
+for cand in python3 python py; do
+    if command -v "$cand" >/dev/null 2>&1 &&
+            "$cand" -c 'import sys; sys.exit(0 if sys.version_info >= (3, 8) else 1)' >/dev/null 2>&1; then
+        PY=$cand
+        break
+    fi
+done
+if [ -z "$PY" ]; then
+    echo "pre-commit: Python 3.8 or later was not found, so CSV/ cannot be validated." >&2
+    echo "pre-commit: install Python, or commit with --no-verify and run scripts/validate.py later." >&2
+    exit 1
+fi
+
+"$PY" scripts/validate.py --staged
+status=$?
+if [ "$status" -ne 0 ]; then
+    echo "" >&2
+    echo "pre-commit: commit stopped because the staged data did not validate (exit $status)." >&2
+    echo "pre-commit: fix the errors above and stage the fix, then commit again." >&2
+fi
+exit "$status"

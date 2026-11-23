@@ -1,0 +1,9 @@
+﻿code,label,definition,source_id
+operator,Operator,Runs the mechanism and sets the terms participants deal under. For a balancing or flexibility service this is the buyer (NESO or a DNO); for an exchange market it is the exchange; for a regulated regime it is the body that administers it.,SRC-0046
+delivery_body,Delivery body,"The body that legislation makes responsible for running a government scheme's allocation: registering applicants, checking eligibility and holding the auction or allocation round.",SRC-0051
+policy_owner,Policy owner,The government department that sets the policy and legal framework for the mechanism.,SRC-0021
+counterparty,Counterparty or settlement body,"Holds the contracts or obligations with scheme participants and makes or collects the scheme payments, for example the CfD counterparty or the Capacity Market Settlement Body.",SRC-0020
+settlement_agent,Settlement agent,Calculates and administers settlement on behalf of a scheme's counterparty or settlement body.,SRC-0020
+regulator,Regulator (named role),"A regulator with a specific role in the mechanism's own rules, such as hearing appeals or amending rules. Not recorded just because the operator holds a licence.",SRC-0051
+market_platform,Market platform,"Runs the IT system on which participants register, pre-qualify, submit bids or orders and receive results. The system is named in platform_code where it has its own name.",SRC-0046
+dispatch_platform,Dispatch platform,"Runs the IT system through which the buyer sends instructions to contracted providers and receives the availability, metering or performance data used for settlement.",SRC-0011

@@ -1,0 +1,2 @@
+﻿code,label,definition,source_id
+sealed_double_sided,Sealed (closed) double-sided auction,"Buyers and sellers both submit priced orders before gate closure. No participant sees the other orders, and all orders are cleared together in one run.",SRC-0046

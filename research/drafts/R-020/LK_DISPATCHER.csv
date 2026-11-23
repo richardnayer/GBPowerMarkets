@@ -1,0 +1,4 @@
+﻿code,label,definition,source_id
+operator,Operator instructs,The mechanism's operator (for example NESO or the DNO) decides when the provider delivers and sends it instructions. The operator is the org_id with role operator in MECHANISM_ORG_ROLE.,SRC-0049
+self,Self-dispatched,"Nobody instructs the provider. It either responds automatically to a measured signal such as system frequency, or sets its own output to meet the position it has traded, as in GB's self-dispatch wholesale market.",SRC-0059
+not_applicable,Not applicable,"Nothing is physically dispatched, for example a cash-settled financial contract.",SRC-0042

@@ -1,0 +1,1220 @@
+{
+  "$schema": "https://datapackage.org/profiles/2.0/datapackage.json",
+  "name": "gb-power-markets",
+  "title": "GB power markets, products and financial mechanisms",
+  "description": "A database of Great Britain's electricity markets, balancing and flexibility services, government schemes and related mechanisms, with their operators, reference codes and sources. The CSV files are the master copy; this file describes them and is the data dictionary. Conventions: every CSV is UTF-8 with a byte order mark and CRLF line endings (R-001 Question 6; the BOM is to be reviewed before publication, R-019). A blank cell means not yet researched. The codes not_applicable and unknown are real values from the lookup tables, not missing values (R-001 Change 7). Coded columns are checked with foreign keys to the LK_* lookups, ORGANISATIONS or SOURCES rather than with lists written into this file, so a new code needs only a new lookup row. IDs are permanent (R-001 Change 1a). Some columns are still plain text while their lookups are drafted (R-020); their descriptions name the target. scripts/validate.py checks the data against this file, plus cross-table rules that a Table Schema cannot express. The data licence has not been chosen yet (R-019).",
+  "keywords": ["electricity", "Great Britain", "power markets", "balancing services", "flexibility", "ancillary services"],
+  "resources": [
+    {
+      "name": "key_data",
+      "path": "KEY_DATA.csv",
+      "type": "table",
+      "title": "Mechanisms: key data",
+      "description": "One row per mechanism (market, product, scheme, charge or tax). This is the core table: market_info, technical, dispatch, participants and description hold one row per mechanism, with the same IDs in the same order. Becomes MECHANISM in Phase 4 (R-001 Change 13).",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "dialect": {"delimiter": ",", "lineTerminator": "\r\n", "quoteChar": "\"", "doubleQuote": true, "header": true},
+      "schema": {
+        "fieldsMatch": "exact",
+        "missingValues": [""],
+        "fields": [
+          {
+            "name": "ID",
+            "type": "string",
+            "description": "Permanent mechanism ID: MEC- plus 4 digits (R-001 Change 1a). Never renumbered or reused; a new row takes the next free number.",
+            "constraints": {"required": true, "unique": true, "pattern": "MEC-[0-9]{4}"}
+          },
+          {
+            "name": "Market Name",
+            "type": "string",
+            "description": "Name of the mechanism, as its operator uses it. Not unique: a few DSO tender lines share a name and are told apart by ID (R-001 Change 1; Phase 3 Change 12 resolves this).",
+            "constraints": {"required": true}
+          },
+          {
+            "name": "Mechanism Class",
+            "type": "string",
+            "description": "What kind of mechanism this is. Code from LK_MECHANISM_CLASS. A new kind (for example a system charge or a tax) needs only a new lookup row.",
+            "constraints": {"required": true, "pattern": "[a-z][a-z0-9_]*"}
+          },
+          {
+            "name": "Category",
+            "type": "string",
+            "description": "The system need or purpose the mechanism serves. Code from LK_CATEGORY.",
+            "constraints": {"required": true, "pattern": "[a-z][a-z0-9_]*"}
+          },
+          {
+            "name": "Market Operator",
+            "type": "string",
+            "description": "The organisation that runs the mechanism: an ORG- ID from ORGANISATIONS. Blank means not yet researched, or no single operator (OTC trading). Other roles (policy owner, counterparty, platform) move to MECHANISM_ORG_ROLE (R-020).",
+            "constraints": {"pattern": "ORG-[0-9]{4}"}
+          },
+          {"name": "Acronym", "type": "string", "description": "Common abbreviation, if there is one."},
+          {
+            "name": "Status",
+            "type": "string",
+            "description": "Lifecycle status. Code from LK_STATUS. A status_as_of date is planned (R-006).",
+            "constraints": {"pattern": "[a-z][a-z0-9_]*"}
+          },
+          {
+            "name": "Commodity",
+            "type": "string",
+            "description": "The physical quantity traded or procured. Code from LK_COMMODITY.",
+            "constraints": {"pattern": "[a-z][a-z0-9_]*"}
+          },
+          {
+            "name": "Direction",
+            "type": "string",
+            "description": "Direction of the action, relative to net export to the system. Code from LK_DIRECTION. not_applicable is a real code (researched; no physical direction), not a missing value.",
+            "constraints": {"pattern": "[a-z][a-z0-9_]*"}
+          },
+          {
+            "name": "Contract Length Band",
+            "type": "string",
+            "description": "Band for the length of the provider's contract. Code from LK_CONTRACT_LENGTH_BAND. Filled for some DSO sub-markets only; see R-022.",
+            "constraints": {"pattern": "[a-z][a-z0-9_]*"}
+          },
+          {
+            "name": "Standard Variant",
+            "type": "string",
+            "description": "DSO product variant: an Elexon FMR-PD standard variant, or a legacy or non-standard product. Code from LK_DSO_PRODUCT_VARIANT, whose product_code column gives the standard product. Filled only when Mechanism Class is dso_flexibility (checked by scripts/validate.py).",
+            "constraints": {"pattern": "[a-z][a-z0-9_]*"}
+          },
+          {
+            "name": "Notes",
+            "type": "string",
+            "description": "Free-text notes, including qualifiers kept when values were converted to codes (R-021)."
+          }
+        ],
+        "primaryKey": ["ID"],
+        "foreignKeys": [
+          {"fields": ["Mechanism Class"], "reference": {"resource": "lk_mechanism_class", "fields": ["code"]}},
+          {"fields": ["Category"], "reference": {"resource": "lk_category", "fields": ["code"]}},
+          {"fields": ["Market Operator"], "reference": {"resource": "organisations", "fields": ["org_id"]}},
+          {"fields": ["Status"], "reference": {"resource": "lk_status", "fields": ["code"]}},
+          {"fields": ["Commodity"], "reference": {"resource": "lk_commodity", "fields": ["code"]}},
+          {"fields": ["Direction"], "reference": {"resource": "lk_direction", "fields": ["code"]}},
+          {
+            "fields": ["Contract Length Band"],
+            "reference": {"resource": "lk_contract_length_band", "fields": ["code"]}
+          },
+          {
+            "fields": ["Standard Variant"],
+            "reference": {"resource": "lk_dso_product_variant", "fields": ["code"]}
+          }
+        ]
+      }
+    },
+    {
+      "name": "market_info",
+      "path": "MARKET_INFO.csv",
+      "type": "table",
+      "title": "Mechanisms: market design",
+      "description": "Market design attributes: structure, timing, product and settlement periods, platform, auction and pricing rules, payments, and order-type parameters. One row per mechanism. Sparse: Phase 3 (R-001 Change 9) drops the empty columns and moves order-type parameters to ORDER_TYPES.",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "dialect": {"delimiter": ",", "lineTerminator": "\r\n", "quoteChar": "\"", "doubleQuote": true, "header": true},
+      "schema": {
+        "fieldsMatch": "exact",
+        "missingValues": [""],
+        "fields": [
+          {
+            "name": "ID",
+            "type": "string",
+            "description": "Mechanism ID (MEC- plus 4 digits). Each mechanism file has the same IDs in the same order as key_data (checked by scripts/validate.py).",
+            "constraints": {"required": true, "unique": true, "pattern": "MEC-[0-9]{4}"}
+          },
+          {
+            "name": "Market Name",
+            "type": "string",
+            "description": "Copy of key_data Market Name, kept for readability. It must match key_data for the same ID (checked by scripts/validate.py). Can be dropped in Phase 3 (R-001 Change 1).",
+            "constraints": {"required": true}
+          },
+          {
+            "name": "Market Structure",
+            "type": "string",
+            "description": "Who trades with whom (for example one buyer and many sellers). Plain text for now; R-020 decides whether it gets a lookup or is dropped."
+          },
+          {
+            "name": "Market Timing",
+            "type": "string",
+            "description": "When the auction or gate closes, relative to the delivery day (for example D-1 @ 14:00). Plain text. Phase 3 splits it into gate_closure_day_offset, gate_closure_time and an IANA time zone (R-001 Change 9)."
+          },
+          {
+            "name": "Market Period [mins]",
+            "type": "string",
+            "description": "Length of the traded product period, in minutes. Text for now because some cells hold two values (30 / 60). Target in Phase 3: integer, with the two values split into min/max columns or separate rows (R-001 Change 9).",
+            "constraints": {"pattern": "[0-9]+( / [0-9]+)*"}
+          },
+          {
+            "name": "Period Coverage",
+            "type": "string",
+            "description": "Hours of the day that the market covers (for example 00:00 to 24:00). Plain text. Phase 3 splits it into delivery_start_time and delivery_end_time (R-001 Change 9)."
+          },
+          {
+            "name": "Settlement Period [mins]",
+            "type": "string",
+            "description": "Length of the settlement period, in minutes. Text for now because some cells hold two values (30 / 60). Target in Phase 3: integer, with the two values split into min/max columns or separate rows (R-001 Change 9).",
+            "constraints": {"pattern": "[0-9]+( / [0-9]+)*"}
+          },
+          {
+            "name": "Market Platform",
+            "type": "string",
+            "description": "System or venue on which the market runs. Plain text for now. Target: a code from LK_PLATFORM, plus a platform row in MECHANISM_ORG_ROLE (R-020)."
+          },
+          {
+            "name": "Auction Type",
+            "type": "string",
+            "description": "Auction format. Plain text for now. Target: a code from LK_AUCTION_TYPE (R-020)."
+          },
+          {
+            "name": "Pricing Structure",
+            "type": "string",
+            "description": "How the price paid to accepted participants is set (for example pay as clear). Plain text for now. Target: a code from LK_PRICING_RULE (R-020)."
+          },
+          {
+            "name": "Market Objective",
+            "type": "string",
+            "description": "What the clearing algorithm optimises. Plain text for now; R-020 decides whether it gets a lookup or is dropped."
+          },
+          {
+            "name": "Market Co-Optimisation",
+            "type": "string",
+            "description": "Whether the market clears jointly with other markets. The linked markets are named in Notes until MECHANISM_RELATIONSHIP exists (R-001 Change 13). Code from LK_YESNO: yes, no, not_applicable (researched, does not apply) or unknown (researched, no authoritative source).",
+            "constraints": {"pattern": "[a-z][a-z0-9_]*"}
+          },
+          {
+            "name": "Overholding",
+            "type": "string",
+            "description": "Empty in every row; its meaning is not documented. R-001 Change 9 drops it in Phase 3 and re-adds it as ORDER_TYPES rows only when sourced. Typed as plain text until then."
+          },
+          {
+            "name": "Availability Payment",
+            "type": "string",
+            "description": "Whether providers are paid for being available. Code from LK_YESNO: yes, no, not_applicable (researched, does not apply) or unknown (researched, no authoritative source).",
+            "constraints": {"pattern": "[a-z][a-z0-9_]*"}
+          },
+          {
+            "name": "Utilisation Payment",
+            "type": "string",
+            "description": "Whether providers are paid for energy delivered when they are used. Code from LK_YESNO: yes, no, not_applicable (researched, does not apply) or unknown (researched, no authoritative source).",
+            "constraints": {"pattern": "[a-z][a-z0-9_]*"}
+          },
+          {
+            "name": "Payment Unit",
+            "type": "string",
+            "description": "Unit of the availability or utilisation price (for example GBP/MW/h). Plain text; no lookup yet."
+          },
+          {
+            "name": "Parent-Child Orders",
+            "type": "string",
+            "description": "Whether parent-child (linked) orders are allowed. Moves to ORDER_TYPES in Phase 3. Code from LK_YESNO: yes, no, not_applicable (researched, does not apply) or unknown (researched, no authoritative source).",
+            "constraints": {"pattern": "[a-z][a-z0-9_]*"}
+          },
+          {
+            "name": "Max Parent-Child Generations",
+            "type": "integer",
+            "description": "Largest number of generations allowed in a parent-child order chain. Moves to ORDER_TYPES in Phase 3.",
+            "constraints": {"minimum": 0}
+          },
+          {
+            "name": "Max Children per Parent",
+            "type": "integer",
+            "description": "Largest number of child orders allowed for one parent order. Moves to ORDER_TYPES in Phase 3.",
+            "constraints": {"minimum": 0}
+          },
+          {
+            "name": "Max Parents per Child",
+            "type": "integer",
+            "description": "Largest number of parent orders allowed for one child order. Moves to ORDER_TYPES in Phase 3.",
+            "constraints": {"minimum": 0}
+          },
+          {
+            "name": "Curve Orders",
+            "type": "string",
+            "description": "Empty in every row; its meaning is not documented. R-001 Change 9 drops it in Phase 3 and re-adds it as ORDER_TYPES rows only when sourced. Typed as plain text until then."
+          },
+          {
+            "name": "Block Orders",
+            "type": "string",
+            "description": "Whether block orders are allowed. Moves to ORDER_TYPES in Phase 3. Code from LK_YESNO: yes, no, not_applicable (researched, does not apply) or unknown (researched, no authoritative source).",
+            "constraints": {"pattern": "[a-z][a-z0-9_]*"}
+          },
+          {
+            "name": "Maximum Block Size",
+            "type": "string",
+            "description": "Largest block order allowed, written with its unit (for example 500 MW). Text for now because the unit is in the value. Target: a number in a column named with its unit, e.g. max_block_size_mw (R-001 Change 7).",
+            "constraints": {"pattern": "[0-9]+(\\.[0-9]+)? MW"}
+          },
+          {
+            "name": "Loop Blocks",
+            "type": "string",
+            "description": "Empty in every row; its meaning is not documented. R-001 Change 9 drops it in Phase 3 and re-adds it as ORDER_TYPES rows only when sourced. Typed as plain text until then."
+          },
+          {
+            "name": "Curtailable Blocks",
+            "type": "string",
+            "description": "Empty in every row; its meaning is not documented. R-001 Change 9 drops it in Phase 3 and re-adds it as ORDER_TYPES rows only when sourced. Typed as plain text until then."
+          },
+          {
+            "name": "Linked Blocks",
+            "type": "string",
+            "description": "Empty in every row; its meaning is not documented. R-001 Change 9 drops it in Phase 3 and re-adds it as ORDER_TYPES rows only when sourced. Typed as plain text until then."
+          },
+          {
+            "name": "Exclusive Blocks",
+            "type": "string",
+            "description": "Empty in every row; its meaning is not documented. R-001 Change 9 drops it in Phase 3 and re-adds it as ORDER_TYPES rows only when sourced. Typed as plain text until then."
+          },
+          {
+            "name": "Exclusive Links",
+            "type": "string",
+            "description": "Empty in every row; its meaning is not documented. R-001 Change 9 drops it in Phase 3 and re-adds it as ORDER_TYPES rows only when sourced. Typed as plain text until then."
+          },
+          {
+            "name": "Notes",
+            "type": "string",
+            "description": "Free-text notes. Some cells hold a source URL, which moves to SOURCES and CITATIONS (R-001 Change 5)."
+          }
+        ],
+        "primaryKey": ["ID"],
+        "foreignKeys": [
+          {"fields": ["ID"], "reference": {"resource": "key_data", "fields": ["ID"]}},
+          {"fields": ["Market Co-Optimisation"], "reference": {"resource": "lk_yesno", "fields": ["code"]}},
+          {"fields": ["Availability Payment"], "reference": {"resource": "lk_yesno", "fields": ["code"]}},
+          {"fields": ["Utilisation Payment"], "reference": {"resource": "lk_yesno", "fields": ["code"]}},
+          {"fields": ["Parent-Child Orders"], "reference": {"resource": "lk_yesno", "fields": ["code"]}},
+          {"fields": ["Block Orders"], "reference": {"resource": "lk_yesno", "fields": ["code"]}}
+        ]
+      }
+    },
+    {
+      "name": "technical",
+      "path": "TECHNICAL.csv",
+      "type": "table",
+      "title": "Mechanisms: technical requirements",
+      "description": "Technical requirements on providers: response times, ramping, delivery duration and capacity limits. One row per mechanism. Units are in the column names. Phase 3 renames the columns to snake_case with a unit suffix (R-001 Question 3) and adds the dispatch fields (Change 10).",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "dialect": {"delimiter": ",", "lineTerminator": "\r\n", "quoteChar": "\"", "doubleQuote": true, "header": true},
+      "schema": {
+        "fieldsMatch": "exact",
+        "missingValues": [""],
+        "fields": [
+          {
+            "name": "ID",
+            "type": "string",
+            "description": "Mechanism ID (MEC- plus 4 digits). Each mechanism file has the same IDs in the same order as key_data (checked by scripts/validate.py).",
+            "constraints": {"required": true, "unique": true, "pattern": "MEC-[0-9]{4}"}
+          },
+          {
+            "name": "Market Name",
+            "type": "string",
+            "description": "Copy of key_data Market Name, kept for readability. It must match key_data for the same ID (checked by scripts/validate.py). Can be dropped in Phase 3 (R-001 Change 1).",
+            "constraints": {"required": true}
+          },
+          {
+            "name": "Max. Initiation Time [s]",
+            "type": "string",
+            "description": "Longest allowed delay, in seconds, before the response starts. Text for now because at least one cell holds N/A. Target in Phase 3: number, with N/A recoded under R-001 Change 7.",
+            "constraints": {"pattern": "(N/A|[0-9]+(\\.[0-9]+)?)"}
+          },
+          {
+            "name": "Max Time to Full Delivery [s]",
+            "type": "number",
+            "description": "Longest allowed time, in seconds, to reach full contracted output.",
+            "constraints": {"minimum": 0}
+          },
+          {
+            "name": "Lag Upper Bound Tolerance [s]",
+            "type": "string",
+            "description": "Largest allowed lag, in seconds, behind the expected response. Text for now because at least one cell holds N/A. Target in Phase 3: number, with N/A recoded under R-001 Change 7.",
+            "constraints": {"pattern": "(N/A|[0-9]+(\\.[0-9]+)?)"}
+          },
+          {
+            "name": "Ramp Time Upper Bound [s]",
+            "type": "string",
+            "description": "Longest allowed ramp time, in seconds. Text for now because at least one cell holds N/A. Target in Phase 3: number, with N/A recoded under R-001 Change 7.",
+            "constraints": {"pattern": "(N/A|[0-9]+(\\.[0-9]+)?)"}
+          },
+          {
+            "name": "Ramp Rate Lower Bound [pu/s]",
+            "type": "string",
+            "description": "Slowest allowed ramp rate, in per unit of contracted capacity per second (the unit is still to be confirmed against NESO service terms; R-001). Text for now because at least one cell holds N/A. Target in Phase 3: number, with N/A recoded under R-001 Change 7.",
+            "constraints": {"pattern": "(N/A|[0-9]+(\\.[0-9]+)?)"}
+          },
+          {
+            "name": "Delivery Duration [min]",
+            "type": "number",
+            "description": "How long delivery must be sustained, in minutes.",
+            "constraints": {"minimum": 0}
+          },
+          {
+            "name": "Minimum Capacity [MW]",
+            "type": "number",
+            "description": "Smallest capacity that may take part, in MW.",
+            "constraints": {"minimum": 0}
+          },
+          {
+            "name": "Maximum Capacity [MW]",
+            "type": "string",
+            "description": "Largest capacity that may take part, in MW. Text for now because at least one cell holds N/A. Target in Phase 3: number, with N/A recoded under R-001 Change 7.",
+            "constraints": {"pattern": "(N/A|[0-9]+(\\.[0-9]+)?)"}
+          },
+          {"name": "Notes", "type": "string", "description": "Free-text notes."}
+        ],
+        "primaryKey": ["ID"],
+        "foreignKeys": [{"fields": ["ID"], "reference": {"resource": "key_data", "fields": ["ID"]}}]
+      }
+    },
+    {
+      "name": "dispatch",
+      "path": "DISPATCH.csv",
+      "type": "table",
+      "title": "Mechanisms: dispatch",
+      "description": "Who dispatches the service, how, and whether it is used before or after a fault. One row per mechanism. Phase 3 may merge it into technical (R-001 Change 10).",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "dialect": {"delimiter": ",", "lineTerminator": "\r\n", "quoteChar": "\"", "doubleQuote": true, "header": true},
+      "schema": {
+        "fieldsMatch": "exact",
+        "missingValues": [""],
+        "fields": [
+          {
+            "name": "ID",
+            "type": "string",
+            "description": "Mechanism ID (MEC- plus 4 digits). Each mechanism file has the same IDs in the same order as key_data (checked by scripts/validate.py).",
+            "constraints": {"required": true, "unique": true, "pattern": "MEC-[0-9]{4}"}
+          },
+          {
+            "name": "Market Name",
+            "type": "string",
+            "description": "Copy of key_data Market Name, kept for readability. It must match key_data for the same ID (checked by scripts/validate.py). Can be dropped in Phase 3 (R-001 Change 1).",
+            "constraints": {"required": true}
+          },
+          {
+            "name": "Dispatcher",
+            "type": "string",
+            "description": "Who instructs the provider (for example NESO, or Self for self-dispatch). Plain text for now. Target: an ORG- ID or the code self (R-020; R-001 Change 10)."
+          },
+          {
+            "name": "Dispatch Type",
+            "type": "string",
+            "description": "How the provider is dispatched (for example automatic, or by BOA/OBP). Plain text for now. Target: a dispatch_method code (R-001 Change 10)."
+          },
+          {
+            "name": "Pre-Fault",
+            "type": "string",
+            "description": "Whether the service is used before a system fault happens. Code from LK_YESNO: yes, no, not_applicable (researched, does not apply) or unknown (researched, no authoritative source).",
+            "constraints": {"pattern": "[a-z][a-z0-9_]*"}
+          },
+          {
+            "name": "Post-Fault",
+            "type": "string",
+            "description": "Whether the service is used after a system fault happens. Code from LK_YESNO: yes, no, not_applicable (researched, does not apply) or unknown (researched, no authoritative source).",
+            "constraints": {"pattern": "[a-z][a-z0-9_]*"}
+          }
+        ],
+        "primaryKey": ["ID"],
+        "foreignKeys": [
+          {"fields": ["ID"], "reference": {"resource": "key_data", "fields": ["ID"]}},
+          {"fields": ["Pre-Fault"], "reference": {"resource": "lk_yesno", "fields": ["code"]}},
+          {"fields": ["Post-Fault"], "reference": {"resource": "lk_yesno", "fields": ["code"]}}
+        ]
+      }
+    },
+    {
+      "name": "participants",
+      "path": "PARTICIPANTS.csv",
+      "type": "table",
+      "title": "Mechanisms: eligible participants",
+      "description": "Which kinds of participant may take part, and the aggregation level. One row per mechanism. Phase 3 turns it into a long-format ELIGIBILITY table (R-001 Change 10).",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "dialect": {"delimiter": ",", "lineTerminator": "\r\n", "quoteChar": "\"", "doubleQuote": true, "header": true},
+      "schema": {
+        "fieldsMatch": "exact",
+        "missingValues": [""],
+        "fields": [
+          {
+            "name": "ID",
+            "type": "string",
+            "description": "Mechanism ID (MEC- plus 4 digits). Each mechanism file has the same IDs in the same order as key_data (checked by scripts/validate.py).",
+            "constraints": {"required": true, "unique": true, "pattern": "MEC-[0-9]{4}"}
+          },
+          {
+            "name": "Market Name",
+            "type": "string",
+            "description": "Copy of key_data Market Name, kept for readability. It must match key_data for the same ID (checked by scripts/validate.py). Can be dropped in Phase 3 (R-001 Change 1).",
+            "constraints": {"required": true}
+          },
+          {
+            "name": "BMUs",
+            "type": "string",
+            "description": "Whether Balancing Mechanism Units may take part. Code from LK_YESNO: yes, no, not_applicable (researched, does not apply) or unknown (researched, no authoritative source).",
+            "constraints": {"pattern": "[a-z][a-z0-9_]*"}
+          },
+          {
+            "name": "Non-BMUs",
+            "type": "string",
+            "description": "Whether units outside the Balancing Mechanism may take part. Code from LK_YESNO: yes, no, not_applicable (researched, does not apply) or unknown (researched, no authoritative source).",
+            "constraints": {"pattern": "[a-z][a-z0-9_]*"}
+          },
+          {
+            "name": "Generation",
+            "type": "string",
+            "description": "Whether generators may take part. Code from LK_YESNO: yes, no, not_applicable (researched, does not apply) or unknown (researched, no authoritative source).",
+            "constraints": {"pattern": "[a-z][a-z0-9_]*"}
+          },
+          {
+            "name": "Demand",
+            "type": "string",
+            "description": "Whether demand sites may take part. Code from LK_YESNO: yes, no, not_applicable (researched, does not apply) or unknown (researched, no authoritative source).",
+            "constraints": {"pattern": "[a-z][a-z0-9_]*"}
+          },
+          {
+            "name": "Storage",
+            "type": "string",
+            "description": "Whether storage may take part. Code from LK_YESNO: yes, no, not_applicable (researched, does not apply) or unknown (researched, no authoritative source).",
+            "constraints": {"pattern": "[a-z][a-z0-9_]*"}
+          },
+          {
+            "name": "Suppliers",
+            "type": "string",
+            "description": "Whether electricity suppliers may take part. Code from LK_YESNO: yes, no, not_applicable (researched, does not apply) or unknown (researched, no authoritative source).",
+            "constraints": {"pattern": "[a-z][a-z0-9_]*"}
+          },
+          {
+            "name": "Aggregation",
+            "type": "string",
+            "description": "Level at which units may be aggregated (for example GSP or National). Plain text for now. Target: a code from LK_AGGREGATION_LEVEL (R-020)."
+          },
+          {
+            "name": "Notes",
+            "type": "string",
+            "description": "Free-text notes, including confidence qualifiers kept from R-021."
+          }
+        ],
+        "primaryKey": ["ID"],
+        "foreignKeys": [
+          {"fields": ["ID"], "reference": {"resource": "key_data", "fields": ["ID"]}},
+          {"fields": ["BMUs"], "reference": {"resource": "lk_yesno", "fields": ["code"]}},
+          {"fields": ["Non-BMUs"], "reference": {"resource": "lk_yesno", "fields": ["code"]}},
+          {"fields": ["Generation"], "reference": {"resource": "lk_yesno", "fields": ["code"]}},
+          {"fields": ["Demand"], "reference": {"resource": "lk_yesno", "fields": ["code"]}},
+          {"fields": ["Storage"], "reference": {"resource": "lk_yesno", "fields": ["code"]}},
+          {"fields": ["Suppliers"], "reference": {"resource": "lk_yesno", "fields": ["code"]}}
+        ]
+      }
+    },
+    {
+      "name": "description",
+      "path": "DESCRIPTION.csv",
+      "type": "table",
+      "title": "Mechanisms: description",
+      "description": "A short summary of each mechanism and the references used. One row per mechanism.",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "dialect": {"delimiter": ",", "lineTerminator": "\r\n", "quoteChar": "\"", "doubleQuote": true, "header": true},
+      "schema": {
+        "fieldsMatch": "exact",
+        "missingValues": [""],
+        "fields": [
+          {
+            "name": "ID",
+            "type": "string",
+            "description": "Mechanism ID (MEC- plus 4 digits). Each mechanism file has the same IDs in the same order as key_data (checked by scripts/validate.py).",
+            "constraints": {"required": true, "unique": true, "pattern": "MEC-[0-9]{4}"}
+          },
+          {
+            "name": "Market Name",
+            "type": "string",
+            "description": "Copy of key_data Market Name, kept for readability. It must match key_data for the same ID (checked by scripts/validate.py). Can be dropped in Phase 3 (R-001 Change 1).",
+            "constraints": {"required": true}
+          },
+          {
+            "name": "Summary Paragraph",
+            "type": "string",
+            "description": "Plain-English summary, written in the project's own words rather than copied from sources."
+          },
+          {
+            "name": "Useful References",
+            "type": "string",
+            "description": "URLs separated by semicolons. Moves to SOURCES and CITATIONS (R-001 Change 5)."
+          }
+        ],
+        "primaryKey": ["ID"],
+        "foreignKeys": [{"fields": ["ID"], "reference": {"resource": "key_data", "fields": ["ID"]}}]
+      }
+    },
+    {
+      "name": "organisations",
+      "path": "ORGANISATIONS.csv",
+      "type": "table",
+      "title": "Organisations",
+      "description": "Organisations that operate, regulate, settle or otherwise take part in mechanisms. Former names have their own rows, linked by predecessor_org_id and bounded by valid_from and valid_to (R-009).",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "dialect": {"delimiter": ",", "lineTerminator": "\r\n", "quoteChar": "\"", "doubleQuote": true, "header": true},
+      "schema": {
+        "fieldsMatch": "exact",
+        "missingValues": [""],
+        "fields": [
+          {
+            "name": "org_id",
+            "type": "string",
+            "description": "Permanent organisation ID: ORG- plus 4 digits (R-001 Change 1a).",
+            "constraints": {"required": true, "unique": true, "pattern": "ORG-[0-9]{4}"}
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "description": "Registered or official name.",
+            "constraints": {"required": true, "unique": true}
+          },
+          {"name": "short_name", "type": "string", "description": "Common short name or brand."},
+          {
+            "name": "org_type",
+            "type": "string",
+            "description": "Kind of organisation. Code from LK_ORG_TYPE.",
+            "constraints": {"required": true, "pattern": "[a-z][a-z0-9_]*"}
+          },
+          {
+            "name": "parent_org_id",
+            "type": "string",
+            "description": "Parent organisation (ORG- ID), for example the DNO group that a distribution licensee belongs to.",
+            "constraints": {"pattern": "ORG-[0-9]{4}"}
+          },
+          {"name": "url", "type": "string", "description": "Official website.", "format": "uri"},
+          {
+            "name": "valid_from",
+            "type": "date",
+            "description": "First day this name applied. Blank: applied before our records start, or not yet researched."
+          },
+          {
+            "name": "valid_to",
+            "type": "date",
+            "description": "Last day this name applied. Blank: still current."
+          },
+          {
+            "name": "predecessor_org_id",
+            "type": "string",
+            "description": "The earlier name or body that this row replaces (ORG- ID).",
+            "constraints": {"pattern": "ORG-[0-9]{4}"}
+          },
+          {
+            "name": "registry_id",
+            "type": "string",
+            "description": "Company register ID in org-id.guide form: list code then identifier, e.g. GB-COH-11014226 (Companies House). Renamed companies share one value.",
+            "constraints": {"pattern": "[A-Z]{2}-[A-Z0-9]{2,8}-[A-Za-z0-9]+"}
+          },
+          {
+            "name": "source_id",
+            "type": "string",
+            "description": "Source for this row (SRC- ID).",
+            "constraints": {"required": true, "pattern": "SRC-[0-9]{4}"}
+          },
+          {"name": "notes", "type": "string", "description": "Free-text notes."}
+        ],
+        "primaryKey": ["org_id"],
+        "foreignKeys": [
+          {"fields": ["org_type"], "reference": {"resource": "lk_org_type", "fields": ["code"]}},
+          {"fields": ["parent_org_id"], "reference": {"fields": ["org_id"]}},
+          {"fields": ["predecessor_org_id"], "reference": {"fields": ["org_id"]}},
+          {"fields": ["source_id"], "reference": {"resource": "sources", "fields": ["source_id"]}}
+        ]
+      }
+    },
+    {
+      "name": "sources",
+      "path": "SOURCES.csv",
+      "type": "table",
+      "title": "Sources",
+      "description": "Every document or web page cited by the dataset (R-001 Change 5), with its reuse terms. Field-level citations will go in CITATIONS (R-023).",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "dialect": {"delimiter": ",", "lineTerminator": "\r\n", "quoteChar": "\"", "doubleQuote": true, "header": true},
+      "schema": {
+        "fieldsMatch": "exact",
+        "missingValues": [""],
+        "fields": [
+          {
+            "name": "source_id",
+            "type": "string",
+            "description": "Permanent source ID: SRC- plus 4 digits (R-001 Change 1a).",
+            "constraints": {"required": true, "unique": true, "pattern": "SRC-[0-9]{4}"}
+          },
+          {
+            "name": "title",
+            "type": "string",
+            "description": "Title of the document or page.",
+            "constraints": {"required": true}
+          },
+          {
+            "name": "publisher",
+            "type": "string",
+            "description": "Publisher: an ORG- ID where the publisher is in ORGANISATIONS, otherwise its name (R-001 Change 5). scripts/validate.py checks that an ORG- ID resolves.",
+            "constraints": {"required": true}
+          },
+          {
+            "name": "url",
+            "type": "string",
+            "description": "Canonical URL. A path inside this repository is allowed only when source_type is internal (checked by scripts/validate.py).",
+            "constraints": {"required": true}
+          },
+          {
+            "name": "source_type",
+            "type": "string",
+            "description": "primary, secondary or internal (R-001 Change 5). No lookup table yet.",
+            "constraints": {"required": true, "pattern": "[a-z][a-z0-9_]*"}
+          },
+          {
+            "name": "doc_type",
+            "type": "string",
+            "description": "Kind of document, from the R-001 Change 5 list (webpage, service_terms, rulebook, contract_spec, consultation, decision, dataset, statute, other). No lookup table yet.",
+            "constraints": {"required": true, "pattern": "[a-z][a-z0-9_]*"}
+          },
+          {
+            "name": "version_or_date",
+            "type": "string",
+            "description": "Version or publication date: an ISO 8601 date (YYYY, YYYY-MM or YYYY-MM-DD), optionally followed by a version in brackets, e.g. 2026-08-25 (v4.2).",
+            "constraints": {"pattern": "[0-9]{4}(-[0-9]{2}(-[0-9]{2})?)?( \\(.+\\))?"}
+          },
+          {
+            "name": "accessed_date",
+            "type": "date",
+            "description": "Date the source was last read.",
+            "constraints": {"required": true}
+          },
+          {
+            "name": "archive_url",
+            "type": "string",
+            "description": "Archived copy, for example a Wayback Machine snapshot.",
+            "format": "uri"
+          },
+          {"name": "notes", "type": "string", "description": "Free-text notes."},
+          {
+            "name": "reuse_terms",
+            "type": "string",
+            "description": "Reuse or licence terms found for the source, in the project's own words. Blank: not yet checked (R-019)."
+          }
+        ],
+        "primaryKey": ["source_id"],
+        "foreignKeys": []
+      }
+    },
+    {
+      "name": "lk_category",
+      "path": "LK_CATEGORY.csv",
+      "type": "table",
+      "title": "Lookup: category",
+      "description": "Purposes a mechanism can serve; used by key_data Category. Lookup table (R-001 Change 6): columns code, label, definition, source_id. To add a value, add a row with a sourced definition.",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "dialect": {"delimiter": ",", "lineTerminator": "\r\n", "quoteChar": "\"", "doubleQuote": true, "header": true},
+      "schema": {
+        "fieldsMatch": "exact",
+        "missingValues": [""],
+        "fields": [
+          {
+            "name": "code",
+            "type": "string",
+            "description": "Code stored in the data: lower-case snake_case. Never reused for a different meaning.",
+            "constraints": {"required": true, "unique": true, "pattern": "[a-z][a-z0-9_]*"}
+          },
+          {
+            "name": "label",
+            "type": "string",
+            "description": "Readable label for display.",
+            "constraints": {"required": true, "unique": true}
+          },
+          {
+            "name": "definition",
+            "type": "string",
+            "description": "Definition in the project's own words.",
+            "constraints": {"required": true}
+          },
+          {
+            "name": "source_id",
+            "type": "string",
+            "description": "Source for the definition (SRC- ID).",
+            "constraints": {"required": true, "pattern": "SRC-[0-9]{4}"}
+          }
+        ],
+        "primaryKey": ["code"],
+        "foreignKeys": [{"fields": ["source_id"], "reference": {"resource": "sources", "fields": ["source_id"]}}]
+      }
+    },
+    {
+      "name": "lk_commodity",
+      "path": "LK_COMMODITY.csv",
+      "type": "table",
+      "title": "Lookup: commodity",
+      "description": "Physical quantities; used by key_data Commodity. Lookup table (R-001 Change 6): columns code, label, definition, source_id. To add a value, add a row with a sourced definition.",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "dialect": {"delimiter": ",", "lineTerminator": "\r\n", "quoteChar": "\"", "doubleQuote": true, "header": true},
+      "schema": {
+        "fieldsMatch": "exact",
+        "missingValues": [""],
+        "fields": [
+          {
+            "name": "code",
+            "type": "string",
+            "description": "Code stored in the data: lower-case snake_case. Never reused for a different meaning.",
+            "constraints": {"required": true, "unique": true, "pattern": "[a-z][a-z0-9_]*"}
+          },
+          {
+            "name": "label",
+            "type": "string",
+            "description": "Readable label for display.",
+            "constraints": {"required": true, "unique": true}
+          },
+          {
+            "name": "definition",
+            "type": "string",
+            "description": "Definition in the project's own words.",
+            "constraints": {"required": true}
+          },
+          {
+            "name": "source_id",
+            "type": "string",
+            "description": "Source for the definition (SRC- ID).",
+            "constraints": {"required": true, "pattern": "SRC-[0-9]{4}"}
+          }
+        ],
+        "primaryKey": ["code"],
+        "foreignKeys": [{"fields": ["source_id"], "reference": {"resource": "sources", "fields": ["source_id"]}}]
+      }
+    },
+    {
+      "name": "lk_contract_length_band",
+      "path": "LK_CONTRACT_LENGTH_BAND.csv",
+      "type": "table",
+      "title": "Lookup: contract length band",
+      "description": "Bands of contract length; used by key_data Contract Length Band. The range of each band is given as two ISO 8601 durations. Lookup table (R-001 Change 6): columns code, label, definition, source_id. To add a value, add a row with a sourced definition.",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "dialect": {"delimiter": ",", "lineTerminator": "\r\n", "quoteChar": "\"", "doubleQuote": true, "header": true},
+      "schema": {
+        "fieldsMatch": "exact",
+        "missingValues": [""],
+        "fields": [
+          {
+            "name": "code",
+            "type": "string",
+            "description": "Code stored in the data: lower-case snake_case. Never reused for a different meaning.",
+            "constraints": {"required": true, "unique": true, "pattern": "[a-z][a-z0-9_]*"}
+          },
+          {
+            "name": "label",
+            "type": "string",
+            "description": "Readable label for display.",
+            "constraints": {"required": true, "unique": true}
+          },
+          {
+            "name": "definition",
+            "type": "string",
+            "description": "Definition in the project's own words.",
+            "constraints": {"required": true}
+          },
+          {
+            "name": "source_id",
+            "type": "string",
+            "description": "Source for the definition (SRC- ID).",
+            "constraints": {"required": true, "pattern": "SRC-[0-9]{4}"}
+          },
+          {
+            "name": "min_duration_exclusive",
+            "type": "duration",
+            "description": "Lower end of the band (exclusive), as an ISO 8601 duration, e.g. P7D.",
+            "constraints": {"required": true}
+          },
+          {
+            "name": "max_duration_inclusive",
+            "type": "duration",
+            "description": "Upper end of the band (inclusive), as an ISO 8601 duration, e.g. P1M.",
+            "constraints": {"required": true}
+          }
+        ],
+        "primaryKey": ["code"],
+        "foreignKeys": [{"fields": ["source_id"], "reference": {"resource": "sources", "fields": ["source_id"]}}]
+      }
+    },
+    {
+      "name": "lk_direction",
+      "path": "LK_DIRECTION.csv",
+      "type": "table",
+      "title": "Lookup: direction",
+      "description": "Directions of action; used by key_data Direction. not_applicable is a code here, not a missing value. Lookup table (R-001 Change 6): columns code, label, definition, source_id. To add a value, add a row with a sourced definition.",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "dialect": {"delimiter": ",", "lineTerminator": "\r\n", "quoteChar": "\"", "doubleQuote": true, "header": true},
+      "schema": {
+        "fieldsMatch": "exact",
+        "missingValues": [""],
+        "fields": [
+          {
+            "name": "code",
+            "type": "string",
+            "description": "Code stored in the data: lower-case snake_case. Never reused for a different meaning.",
+            "constraints": {"required": true, "unique": true, "pattern": "[a-z][a-z0-9_]*"}
+          },
+          {
+            "name": "label",
+            "type": "string",
+            "description": "Readable label for display.",
+            "constraints": {"required": true, "unique": true}
+          },
+          {
+            "name": "definition",
+            "type": "string",
+            "description": "Definition in the project's own words.",
+            "constraints": {"required": true}
+          },
+          {
+            "name": "source_id",
+            "type": "string",
+            "description": "Source for the definition (SRC- ID).",
+            "constraints": {"required": true, "pattern": "SRC-[0-9]{4}"}
+          }
+        ],
+        "primaryKey": ["code"],
+        "foreignKeys": [{"fields": ["source_id"], "reference": {"resource": "sources", "fields": ["source_id"]}}]
+      }
+    },
+    {
+      "name": "lk_dso_product_variant",
+      "path": "LK_DSO_PRODUCT_VARIANT.csv",
+      "type": "table",
+      "title": "Lookup: DSO product variant",
+      "description": "DSO flexibility product variants: the Elexon FMR-PD standard variants, the legacy ENA products and non-standard products; used by key_data Standard Variant. The parameter columns follow FMR-PD Table 3. Lookup table (R-001 Change 6): columns code, label, definition, source_id. To add a value, add a row with a sourced definition.",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "dialect": {"delimiter": ",", "lineTerminator": "\r\n", "quoteChar": "\"", "doubleQuote": true, "header": true},
+      "schema": {
+        "fieldsMatch": "exact",
+        "missingValues": [""],
+        "fields": [
+          {
+            "name": "code",
+            "type": "string",
+            "description": "Code stored in the data: lower-case snake_case. Never reused for a different meaning.",
+            "constraints": {"required": true, "unique": true, "pattern": "[a-z][a-z0-9_]*"}
+          },
+          {
+            "name": "label",
+            "type": "string",
+            "description": "Readable label for display.",
+            "constraints": {"required": true, "unique": true}
+          },
+          {
+            "name": "definition",
+            "type": "string",
+            "description": "Definition in the project's own words.",
+            "constraints": {"required": true}
+          },
+          {
+            "name": "source_id",
+            "type": "string",
+            "description": "Source for the definition (SRC- ID).",
+            "constraints": {"required": true, "pattern": "SRC-[0-9]{4}"}
+          },
+          {
+            "name": "external_code",
+            "type": "string",
+            "description": "The code used by the source, e.g. SA OU-15 (FMR-PD) or Sustain (ENA).",
+            "constraints": {"required": true, "unique": true}
+          },
+          {
+            "name": "product_code",
+            "type": "string",
+            "description": "The FMR-PD standard product (code from LK_DSO_STANDARD_PRODUCT). Filled only when product_fit is standard (checked by scripts/validate.py).",
+            "constraints": {"pattern": "[a-z][a-z0-9_]*"}
+          },
+          {
+            "name": "product_fit",
+            "type": "string",
+            "description": "standard, legacy or non_standard. No lookup table yet.",
+            "constraints": {"required": true, "pattern": "[a-z][a-z0-9_]*"}
+          },
+          {
+            "name": "payment_structure",
+            "type": "string",
+            "description": "What is paid for, e.g. utilisation_only or availability_and_utilisation. No lookup table yet.",
+            "constraints": {"required": true, "pattern": "[a-z][a-z0-9_]*"}
+          },
+          {
+            "name": "availability_refinement",
+            "type": "string",
+            "description": "Whether, and how far ahead, the DNO can refine the availability it bought, e.g. week_ahead. No lookup table yet.",
+            "constraints": {"required": true, "pattern": "[a-z][a-z0-9_]*"}
+          },
+          {
+            "name": "max_response_time_min",
+            "type": "string",
+            "description": "Longest allowed response time, in minutes, or not_applicable. Text for now because it mixes numbers and a code. Target: integer (Phase 3; see the R-010 missing-value decision).",
+            "constraints": {"required": true, "pattern": "([0-9]+|not_applicable)"}
+          },
+          {
+            "name": "utilisation_instruction_timing",
+            "type": "string",
+            "description": "When utilisation is instructed or confirmed, e.g. real_time. No lookup table yet.",
+            "constraints": {"required": true, "pattern": "[a-z][a-z0-9_]*"}
+          },
+          {
+            "name": "nearest_product_code",
+            "type": "string",
+            "description": "For legacy and non-standard products only: the nearest FMR-PD standard product (code from LK_DSO_STANDARD_PRODUCT).",
+            "constraints": {"pattern": "[a-z][a-z0-9_]*"}
+          }
+        ],
+        "primaryKey": ["code"],
+        "foreignKeys": [
+          {"fields": ["source_id"], "reference": {"resource": "sources", "fields": ["source_id"]}},
+          {
+            "fields": ["product_code"],
+            "reference": {"resource": "lk_dso_standard_product", "fields": ["code"]}
+          },
+          {
+            "fields": ["nearest_product_code"],
+            "reference": {"resource": "lk_dso_standard_product", "fields": ["code"]}
+          }
+        ]
+      }
+    },
+    {
+      "name": "lk_dso_standard_product",
+      "path": "LK_DSO_STANDARD_PRODUCT.csv",
+      "type": "table",
+      "title": "Lookup: DSO standard product",
+      "description": "The five Elexon FMR-PD standard DSO flexibility products; used by LK_DSO_PRODUCT_VARIANT. Lookup table (R-001 Change 6): columns code, label, definition, source_id. To add a value, add a row with a sourced definition.",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "dialect": {"delimiter": ",", "lineTerminator": "\r\n", "quoteChar": "\"", "doubleQuote": true, "header": true},
+      "schema": {
+        "fieldsMatch": "exact",
+        "missingValues": [""],
+        "fields": [
+          {
+            "name": "code",
+            "type": "string",
+            "description": "Code stored in the data: lower-case snake_case. Never reused for a different meaning.",
+            "constraints": {"required": true, "unique": true, "pattern": "[a-z][a-z0-9_]*"}
+          },
+          {
+            "name": "label",
+            "type": "string",
+            "description": "Readable label for display.",
+            "constraints": {"required": true, "unique": true}
+          },
+          {
+            "name": "definition",
+            "type": "string",
+            "description": "Definition in the project's own words.",
+            "constraints": {"required": true}
+          },
+          {
+            "name": "source_id",
+            "type": "string",
+            "description": "Source for the definition (SRC- ID).",
+            "constraints": {"required": true, "pattern": "SRC-[0-9]{4}"}
+          },
+          {
+            "name": "external_code",
+            "type": "string",
+            "description": "The FMR-PD product code, e.g. SA+OU.",
+            "constraints": {"required": true, "unique": true}
+          }
+        ],
+        "primaryKey": ["code"],
+        "foreignKeys": [{"fields": ["source_id"], "reference": {"resource": "sources", "fields": ["source_id"]}}]
+      }
+    },
+    {
+      "name": "lk_mechanism_class",
+      "path": "LK_MECHANISM_CLASS.csv",
+      "type": "table",
+      "title": "Lookup: mechanism class",
+      "description": "Kinds of mechanism; used by key_data Mechanism Class. Classes for charges, taxes and certificate schemes are added as rows when R-002 and R-003 draft those mechanisms. Lookup table (R-001 Change 6): columns code, label, definition, source_id. To add a value, add a row with a sourced definition.",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "dialect": {"delimiter": ",", "lineTerminator": "\r\n", "quoteChar": "\"", "doubleQuote": true, "header": true},
+      "schema": {
+        "fieldsMatch": "exact",
+        "missingValues": [""],
+        "fields": [
+          {
+            "name": "code",
+            "type": "string",
+            "description": "Code stored in the data: lower-case snake_case. Never reused for a different meaning.",
+            "constraints": {"required": true, "unique": true, "pattern": "[a-z][a-z0-9_]*"}
+          },
+          {
+            "name": "label",
+            "type": "string",
+            "description": "Readable label for display.",
+            "constraints": {"required": true, "unique": true}
+          },
+          {
+            "name": "definition",
+            "type": "string",
+            "description": "Definition in the project's own words.",
+            "constraints": {"required": true}
+          },
+          {
+            "name": "source_id",
+            "type": "string",
+            "description": "Source for the definition (SRC- ID).",
+            "constraints": {"required": true, "pattern": "SRC-[0-9]{4}"}
+          }
+        ],
+        "primaryKey": ["code"],
+        "foreignKeys": [{"fields": ["source_id"], "reference": {"resource": "sources", "fields": ["source_id"]}}]
+      }
+    },
+    {
+      "name": "lk_org_type",
+      "path": "LK_ORG_TYPE.csv",
+      "type": "table",
+      "title": "Lookup: organisation type",
+      "description": "Kinds of organisation; used by organisations org_type. Lookup table (R-001 Change 6): columns code, label, definition, source_id. To add a value, add a row with a sourced definition.",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "dialect": {"delimiter": ",", "lineTerminator": "\r\n", "quoteChar": "\"", "doubleQuote": true, "header": true},
+      "schema": {
+        "fieldsMatch": "exact",
+        "missingValues": [""],
+        "fields": [
+          {
+            "name": "code",
+            "type": "string",
+            "description": "Code stored in the data: lower-case snake_case. Never reused for a different meaning.",
+            "constraints": {"required": true, "unique": true, "pattern": "[a-z][a-z0-9_]*"}
+          },
+          {
+            "name": "label",
+            "type": "string",
+            "description": "Readable label for display.",
+            "constraints": {"required": true, "unique": true}
+          },
+          {
+            "name": "definition",
+            "type": "string",
+            "description": "Definition in the project's own words.",
+            "constraints": {"required": true}
+          },
+          {
+            "name": "source_id",
+            "type": "string",
+            "description": "Source for the definition (SRC- ID).",
+            "constraints": {"required": true, "pattern": "SRC-[0-9]{4}"}
+          }
+        ],
+        "primaryKey": ["code"],
+        "foreignKeys": [{"fields": ["source_id"], "reference": {"resource": "sources", "fields": ["source_id"]}}]
+      }
+    },
+    {
+      "name": "lk_status",
+      "path": "LK_STATUS.csv",
+      "type": "table",
+      "title": "Lookup: status",
+      "description": "Lifecycle states; used by key_data Status. Lookup table (R-001 Change 6): columns code, label, definition, source_id. To add a value, add a row with a sourced definition.",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "dialect": {"delimiter": ",", "lineTerminator": "\r\n", "quoteChar": "\"", "doubleQuote": true, "header": true},
+      "schema": {
+        "fieldsMatch": "exact",
+        "missingValues": [""],
+        "fields": [
+          {
+            "name": "code",
+            "type": "string",
+            "description": "Code stored in the data: lower-case snake_case. Never reused for a different meaning.",
+            "constraints": {"required": true, "unique": true, "pattern": "[a-z][a-z0-9_]*"}
+          },
+          {
+            "name": "label",
+            "type": "string",
+            "description": "Readable label for display.",
+            "constraints": {"required": true, "unique": true}
+          },
+          {
+            "name": "definition",
+            "type": "string",
+            "description": "Definition in the project's own words.",
+            "constraints": {"required": true}
+          },
+          {
+            "name": "source_id",
+            "type": "string",
+            "description": "Source for the definition (SRC- ID).",
+            "constraints": {"required": true, "pattern": "SRC-[0-9]{4}"}
+          }
+        ],
+        "primaryKey": ["code"],
+        "foreignKeys": [{"fields": ["source_id"], "reference": {"resource": "sources", "fields": ["source_id"]}}]
+      }
+    },
+    {
+      "name": "lk_yesno",
+      "path": "LK_YESNO.csv",
+      "type": "table",
+      "title": "Lookup: yes/no",
+      "description": "Answers for yes/no attributes, following R-001 Change 7: yes, no, not_applicable (researched, does not apply) and unknown (researched, no authoritative source). A blank cell means not yet researched. Lookup table (R-001 Change 6): columns code, label, definition, source_id. To add a value, add a row with a sourced definition.",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "dialect": {"delimiter": ",", "lineTerminator": "\r\n", "quoteChar": "\"", "doubleQuote": true, "header": true},
+      "schema": {
+        "fieldsMatch": "exact",
+        "missingValues": [""],
+        "fields": [
+          {
+            "name": "code",
+            "type": "string",
+            "description": "Code stored in the data: lower-case snake_case. Never reused for a different meaning.",
+            "constraints": {"required": true, "unique": true, "pattern": "[a-z][a-z0-9_]*"}
+          },
+          {
+            "name": "label",
+            "type": "string",
+            "description": "Readable label for display.",
+            "constraints": {"required": true, "unique": true}
+          },
+          {
+            "name": "definition",
+            "type": "string",
+            "description": "Definition in the project's own words.",
+            "constraints": {"required": true}
+          },
+          {
+            "name": "source_id",
+            "type": "string",
+            "description": "Source for the definition (SRC- ID).",
+            "constraints": {"required": true, "pattern": "SRC-[0-9]{4}"}
+          }
+        ],
+        "primaryKey": ["code"],
+        "foreignKeys": [{"fields": ["source_id"], "reference": {"resource": "sources", "fields": ["source_id"]}}]
+      }
+    }
+  ]
+}
