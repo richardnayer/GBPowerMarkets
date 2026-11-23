@@ -16,6 +16,14 @@ Entry template:
 
 ---
 
+## 2026-11-23 · R-012 · Nord Pool spelling in Market Platform (human decisions)
+**Outcome:** done
+**Summary:** Applied by the main session on the human's instruction. MARKET_INFO `Market Platform` for IDs 062-065 changed from `Nordpool` to `Nord Pool` (4 cells, logged in research/change_log.csv). The human also decided that duplicate market names (e.g. 092/093 `Scheduled Utilisation (SU)`) are acceptable until Phase 3 (R-001 Change 12).
+**Proposal:** n/a (follow-up to research/proposals/2026-11-23-R-001-database-structure-review.md)
+**Sources consulted:** https://www.nordpoolgroup.com/
+**Open questions for human:** none
+**Suggested new backlog items:** none
+
 ## 2026-11-23 · R-007 · Apply R-001 Phase 1
 **Outcome:** done
 **Summary:** The human approved Phase 1, and this run applied it. Before any edit, the six CSVs were backed up to `research/backups/2026-11-23-pre-phase1/` and SHA-256 hashes confirmed identical copies.

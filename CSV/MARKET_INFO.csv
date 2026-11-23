@@ -60,10 +60,10 @@
 059,GB Day Ahead 60 min Auction,Many-to-Many,D-1 @ 09:20 GMT,60,,,EPEX Spot,Closed Double Sided,Pay-as-Clear,,,,,,,Yes,7,6,1,,Yes,1500 MW,,,,,,https://www.epexspot.com/sites/default/files/download_center_files/EPEX%20SPOT_Power%20Spot%20Auctions_Block%20Parameters.pdf
 060,GB Day Ahead 30 min Auction,Many-to-Many,D-1 @ 09:20 GMT,30,,,EPEX Spot,Closed Double Sided,Pay-as-Clear,,,,,,,Yes,7,6,1,,Yes,500 MW,,,,,,https://www.epexspot.com/sites/default/files/download_center_files/EPEX%20SPOT_Power%20Spot%20Auctions_Block%20Parameters.pdf
 061,EPEX Continuous Intraday Market,,,,,,,,Pay-as-Clear,,,,,,,,,,,,,,,,,,,
-062,N2EX Day Ahead Auction,Many-to-Many,D-1 @ 09:50 GMT,60,00:00 to 24:00,60,Nordpool,Closed Double Sided,Pay-as-Clear,Maximise Social Welfare,,,,,,,,,,,,,,,,,,
-063,GB Half Hour Auction,Many-to-Many,D-1 @ 14:30 GMT,30,00:00 to 24:00,30,Nordpool,Closed Double Sided,Pay-as-Clear,Maximise Social Welfare,,,,,,,,,,,,,,,,,,
-064,SEM-GB Auction 1,Many-to-Many,D-1 @ 17:30 GMT,30 / 60,00:00 to 24:00,30 / 60,Nordpool / EUPHEMIA,,Pay-as-Clear,Maximise Social Welfare,,,,,,,,,,,,,,,,,,
-065,SEM-GB Auction 2,Many-to-Many,D-0 @ 08:00 GMT,30 / 60,12:00 to 24:00,30 / 60,Nordpool / EUPHEMIA,,Pay-as-Clear,Nor,,,,,,,,,,,,,,,,,,
+062,N2EX Day Ahead Auction,Many-to-Many,D-1 @ 09:50 GMT,60,00:00 to 24:00,60,Nord Pool,Closed Double Sided,Pay-as-Clear,Maximise Social Welfare,,,,,,,,,,,,,,,,,,
+063,GB Half Hour Auction,Many-to-Many,D-1 @ 14:30 GMT,30,00:00 to 24:00,30,Nord Pool,Closed Double Sided,Pay-as-Clear,Maximise Social Welfare,,,,,,,,,,,,,,,,,,
+064,SEM-GB Auction 1,Many-to-Many,D-1 @ 17:30 GMT,30 / 60,00:00 to 24:00,30 / 60,Nord Pool / EUPHEMIA,,Pay-as-Clear,Maximise Social Welfare,,,,,,,,,,,,,,,,,,
+065,SEM-GB Auction 2,Many-to-Many,D-0 @ 08:00 GMT,30 / 60,12:00 to 24:00,30 / 60,Nord Pool / EUPHEMIA,,Pay-as-Clear,Nor,,,,,,,,,,,,,,,,,,
 066,GB Continuous Intraday Market,,,,,,,,,,,,,,,,,,,,,,,,,,,
 067,Dynamic LT,,,,,,,,,,,,,,,,,,,,,,,,,,,
 068,OU15,,,,,,,,,,,,,,,,,,,,,,,,,,,
